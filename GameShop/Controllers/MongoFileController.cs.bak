@@ -1,0 +1,55 @@
+﻿using GameShop.Models;
+using GameShop.Models.DBConnection;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+namespace GameShop.Controllers
+{
+
+
+
+    [Produces("application/json")]
+    [Route("api/Purchase")]
+    [ApiController]
+    public class MongoFileController : Controller
+    {
+
+
+        //how to get game name from client?
+        [Route("~/api/upload_file")]
+        [HttpPost]
+        public async Task<ActionResult> AddFileAsync(IFormFile FileData, string GameName)
+        {
+            try
+            {
+                MongoDBServices dBServices = new MongoDBServices();
+
+                MongoObject gamelist = new MongoObject();
+
+                gamelist.Game_Name = GameName;
+
+                if (FileData.ContentDisposition != null)
+                {
+                    MemoryStream memdata = new MemoryStream();
+                    FileData.CopyTo(memdata);
+                    gamelist.ImageUrl = Convert.ToBase64String(memdata.ToArray());
+
+                    await dBServices.Create(gamelist);
+
+                }
+
+                return Json("Succes");
+            }
+            catch
+            {
+                return Json("Failed upload");
+            }
+        }
+
+
+
+    }
+}
