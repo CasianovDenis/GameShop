@@ -1,9 +1,12 @@
 ﻿using Braintree;
 using GameShop.Interfaces;
+using GameShop.Models;
 using GameShop.Models.DBConnection;
 using GameShop.Models.Purchase;
 using Microsoft.AspNetCore.Mvc;
+using PasswordManager.Models;
 using System;
+using System.Linq;
 
 namespace GameShop.Controllers
 {
@@ -79,6 +82,16 @@ namespace GameShop.Controllers
                 Result<Transaction> result = gateway.Transaction.Sale(request);
 
 
+
+                TempData temp = new TempData();
+
+                temp.TempGameName = game.Game_name;
+                temp.GamePrice = game.Price;
+                temp.Email = game.Email;
+                temp.GameCode = RandomString(16);
+
+                SendEmail sendmessage = new SendEmail(temp);
+
                 return Json("Succes");
 
             }
@@ -90,5 +103,20 @@ namespace GameShop.Controllers
 
         }
 
+
+        public static string RandomString(int length)
+        {
+            Random random = new Random();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
     }
+
+
+
+
+
 }
