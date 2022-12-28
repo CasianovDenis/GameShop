@@ -1,4 +1,5 @@
-﻿using GameShop.Models.DBConnection;
+﻿using GameShop.Models;
+using GameShop.Models.DBConnection;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace GameShop.Controllers
             _conString = conection;
 
         }
+
 
 
         [Route("~/api/get_random_games")]
@@ -50,6 +52,27 @@ namespace GameShop.Controllers
                 return Json("Error");
             }
         }
+
+        [Route("~/api/get_game")]
+        [HttpPost]
+        public JsonResult GetGame(Game game)
+        {
+
+            try
+            {
+                var dbdata = _conString.Game.Single(data => data.Game_name == game.Game_name);
+
+
+                return Json(dbdata);
+
+
+            }
+            catch
+            {
+                return Json("Game not found");
+            }
+        }
+
 
     }
 }
