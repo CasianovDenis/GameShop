@@ -18,10 +18,10 @@ namespace GameShop.Controllers
     {
 
 
-        //how to get game name from client?
+
         [Route("~/api/upload_file")]
         [HttpPost]
-        public async Task<ActionResult> AddFileAsync(IFormFile FileData, string GameName)
+        public async Task<ActionResult> AddFileAsync(IFormFile FileData)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace GameShop.Controllers
 
                 MongoObject gamelist = new MongoObject();
 
-                gamelist.Game_Name = GameName;
+                gamelist.File_Name = FileData.FileName;
 
                 if (FileData.ContentDisposition != null)
                 {
@@ -48,6 +48,32 @@ namespace GameShop.Controllers
                 return Json("Failed upload");
             }
         }
+
+        [Route("~/api/new_file_name")]
+        [HttpPost]
+        public JsonResult UpdateFileName(TempData temp)
+        {
+            try
+            {
+
+                MongoDBServices dBServices = new MongoDBServices();
+
+                MongoObject gamelist = new MongoObject();
+
+                gamelist = dBServices.Get(temp.OldFileName);
+
+                gamelist.File_Name = temp.NewFileName;
+
+                var result = dBServices.Update(gamelist);
+
+                return Json("File added succesfully");
+            }
+            catch
+            {
+                return Json("Failed udate");
+            }
+        }
+
 
 
 

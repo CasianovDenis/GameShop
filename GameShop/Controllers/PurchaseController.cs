@@ -67,7 +67,7 @@ namespace GameShop.Controllers
                     //price need to make dynamic
                     Customer = customer,
                     ProductSku = game.Game_name,
-                    Amount = Convert.ToDecimal("250"),
+                    Amount = Convert.ToDecimal(game.Price),
                     PaymentMethodNonce = game.Nonce,
 
                     Options = new TransactionOptionsRequest
