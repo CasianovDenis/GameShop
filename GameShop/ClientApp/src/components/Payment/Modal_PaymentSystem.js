@@ -64,7 +64,8 @@ export default class Modal_PaymentSystem extends React.Component {
                 "Nonce": nonce.toString(),
                 "FirstName": this.refs.first_name.value,
                 "LastName": this.refs.last_name.value,
-                "Price": this.props.game.Price
+                "Price": this.props.game.Price,
+                "Email": this.refs.email.value
                
             })
         };
@@ -77,7 +78,8 @@ export default class Modal_PaymentSystem extends React.Component {
             .then(response => response.json())
             .then((responseData) => {
 
-                console.log("Succes");
+                this.setState({ message: "Game code sended you email"});
+
 
             });
 
@@ -89,15 +91,24 @@ export default class Modal_PaymentSystem extends React.Component {
         if (this.refs.first_name.value.match(/^[A-Za-z0-9\s]+$/)) {
 
             if (this.refs.last_name.value.match(/^[A-Za-z0-9\s]+$/)) {
-                var div = document.getElementById('customer');
-                div.style.display = "none";
-                div = document.getElementById('pay_card');
-                div.style.display = "block";
 
-                this.setState({
-                    message: ""
+                if (this.refs.email.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
 
-                });
+                    var div = document.getElementById('customer');
+                    div.style.display = "none";
+                    div = document.getElementById('pay_card');
+                    div.style.display = "block";
+
+                    this.setState({
+                        message: ""
+
+                    });
+                }
+                else
+                    this.setState({
+                        message: "Email wrong"
+
+                    });
             }
             else
                 this.setState({
@@ -121,13 +132,16 @@ export default class Modal_PaymentSystem extends React.Component {
     }
 
     render() {
+
         if (!this.state.clientToken) {
             return (
                 <div>
                     <h1>Loading...</h1>
                 </div>
             );
-        } else {
+        }
+        else
+        {
             return (
                 <div>
                     <button className={style.BuyButton} data-toggle="modal" data-target="#Payment">Buy Now </button>
@@ -154,19 +168,29 @@ export default class Modal_PaymentSystem extends React.Component {
                                             <p>Price : {this.props.game.Price} $</p>
                                            </div>
 
+
                                     <div id="customer">
                                    <p>First Name:</p>
                                 <input type="text" class="form-control" ref="first_name" />
 
+                                            <br />
                                   <p>Last Name:</p>
                                  <input class="form-control" type="text" ref="last_name" />
-                                 <br />
+
+                                            <br />
+
+                                 <p>Email:</p>
+                                  <input class="form-control" type="email" ref="email" />
+
+                                            <br />
 
                                  <button class="btn btn-primary" onClick={this.customer}> Next </button>
                                     </div>
 
+
                                      <div id="pay_card" style={{ display: "none" }}>
-                                    <DropIn
+
+                                            <DropIn
                                     options={{ authorization: this.state.clientToken }}
                                       onInstance={(instance) => (this.instance = instance)}
                                             />
@@ -175,7 +199,9 @@ export default class Modal_PaymentSystem extends React.Component {
 
                                             <button class="btn btn-primary" onClick={this.back} style={{ margin:"10px" }}> Back </button>
                                       </div>
-                                        {this.state.message}
+
+                                        <p style={{ color: "red" }}>{this.state.message}</p>
+
                                     </div>
 
                            
