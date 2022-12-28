@@ -37,9 +37,9 @@ namespace GameShop.Models.DBConnection
             return documents.Find(new BsonDocument("File_Name", new string(name))).FirstOrDefault();
         }
 
-        public IEnumerable<MongoObject> GetAll(string username)
+        public IEnumerable<MongoObject> GetAll(string name)
         {
-            var get = documents.Find(new BsonDocument("Username", new string(username))).ToList();
+            var get = documents.Find(new BsonDocument("File_Name", new string(name))).ToList();
             return get;
         }
         // добавление документа
