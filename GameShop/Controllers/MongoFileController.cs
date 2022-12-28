@@ -66,7 +66,7 @@ namespace GameShop.Controllers
 
                 var result = dBServices.Update(gamelist);
 
-                return Json("File added succesfully");
+                return Json("File added successfully");
             }
             catch
             {
@@ -74,7 +74,27 @@ namespace GameShop.Controllers
             }
         }
 
+        [Route("~/api/get_files")]
+        [HttpPost]
+        public JsonResult GetFiles(TempData temp)
+        {
+            try
+            {
 
+                MongoDBServices dBServices = new MongoDBServices();
+
+
+
+                var photolist = dBServices.GetAll(temp.TempGameName);
+
+
+                return Json(photolist);
+            }
+            catch
+            {
+                return Json("Game data not exist");
+            }
+        }
 
 
     }
