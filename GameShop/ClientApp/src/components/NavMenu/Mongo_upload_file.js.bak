@@ -72,7 +72,7 @@ export default function Mongo_upload_file() {
                 .then((responseData) => {
 
 
-                    if (responseData = "File added successfully") {
+                    if (responseData = "File added succesfully") {
 
                         setMessage(responseData);
 
