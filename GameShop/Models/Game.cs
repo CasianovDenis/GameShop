@@ -18,5 +18,7 @@ namespace GameShop.Models
 
         public string Cover { get; set; }
 
+
+
     }
 }
