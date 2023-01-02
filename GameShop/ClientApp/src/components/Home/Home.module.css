@@ -34,3 +34,10 @@
     height:35vh;
     cursor:pointer;
 }
+
+.newgame{
+    color:white;
+    position:absolute;
+    top:65%;
+    font-size:25px;
+}

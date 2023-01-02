@@ -48,8 +48,10 @@ export default function Card_form() {
 
         <div >
 
-
+           
             <div >
+                <p className={style.newgame }>New game</p>
+
                 {dbdata.map(item => {
                     return (
 
