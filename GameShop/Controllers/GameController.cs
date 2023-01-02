@@ -53,6 +53,41 @@ namespace GameShop.Controllers
             }
         }
 
+        [Route("~/api/get_new_games")]
+        [HttpPost]
+        public JsonResult NewGames()
+        {
+
+            try
+            {
+                var dbdata = _conString.Game.Where(data => data.ID > 0).OrderBy(data=>data.ID).ToList();
+
+
+                if (dbdata.Count >= 6)
+                {
+
+
+                    int range = dbdata.Count - 5;
+
+                    for (int index = 0; index < range; index++)
+                    {
+
+                        dbdata.Remove(dbdata[0]);
+
+
+                    }
+
+                    return Json(dbdata);
+                }
+                return Json(dbdata);
+            }
+            catch
+            {
+                return Json("Error");
+            }
+        }
+
+
         [Route("~/api/get_game")]
         [HttpPost]
         public JsonResult GetGame(Game game)

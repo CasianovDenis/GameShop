@@ -5,6 +5,8 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 import SlideShowHome from './SlideShowHome';
 
+import Card_form from './Card_form';
+
 
 
 export default function Home() {
@@ -44,10 +46,10 @@ export default function Home() {
     //if (dbdata != null) {
         return (
 
-
+            <>
              <SlideShowHome />
-            
-
+            <Card_form />
+                </>
         )
     
 }

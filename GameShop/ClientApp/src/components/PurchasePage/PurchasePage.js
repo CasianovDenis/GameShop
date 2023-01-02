@@ -30,6 +30,8 @@ export default function PurchasePage() {
    
     useEffect(() => {
 
+        if (GameName == null) redirect.push('/');
+
         if (request == true) {
 
             const requestOptions = {
