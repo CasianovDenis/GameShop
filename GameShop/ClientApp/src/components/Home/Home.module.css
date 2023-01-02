@@ -17,3 +17,20 @@
     width:100%;
     cursor:pointer;
 }
+
+.Cards{
+    margin-top:400px;
+    margin-left:10px;
+   
+    width:30px;
+    float:left;
+
+   margin-right:180px;
+   
+    }
+
+#card_image{
+    width:125%;
+    height:35vh;
+    cursor:pointer;
+}
