@@ -4,6 +4,7 @@ namespace GameShop.Models.Purchase
 {
     public class GamePurchase : Game
     {
+
         [Required]
         public string LastName { get; set; }
 
@@ -15,5 +16,6 @@ namespace GameShop.Models.Purchase
 
         [Required]
         public string Email { get; set; }
+
     }
 }
