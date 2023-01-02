@@ -40,8 +40,7 @@ export default function Modal_add_game() {
 
         };
 
-        //Game_name must contains letters,numbers,2 symbols ", ." 
-        if (newgame.Game_name.match(/^[A-Za-z0-9\s+:]+$/)) {
+       
 
             //Verified if Price have a number and Price is normal
             if (newgame.Price.match(/\d+$/) && newgame.Price<=70 && newgame.Price>0) {
@@ -71,7 +70,16 @@ export default function Modal_add_game() {
 
 
 
-                                setMessage(responseData);
+                                if (responseData == "Succes") {
+                            
+
+                                    refGameName.current.value = "";
+                                    refCover.current.value = "";
+                                    refDescription.current.value = "";
+                                    refPrice.current.value = "";
+
+                                    setMessage("Game was added");
+                                }
 
                             });
                     }
@@ -83,9 +91,7 @@ export default function Modal_add_game() {
             }
             else
             setMessage("Price wrong, insert number with 1 to 70");
-        }
-        else
-        setMessage("Name of game wrong,only letters,numbers");
+        
     }
 
     
@@ -109,18 +115,18 @@ export default function Modal_add_game() {
 
                            
                      <p> Game Name:</p>
-                     <input type="text" ref={refGameName} class="form-control"  required />
+                     <input id="gamename" type="text" ref={refGameName} class="form-control"  required />
 
                             <p>Price:</p>
-                                <input type="number" ref={refPrice} class="form-control" required/>
+                                <input id="price" type="number" ref={refPrice} class="form-control" required/>
 
                             <p>Description:</p>
-                            <textarea ref={refDescription} rows="10" cols="50" onChange={count_letters} required />
+                            <textarea id="description" ref={refDescription} rows="10" cols="50" onChange={count_letters} required />
 
                             <p>Letters:{letters_number}</p>
 
                             <p>Insert Image URL:</p>
-                            <input type="text" ref={refCover} class="form-control" required />
+                            <input id="imgurl" type="text" ref={refCover} class="form-control" required />
                         
                          
                             

@@ -49,7 +49,7 @@ export default function Mongo_upload_file() {
     const finish_upload = () =>{
 
 
-        if (refGameName.current.value.match(/^[A-Za-z0-9\s+:]+$/)) {
+       
 
             setMessage('Processed');
             const requestOptions = {
@@ -61,7 +61,7 @@ export default function Mongo_upload_file() {
 
 
                 })
-            };
+            }
 
 
 
@@ -92,9 +92,7 @@ export default function Mongo_upload_file() {
 
                 });
 
-        }
-        else
-            setMessage("Wrong name of game")
+        
     }
     
     return (
