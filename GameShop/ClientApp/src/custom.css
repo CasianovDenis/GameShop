@@ -16,3 +16,21 @@ code {
 body {
     background-color: #1c1c1c;
 }
+
+footer {
+    position:absolute;
+    background-color: #2a2a2a;
+    height:200px;
+    top:130%;
+    left:10px;
+}
+
+@media(max-width:991px)
+{
+    footer {
+        
+top:530%;
+height: 150px;
+       
+    }
+}
