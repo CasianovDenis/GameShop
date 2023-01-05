@@ -41,3 +41,28 @@
     top:65%;
     font-size:25px;
 }
+
+@media(max-width:991px) {
+
+    .Cards {
+        position:relative;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 0px;
+        float: left;
+        margin-right: 300px;
+        top:60vh;
+    }
+
+    #card_image {
+        width: 350%;
+        height: 80vh;
+        
+    }
+
+    .newgame {
+        top: 65%;
+        font-size: 15px;
+    }
+
+}
