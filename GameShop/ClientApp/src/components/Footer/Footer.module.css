@@ -1,0 +1,40 @@
+﻿.footer_text{
+    color:white;
+    font-size:15px;
+    
+}
+
+.footer_div{
+    margin:30px;
+    width:400px;
+position:absolute;
+
+}
+
+.footer_logo{
+position:absolute;
+width:30%;
+height:65%;
+left:290%;
+top:10px;
+}
+
+@media(max-width:991px)
+{
+    .footer_div {
+        margin: 30px;
+        width: 400px;
+        position: absolute;
+        
+    }
+
+    .footer_logo {
+        
+        width: 30%;
+        height: 65%;
+        left: 120%;
+        top: 10px;
+    }
+
+
+}

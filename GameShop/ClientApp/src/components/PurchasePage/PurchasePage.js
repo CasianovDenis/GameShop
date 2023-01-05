@@ -59,7 +59,8 @@ export default function PurchasePage() {
                 });
 
 
-          
+           
+
         }
     }, [gameinfo]);
 

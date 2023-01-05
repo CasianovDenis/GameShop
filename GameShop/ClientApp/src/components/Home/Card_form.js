@@ -36,7 +36,7 @@ export default function Card_form() {
 
     const redirect_to_purchase = (ev) =>
     {
-        console.log(ev.target.getAttribute('alt'));
+       
         redirect.push('/Purchase', { GameName: ev.target.getAttribute('alt') });
     }
 
