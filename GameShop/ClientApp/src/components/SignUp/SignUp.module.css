@@ -1,0 +1,42 @@
+﻿.modal_signup {
+
+    background-color: #36393f;    
+    width: 30%;
+    height: 87%;
+
+
+    position: absolute;
+    top: 100px;
+    left: 35%;
+
+    border-radius:10px;
+}
+
+.background_image {
+    
+    margin-top:-20px;
+    width:122%;
+    margin-left:-11.2%;
+    
+}
+
+.signup_button {
+    width: 90%;
+    height: 50px;
+    background-color: #7289da;
+    border-radius: 5px;
+    
+    margin-top: 15px;
+    margin-left: 20px;
+    
+    outline: none;
+    border:none;
+    color:white;
+    /*
+    
+    and test api create user
+*/
+}
+.signup_button:focus {
+    outline: none;
+}
