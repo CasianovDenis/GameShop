@@ -10,7 +10,7 @@ namespace GameShop.Models.DBConnection
         }
 
         public DbSet<Game> Game { get; set; }
-        //public DbSet<Encryption_data> Encryption_data { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         //        public DbSet<Password_store> Password_store { get; set; }
     }

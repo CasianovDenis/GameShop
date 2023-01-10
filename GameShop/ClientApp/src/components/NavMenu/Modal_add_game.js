@@ -99,8 +99,8 @@ export default function Modal_add_game() {
     return (
 
        
-    <div>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#add_game" style={{ margin: "5px" }}>Add game</button >
+        <div>
+            <p class="dropdown-item" data-toggle="modal" data-target="#add_game" >Add game</p>
             
             <div class="modal fade" id="add_game" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
