@@ -98,8 +98,8 @@ export default function Mongo_upload_file() {
     return (
 
        
-    <div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#upload_file">Upload</button >
+        <div>
+            <p class="dropdown-item" data-toggle="modal" data-target="#upload_file" >Upload image for game</p>
             
             <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
