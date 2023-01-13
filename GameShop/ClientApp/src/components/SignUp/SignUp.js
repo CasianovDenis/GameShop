@@ -1,6 +1,7 @@
 ﻿import React, {useEffect,useState,useRef } from 'react';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import background_image from '../public_files/Background_image_signup.jpg';
 
@@ -8,7 +9,6 @@ import style from './SignUp.module.css';
 
 import sha256 from 'js-sha256';
 import GetCookie from '../public_files/GetCookie.js';
-import { useHistory } from 'react-router-dom';
 
 export default function SignUp() {
     const redirect = useHistory();
@@ -43,6 +43,7 @@ export default function SignUp() {
 
             if (newuser.Email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             )) {
+
                 if (refPassword.current.value != "" && refVerificationPassword.current.value != "") {
 
                     if (refPassword.current.value == refVerificationPassword.current.value) {
@@ -55,9 +56,6 @@ export default function SignUp() {
                             body: JSON.stringify(newuser)
                         };
 
-
-
-                        //call api from backend and send json data,which create before
 
                         fetch('http://localhost:56116/api/create_user', requestOptions)
                             .then(response => response.json())
@@ -92,9 +90,6 @@ export default function SignUp() {
     }
     
 
-
-
-
     return (
         
 
@@ -105,8 +100,10 @@ export default function SignUp() {
 
             <div className={style.modal_signup}>
                 <form>
-                <br />
-                <p style={{ color: "white", fontSize:"20px", marginLeft: "30%" }}>Create an account</p>
+
+                    <br />
+
+                <p style={{ color: "white", fontSize: "20px", marginLeft: "30%" }}>Create an account</p>
 
                 <p style={{ color: "white", marginLeft: "20px" }}> Username: </p>
 
@@ -136,7 +133,9 @@ export default function SignUp() {
 
                 </form>
 
-                <p style={{ color: "white" , marginLeft:"25px" }}>{message} </p>
+                <p style={{ color: "white", marginLeft: "25px" }}>{message} </p>
+
+
             </div>
 
 

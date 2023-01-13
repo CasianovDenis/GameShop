@@ -1,6 +1,7 @@
 ﻿import React, {useEffect,useState,useRef } from 'react';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import background_image from '../public_files/Background_image_signup.jpg';
 
@@ -8,7 +9,7 @@ import style from './SignIn.module.css';
 
 import sha256 from 'js-sha256';
 import GetCookie from '../public_files/GetCookie.js';
-import { useHistory } from 'react-router-dom';
+
 
 export default function SignIn() {
     const redirect = useHistory();
@@ -48,9 +49,6 @@ export default function SignIn() {
                 };
 
 
-
-                //call api from backend and send json data,which create before
-
                 fetch('http://localhost:56116/api/user_authentication', requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
@@ -71,7 +69,6 @@ export default function SignIn() {
                             document.cookie = "status_account=online ; expires=" + date.toGMTString();
 
 
-                            //redirect to page and refresh component
                             redirect.go('/');
                         }
 
@@ -102,6 +99,7 @@ export default function SignIn() {
 
             <div className={style.modal_signin}>
                 <form>
+
                 <br />
                 <p style={{ color: "white", fontSize:"20px", marginLeft: "40%" }}>Welcome</p>
 
@@ -121,7 +119,8 @@ export default function SignIn() {
 
                 </form>
 
-                <p style={{ color: "white" , marginLeft:"25px" }}>{message} </p>
+                <p style={{ color: "white", marginLeft: "25px" }}>{message} </p>
+
             </div>
 
 

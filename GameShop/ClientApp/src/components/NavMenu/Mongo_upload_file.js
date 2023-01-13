@@ -1,10 +1,10 @@
 ﻿import React, { useState, useRef } from 'react';
 import {NavLink } from 'reactstrap';
-
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
+
 import axios from 'axios';
 
 
@@ -59,9 +59,9 @@ export default function Mongo_upload_file() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+
                     "OldFileName": file.name,
                     "NewFileName": refGameName.current.value
-
 
                 })
             }
@@ -78,6 +78,7 @@ export default function Mongo_upload_file() {
                     if (responseData = "File added successfully") {
 
                         setMessage(responseData);
+
 
                         var element = document.getElementById('upload_input');
 
@@ -106,13 +107,15 @@ export default function Mongo_upload_file() {
             
             <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
+
             <div class="modal-content">
                 <div class="modal-header">
                    <h5 class="modal-title" id="exampleModalLabel">Add Game</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-               </div>
+                        </div>
+
                 <div class="modal-body">
                       <p>In this modal you need to insert image from game,which display in the purchase page</p>
 

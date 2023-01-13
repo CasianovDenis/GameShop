@@ -1,14 +1,14 @@
 ﻿import React, { } from 'react';
+
 import style from './Footer.module.css';
+
 import logo from '../NavMenu/Logo.png'
+
+
 export default function Footer() {
 
 
-
-
     return (
-       
-
 
             <footer >
                 

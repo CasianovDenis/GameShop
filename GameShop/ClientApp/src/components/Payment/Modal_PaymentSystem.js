@@ -1,6 +1,7 @@
 import React from "react";
 import DropIn from "braintree-web-drop-in-react";
-import braintree from "braintree-web-drop-in";
+
+
 import style from "./Payment.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,7 +15,7 @@ export default class Modal_PaymentSystem extends React.Component {
     };
 
     async componentDidMount() {
-        // Get a client token for authorization from your server
+        // Get a client token for authorization from  server
        
       
         const requestOptions = {
@@ -25,7 +26,7 @@ export default class Modal_PaymentSystem extends React.Component {
 
        
 
-        //call api from backend and send json data,which create before
+       
 
         fetch('http://localhost:56116/api/client_token', requestOptions)
             .then(response => response.json())
@@ -48,7 +49,7 @@ export default class Modal_PaymentSystem extends React.Component {
   
 
     buy=()=> {
-        // Send the nonce to your server
+        // Send the nonce to server
        
        const nonce  = this.instance.requestPaymentMethod();
       
@@ -83,13 +84,15 @@ export default class Modal_PaymentSystem extends React.Component {
 
 
     }
-    // need to set regex for restric introduction empty field
+
+
     customer = ()=> {
 
         if (this.refs.first_name.value.match(/^[A-Za-z0-9\s]+$/)) {
 
             if (this.refs.last_name.value.match(/^[A-Za-z0-9\s]+$/)) {
 
+                //Verified if in email field is inserted email format right
                 if (this.refs.email.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
 
                     var div = document.getElementById('customer');
@@ -123,23 +126,29 @@ export default class Modal_PaymentSystem extends React.Component {
     }
 
     back = () => {
+
         var div = document.getElementById('customer');
         div.style.display = "block";
         div = document.getElementById('pay_card');
         div.style.display = "none";
+
     }
 
     render() {
 
         if (!this.state.clientToken) {
             return (
+
                 <div>
                     <h1>Loading...</h1>
                 </div>
+
             );
         }
+
         else
         {
+
             return (
                 <div>
                     <button className={style.BuyButton} data-toggle="modal" data-target="#Payment">Buy Now </button>
