@@ -1,12 +1,11 @@
 ﻿import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
-
 import style from './Purchase.module.css';
 
-import { useLocation } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
 
 import SlideShowPurchase from './SlideShowPurchase';
 import Modal_PaymentSystem from '../Payment/Modal_PaymentSystem';
@@ -15,6 +14,7 @@ import arrow_left from './arrow.png';
 
 
 export default function PurchasePage() {
+
     const location = useLocation();
     const redirect = useHistory();
 
@@ -93,10 +93,15 @@ export default function PurchasePage() {
                     <div className={style.BuyGame }>
 
                         <img className={style.CoverStyle} src={gameinfo.Cover} />
+
                         <br /><br />
+
                         <span class="badge bg-secondary">Base Game</span>
+
                         <br /><br />
+
                         <p style={{ color: "white" }}>{gameinfo.Price}$</p>
+
                         <Modal_PaymentSystem game={gameinfo} />
 
                     </div>

@@ -1,11 +1,10 @@
 import React, { useEffect,useState} from "react";
-
-import style from './Home.module.css';
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
-
+import style from './Home.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Carousel,CarouselItem,CarouselControl, CarouselIndicators,CarouselCaption,} from 'reactstrap';
+
 
 
 export default function SlideShowHome() {
@@ -14,6 +13,7 @@ export default function SlideShowHome() {
     const [dbdata, setDbData] = useState(null);
     const [request, setRequest] = useState(true);
     const [activeIndex, setActiveIndex] = useState(0);
+
     const [animating, setAnimating] = useState(false);
     const redirect = useHistory();
     const items=useState([]);
@@ -90,8 +90,10 @@ export default function SlideShowHome() {
         setActiveIndex(newIndex);
     };
 
+
     const slides = items.map((item) => {
         return (
+
             <CarouselItem
                 className={style.custom_tag}
                 tag="div"
@@ -113,6 +115,7 @@ export default function SlideShowHome() {
 
     
         return (
+
             <div className={style.Carousel}>
 
                 <Carousel activeIndex={activeIndex} next={next} previous={previous} >
@@ -139,7 +142,8 @@ export default function SlideShowHome() {
         );
     }
     else
-    return (
+        return (
+
         <div class="spinner-border" role="status" >
             <span class="visually-hidden"></span>
         </div>

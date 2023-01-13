@@ -1,12 +1,14 @@
 ﻿import React, {useEffect,useState,useRef } from 'react';
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import background_image from './Background_image_signup.jpg';
+import background_image from '../public_files/Background_image_signup.jpg';
 
 import style from './SignUp.module.css';
 
-import hash_function from 'sjcl';
+import sha256 from 'js-sha256';
 import GetCookie from '../public_files/GetCookie.js';
-import { useHistory } from 'react-router-dom';
 
 export default function SignUp() {
     const redirect = useHistory();
@@ -27,14 +29,12 @@ export default function SignUp() {
 
         setMessage('Processed');
 
-        var myBitArray = hash_function.hash.sha256.hash(refPassword);
-        var myHash = hash_function.codec.hex.fromBits(myBitArray);
-
+        
         let newuser = {
 
             "Username": refUsername.current.value,
             "Email": refEmail.current.value,
-            "Password": myHash,
+            "Password": sha256(refPassword.current.value),
             "Role": "user"
 
         }
@@ -43,6 +43,7 @@ export default function SignUp() {
 
             if (newuser.Email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             )) {
+
                 if (refPassword.current.value != "" && refVerificationPassword.current.value != "") {
 
                     if (refPassword.current.value == refVerificationPassword.current.value) {
@@ -56,14 +57,11 @@ export default function SignUp() {
                         };
 
 
-
-                        //call api from backend and send json data,which create before
-
                         fetch('http://localhost:56116/api/create_user', requestOptions)
                             .then(response => response.json())
                             .then((responseData) => {
 
-                                if (responseData != "User Exist") {
+                                if (responseData == "Account created successfully") {
 
                                     refUsername.current.value = "";
                                     refEmail.current.value = "";
@@ -92,9 +90,6 @@ export default function SignUp() {
     }
     
 
-
-
-
     return (
         
 
@@ -105,8 +100,10 @@ export default function SignUp() {
 
             <div className={style.modal_signup}>
                 <form>
-                <br />
-                <p style={{ color: "white", fontSize:"20px", marginLeft: "30%" }}>Create an account</p>
+
+                    <br />
+
+                <p style={{ color: "white", fontSize: "20px", marginLeft: "30%" }}>Create an account</p>
 
                 <p style={{ color: "white", marginLeft: "20px" }}> Username: </p>
 
@@ -130,11 +127,15 @@ export default function SignUp() {
 
                 <input class="form-control" ref={refVerificationPassword} style={{ width: "90%", marginLeft: "20px" }} type="password" />
 
-                <button className={style.signup_button}  onClick={create_account}> Sign Up </button>
+                 <NavLink tag={Link} to="/SignIn">Have an account</NavLink>
+
+                    <button className={style.signup_button} onClick={create_account}> Sign Up </button>
 
                 </form>
 
-                <p style={{ color: "white" , marginLeft:"25px" }}>{message} </p>
+                <p style={{ color: "white", marginLeft: "25px" }}>{message} </p>
+
+
             </div>
 
 

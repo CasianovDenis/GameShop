@@ -1,12 +1,12 @@
-﻿.modal_signup {
+﻿.modal_signin {
 
     background-color: #36393f;    
     width: 30%;
-    height: 93%;
+    height: 65%;
 
 
     position: absolute;
-    top: 100px;
+    top: 200px;
     left: 35%;
 
     border-radius:10px;
@@ -20,13 +20,13 @@
     
 }
 
-.signup_button {
+.signin_button {
     width: 90%;
     height: 50px;
     background-color: #7289da;
     border-radius: 5px;
     
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 20px;
     
     outline: none;

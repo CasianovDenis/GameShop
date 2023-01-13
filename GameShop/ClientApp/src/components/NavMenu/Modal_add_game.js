@@ -1,4 +1,6 @@
 ﻿import React, { useState, useRef } from 'react';
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -42,13 +44,13 @@ export default function Modal_add_game() {
 
        
 
-            //Verified if Price have a number and Price is normal
+            
             if (newgame.Price.match(/\d+$/) && newgame.Price<=70 && newgame.Price>0) {
 
-                //Description must 40+ letters
+                
                 if (newgame.Description.match(/\w/) && letters_number>=40) {
 
-                    //Cover must contains url image
+                    //Verifie if inserted cover is url
                     if (newgame.Cover.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)) {
 
                         setMessage('Processed');
@@ -62,12 +64,10 @@ export default function Modal_add_game() {
 
 
 
-                        //call api from backend and send json data,which create before
-
+                       
                         fetch('http://localhost:56116/api/upload_data', requestOptions)
                             .then(response => response.json())
                             .then((responseData) => {
-
 
 
                                 if (responseData == "Succes") {
@@ -100,7 +100,7 @@ export default function Modal_add_game() {
 
        
         <div>
-            <p class="dropdown-item" data-toggle="modal" data-target="#add_game" >Add game</p>
+            <NavLink tag={Link} class="dropdown-item" to="/Account" data-toggle="modal" data-target="#add_game">Add game</NavLink>
             
             <div class="modal fade" id="add_game" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

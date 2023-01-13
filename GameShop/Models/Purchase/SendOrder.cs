@@ -4,9 +4,9 @@ using System.Net.Mail;
 
 namespace PasswordManager.Models
 {
-    public class SendEmail
+    public class SendOrder
     {
-        public SendEmail(TempData temp)
+        public SendOrder(TempData temp)
         {
             //Send email which contain order data
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);

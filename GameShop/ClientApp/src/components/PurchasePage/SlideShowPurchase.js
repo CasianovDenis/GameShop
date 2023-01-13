@@ -1,10 +1,9 @@
 import React, { useEffect,useState} from "react";
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, } from 'reactstrap';
 
 import style from './Purchase.module.css';
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Carousel,CarouselItem,CarouselControl, CarouselIndicators,CarouselCaption,} from 'reactstrap';
 
 
 export default function SlideShowPurchase(props) {
