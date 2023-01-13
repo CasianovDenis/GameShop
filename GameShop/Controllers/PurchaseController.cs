@@ -90,7 +90,7 @@ namespace GameShop.Controllers
                 temp.Email = game.Email;
                 temp.GameCode = RandomString(16);
 
-                SendEmail sendmessage = new SendEmail(temp);
+                SendOrder sendmessage = new SendOrder(temp);
 
                 return Json("Succes");
 
