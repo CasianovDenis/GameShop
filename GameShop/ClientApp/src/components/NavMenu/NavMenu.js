@@ -21,11 +21,13 @@ export class NavMenu extends Component {
         
         super(props);
 
+        
+
         this.toggleNavbar = this.toggleNavbar.bind(this);
 
-
+        
         let user_name = GetCookie("username");
-
+        let requestdata="";
 
         if (GetCookie("status_account") == "online") {
 
@@ -39,35 +41,43 @@ export class NavMenu extends Component {
             };
 
 
-
+           
             //call api from backend and send json data,which create before
+            
+                fetch('http://localhost:56116/api/get_user_role', requestOptions)
+                    .then(response => response.json())
+                    .then((responseData) => {
 
-            fetch('http://localhost:56116/api/get_user_role', requestOptions)
-                .then(response => response.json())
-                .then((responseData) => {
-
-                    if (responseData == "admin") {
-
-                        this.state = {
-                            collapsed: true,
-                            status_link: "none",
-                            status_dropdown: "block",
-                            username: user_name,
-                            role_dropdown: "block"
-                        };
-                    }
-                    else
-                        this.state = {
-                            collapsed: true,
-                            status_link: "none",
-                            status_dropdown: "block",
-                            username: user_name,
-                            role_dropdown: "none"
-                        };
-                });
-
+                        requestdata = responseData;
+                      
+                        console.log(requestdata);
+                    });
 
             
+
+
+            if (requestdata == "admin") {
+
+                this.state = {
+                    collapsed: true,
+                    status_link: "none",
+                    status_dropdown: "block",
+                    username: user_name,
+                    role_dropdown: "block"
+                };
+            }
+
+            else {
+               
+                this.state = {
+                    collapsed: true,
+                    status_link: "none",
+                    status_dropdown: "block",
+                    username: user_name,
+                    role_dropdown: "none"
+                };
+            }
+
             
         }
         else {
@@ -103,6 +113,7 @@ export class NavMenu extends Component {
 
         this.history.push('/');
     }
+
     render() {
         return (
             <header>
@@ -126,15 +137,19 @@ export class NavMenu extends Component {
                                     <div class="dropdown">
 
                                         <img src={user_icon} class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false" />
+                                            aria-haspopup="true" aria-expanded="false" style={{width:"50px",height:"50px",cursor:"pointer"} } />
 
                                         <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {this.state.username}</p>
                                             <NavLink tag={Link} class="dropdown-item" to="/Account" >Account</NavLink>
                                             <NavLink tag={Link} class="dropdown-item" to="/Settings" >Settings</NavLink>
-                                            <Modal_add_game style={{ display: this.state.role_dropdown }} />
-                                            <Mongo_upload_file style={{ display: this.state.role_dropdown }} />
+
+                                            <div style={{ display: this.state.role_dropdown }}>
+                                            <Modal_add_game  />
+                                                <Mongo_upload_file  />
+                                            </div>
+
                                             <NavLink tag={Link} class="dropdown-item" onClick={this.Exit} >Exit</NavLink>
                                         </div>
                                     </div>
