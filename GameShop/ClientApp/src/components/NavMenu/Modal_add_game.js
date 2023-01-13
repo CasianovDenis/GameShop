@@ -1,4 +1,7 @@
 ﻿import React, { useState, useRef } from 'react';
+import { NavLink } from 'reactstrap';
+
+import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -100,7 +103,7 @@ export default function Modal_add_game() {
 
        
         <div>
-            <p class="dropdown-item" data-toggle="modal" data-target="#add_game" >Add game</p>
+            <NavLink tag={Link} class="dropdown-item" to="/Account" data-toggle="modal" data-target="#add_game">Add game</NavLink>
             
             <div class="modal fade" id="add_game" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

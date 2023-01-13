@@ -1,4 +1,7 @@
 ﻿import React, { useState, useRef } from 'react';
+import {NavLink } from 'reactstrap';
+
+import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -99,7 +102,7 @@ export default function Mongo_upload_file() {
 
        
         <div>
-            <p class="dropdown-item" data-toggle="modal" data-target="#upload_file" >Upload image for game</p>
+            <NavLink tag={Link} class="dropdown-item" to="/Account" data-toggle="modal" data-target="#upload_file">Upload image for game</NavLink>
             
             <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
