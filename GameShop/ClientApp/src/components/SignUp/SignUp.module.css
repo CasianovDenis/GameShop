@@ -2,7 +2,7 @@
 
     background-color: #36393f;    
     width: 30%;
-    height: 87%;
+    height: 93%;
 
 
     position: absolute;
@@ -32,10 +32,7 @@
     outline: none;
     border:none;
     color:white;
-    /*
-    
-    and test api create user
-*/
+
 }
 .signup_button:focus {
     outline: none;
