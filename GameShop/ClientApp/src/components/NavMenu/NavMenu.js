@@ -104,7 +104,7 @@ export default function NavMenu(props) {
                                         <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
-                                            <NavLink tag={Link} class="dropdown-item" to="/Account" >Account</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item" to="/Account" >My Games</NavLink>
                                             <NavLink tag={Link} class="dropdown-item" to="/Settings" >Settings</NavLink>
 
                                             <div style={{ display:  admin_rights  }}>
