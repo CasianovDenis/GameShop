@@ -5,86 +5,135 @@ import DropIn from "braintree-web-drop-in-react";
 import style from "./Payment.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import GetCookie from '../public_files/GetCookie.js';
+
 
 export default class Modal_PaymentSystem extends React.Component {
     instance;
 
     state = {
         clientToken: null,
-       message:""
+        message: "",
+        customer_style: "block",
+        pay_card_style: "none"
     };
 
     async componentDidMount() {
         // Get a client token for authorization from  server
-       
-      
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify()
-        };
 
-       
+        if (GetCookie("status_account") == "online") {
 
-       
 
-        fetch('http://localhost:56116/api/client_token', requestOptions)
-            .then(response => response.json())
-            .then((responseData) => {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify()
+            };
 
-                var clientToken = responseData.toString();
 
-                this.setState({
-                    clientToken,
+
+
+
+            fetch('http://localhost:56116/api/client_token', requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    var clientToken = responseData.toString();
+
+                    this.setState({
+                        clientToken,
+                        customer_style: "none",
+                        pay_card_style:"block"
+                    });
+                    
+
 
                 });
 
 
 
-            });
-
-        
+        }
     }
 
   
 
-    buy=()=> {
+    buy = () => {
         // Send the nonce to server
-       
-       const nonce  = this.instance.requestPaymentMethod();
-      
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                
-                "Game_name": this.props.game.Game_name ,
-                "Nonce": nonce.toString(),
-                "FirstName": this.refs.first_name.value,
-                "LastName": this.refs.last_name.value,
-                "Price": this.props.game.Price,
-                "Email": this.refs.email.value
-               
-            })
-        };
+        const nonce = this.instance.requestPaymentMethod();
+
+        if (GetCookie("status_account") == "online") {
+
+            if (GetCookie("username") != "" || GetCookie("username") != null) {
+
+            
+
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+
+                        "Game_name": this.props.game.Game_name,
+                        "Nonce": nonce.toString(),
+                        "FirstName": GetCookie("username"),
+                        "LastName": "null",
+                        "Price": this.props.game.Price,
+                        "Email": "null"
+
+                    })
+                };
+
+
+
+                //call api from backend and send json data,which create before
+
+                fetch('http://localhost:56116/api/user_buying_game', requestOptions)
+                    .then(response => response.json())
+                    .then((responseData) => {
+
+                        if (responseData=="Succes")
+                        this.setState({ message: "game added in the account" });
+
+
+                    });
+            }
+        }
+
+        else {
+
+           
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+
+                        "Game_name": this.props.game.Game_name,
+                        "Nonce": nonce.toString(),
+                        "FirstName": this.refs.first_name.value,
+                        "LastName": this.refs.last_name.value,
+                        "Price": this.props.game.Price,
+                        "Email": this.refs.email.value
+
+                    })
+                };
+
+
+
+                //call api from backend and send json data,which create before
+
+                fetch('http://localhost:56116/api/guest_buying_game', requestOptions)
+                    .then(response => response.json())
+                    .then((responseData) => {
+
+                        this.setState({ message: "Game code sending in you email" });
+
+
+                    });
+
+            }
+
         
-       
-
-        //call api from backend and send json data,which create before
-
-        fetch('http://localhost:56116/api/purchase', requestOptions)
-            .then(response => response.json())
-            .then((responseData) => {
-
-                this.setState({ message: "Game code sended you email"});
-
-
-            });
-
-
     }
-
 
     customer = ()=> {
 
@@ -176,7 +225,7 @@ export default class Modal_PaymentSystem extends React.Component {
                                            </div>
 
 
-                                    <div id="customer">
+                                        <div id="customer" style={{ display: this.state.customer_style }}>
                                    <p>First Name:</p>
                                 <input type="text" class="form-control" ref="first_name" />
 
@@ -195,7 +244,7 @@ export default class Modal_PaymentSystem extends React.Component {
                                     </div>
 
 
-                                     <div id="pay_card" style={{ display: "none" }}>
+                                        <div id="pay_card" style={{ display: this.state.pay_card_style }}>
 
                                             <DropIn
                                     options={{ authorization: this.state.clientToken }}
