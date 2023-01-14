@@ -50,9 +50,9 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/purchase")]
+        [Route("~/api/guest_buying_game")]
         [HttpPost]
-        public JsonResult PurchaseGame(GamePurchase game)
+        public JsonResult Guest_Buying_Game(GamePurchase game)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace GameShop.Controllers
 
                 var request = new TransactionRequest
                 {
-                    //price need to make dynamic
+
                     Customer = customer,
                     ProductSku = game.Game_name,
                     Amount = Convert.ToDecimal(game.Price),
@@ -91,6 +91,57 @@ namespace GameShop.Controllers
                 temp.GameCode = RandomString(16);
 
                 SendOrder sendmessage = new SendOrder(temp);
+
+                return Json("Succes");
+
+            }
+            catch
+            {
+
+                return Json("Failure");
+            }
+
+        }
+
+        [Route("~/api/user_buying_game")]
+        [HttpPost]
+        public JsonResult User_Buying_Game(GamePurchase game)
+        {
+            try
+            {
+
+                var gateway = _braintreeService.GetGateway();
+
+                var customer = new CustomerRequest
+                {
+                    FirstName = game.FirstName
+                };
+
+                var request = new TransactionRequest
+                {
+
+                    Customer = customer,
+                    ProductSku = game.Game_name,
+                    Amount = Convert.ToDecimal(game.Price),
+                    PaymentMethodNonce = game.Nonce,
+
+                    Options = new TransactionOptionsRequest
+                    {
+                        SubmitForSettlement = true
+                    }
+                };
+
+                Result<Transaction> result = gateway.Transaction.Sale(request);
+
+
+                UserPurchases userpurchases = new UserPurchases();
+
+                userpurchases.Username = game.FirstName;
+                userpurchases.Game_name = game.Game_name;
+                userpurchases.KeyOfGame = RandomString(16);
+
+                _conString.UserPurchases.Add(userpurchases);
+                _conString.SaveChanges();
 
                 return Json("Succes");
 
