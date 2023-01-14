@@ -60,7 +60,7 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Game.Where(data => data.ID > 0).OrderBy(data=>data.ID).ToList();
+                var dbdata = _conString.Game.Where(data => data.ID > 0).OrderBy(data => data.ID).ToList();
 
 
                 if (dbdata.Count >= 6)
