@@ -12,6 +12,6 @@ namespace GameShop.Models.DBConnection
         public DbSet<Game> Game { get; set; }
         public DbSet<Users> Users { get; set; }
 
-        //        public DbSet<Password_store> Password_store { get; set; }
+        public DbSet<UserPurchases> UserPurchases { get; set; }
     }
 }
