@@ -34,10 +34,7 @@ export default function Mongo_upload_file() {
        
           
              const result = axios.post("http://localhost:56116/api/upload_file", filedata);
-            //result.then((response) => {
-            //    setMessage(response.data);
-                
-            //});
+            
 
         var element = document.getElementById('upload_input');
 
