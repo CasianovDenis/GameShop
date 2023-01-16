@@ -6,7 +6,7 @@ import style from './Purchase.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default function SlideShowPurchase(props) {
+export default function CarouselGameImage(props) {
 
 
     const [dbdata, setDbData] = useState(null);
