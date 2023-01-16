@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import style from './Home.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Card_form() {
+export default function Card_form_newgame() {
 
     const [dbdata, setDbData] = React.useState([]);
     const [request, setRequest] = useState(true);
