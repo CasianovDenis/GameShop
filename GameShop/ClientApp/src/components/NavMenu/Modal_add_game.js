@@ -65,7 +65,7 @@ export default function Modal_add_game() {
 
 
                        
-                        fetch('http://localhost:56116/api/upload_data', requestOptions)
+                        fetch('http://localhost:56116/api/create_game_data', requestOptions)
                             .then(response => response.json())
                             .then((responseData) => {
 
