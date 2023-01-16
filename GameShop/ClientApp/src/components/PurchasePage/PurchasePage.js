@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import style from './Purchase.module.css';
 
 
-import SlideShowPurchase from './SlideShowPurchase';
+import CarouselGameImage from './CarouselGameImage';
 import Modal_PaymentSystem from '../Payment/Modal_PaymentSystem';
 
 import arrow_left from './arrow.png';
@@ -84,7 +84,7 @@ export default function PurchasePage() {
                     <div className={style.GameInfo }>
 
                         <p className={style.NameofGame}>{gameinfo.Game_name}</p>
-                        <SlideShowPurchase GameName={gameinfo.Game_name} />
+                        <CarouselGameImage GameName={gameinfo.Game_name} />
 
                         <p className={style.DescriptionStyle}>{gameinfo.Description}</p>
 
