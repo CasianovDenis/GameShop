@@ -101,10 +101,10 @@ export default function NavMenu(props) {
                                         <img src={user_icon} class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" style={{ width: "50px", height: "50px", cursor: "pointer" }} />
 
-                                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" >
+                                        <div class="dropdown-menu " style={{ marginLeft:"-60px" }} aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
-                                            <NavLink tag={Link} class="dropdown-item" to="/Account" >My Games</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item" to="/UserGames" >My Games</NavLink>
                                             <NavLink tag={Link} class="dropdown-item" to="/Settings" >Settings</NavLink>
 
                                             <div style={{ display:  admin_rights  }}>

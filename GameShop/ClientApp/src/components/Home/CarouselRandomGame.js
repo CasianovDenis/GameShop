@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-export default function SlideShowHome() {
+export default function CarouselRandomGame() {
 
 
     const [dbdata, setDbData] = useState(null);

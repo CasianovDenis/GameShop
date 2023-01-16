@@ -1,0 +1,44 @@
+﻿
+.ListOfGame {
+    background-color: #161934;
+    width:100%;
+    height:200px;
+    cursor: pointer;
+    margin:10px;
+}
+
+    .ListOfGame:hover {
+        background-color: #32355f;
+    }
+
+.GameImage{
+    width:150px;
+    height:150px;
+margin:25px;
+}
+
+.gamename{
+
+    width:200px;
+   
+}
+
+.gamename_text {
+   
+   
+    font-size:20px;
+   
+    color:white;
+   position:relative;
+    top:-150px;
+   left:200px;
+}
+
+.key_text{
+    position:relative;
+    float:right;
+    margin:50px;
+    font-size:18px;
+    color:white;
+top:-250px;
+}
