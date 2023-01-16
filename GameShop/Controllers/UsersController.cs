@@ -1,6 +1,8 @@
 ﻿using GameShop.Models;
 using GameShop.Models.DBConnection;
+using GameShop.Models.List;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GameShop.Controllers
@@ -92,6 +94,37 @@ namespace GameShop.Controllers
                 return Json("User not exist");
             }
         }
+
+
+        [Route("~/api/get_user_games")]
+        [HttpPost]
+        public JsonResult GetUserGames(Users user)
+        {
+
+            try
+            {
+                var user_games = _conString.UserPurchases.Where(data => data.Username == user.Username).ToList();
+
+
+                List<GamePurchasesByUser> purchases_game = new List<GamePurchasesByUser>();
+
+                for (int index = 0; index < user_games.Count; index++)
+                {
+                    var game = _conString.Game.Single(data => data.Game_name == user_games[index].Game_name);
+
+                    purchases_game.Add(new GamePurchasesByUser(user_games[index].Game_name, user_games[index].KeyOfGame, game.Cover));
+                }
+
+                return Json(purchases_game);
+
+            }
+            catch
+            {
+
+                return Json("User not exist");
+            }
+        }
+
 
     }
 

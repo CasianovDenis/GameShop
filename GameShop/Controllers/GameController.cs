@@ -18,7 +18,26 @@ namespace GameShop.Controllers
 
         }
 
+        [Route("~/api/create_game_data")]
+        [HttpPost]
+        public JsonResult CreateGameData(Game game)
+        {
 
+            try
+            {
+
+                var dbdata = _conString.Game.Single(data => data.Game_name == game.Game_name);
+
+                return Json("Game exist");
+            }
+            catch
+            {
+                _conString.Game.Add(game);
+                _conString.SaveChanges();
+
+                return Json("Succes");
+            }
+        }
 
         [Route("~/api/get_random_games")]
         [HttpPost]
