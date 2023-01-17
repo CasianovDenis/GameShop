@@ -11,6 +11,7 @@ import CarouselGameImage from './CarouselGameImage';
 import Modal_PaymentSystem from '../Payment/Modal_PaymentSystem';
 
 import arrow_left from './arrow.png';
+import GetCookie from "../public_files/GetCookie";
 
 
 export default function PurchasePage() {
@@ -18,19 +19,29 @@ export default function PurchasePage() {
     const location = useLocation();
     const redirect = useHistory();
 
-    let GameName = location.state.GameName;
-
-    if (GameName == 'undefined') redirect.push('/');
-
     const [gameinfo, setGameInfo] = useState(null);
-    
+    const [message, setMessage] = useState("");
 
     const [request, setRequest] = useState(true);
+
+
+    let GameName = "";
+
+
+    try {
+         GameName = location.state.GameName;
+    }
+    catch {
+        redirect.push('/');
+    }
+    
 
    
     useEffect(() => {
 
         if (GameName == null) redirect.push('/');
+
+      
 
         if (request == true) {
 
@@ -46,8 +57,6 @@ export default function PurchasePage() {
 
 
 
-            //call api from backend and send json data,which create before
-
             fetch('http://localhost:56116/api/get_game', requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
@@ -57,6 +66,38 @@ export default function PurchasePage() {
                     setRequest(false);
 
                 });
+
+            if (GetCookie("status_account") == "online") {
+
+                const requestOptionsUser = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "Username": GetCookie("username"),
+                        "Game_name": GameName
+
+                    })
+                };
+
+                fetch('http://localhost:56116/api/checking_user_purchased_this_game', requestOptionsUser)
+                    .then(response => response.json())
+                    .then((responseData) => {
+
+
+                        if (responseData == "Already bought") {
+
+                            var div = document.getElementById('modal_payment');
+                            div.style.display = "none";
+
+                            setMessage(" You already bought this game");
+
+                        }
+                       
+
+                        setRequest(false);
+
+                    });
+            }
 
 
            
@@ -102,8 +143,13 @@ export default function PurchasePage() {
 
                         <p style={{ color: "white" }}>{gameinfo.Price}$</p>
 
+                        <div id="modal_payment">
+
                         <Modal_PaymentSystem game={gameinfo} />
 
+                        </div>
+
+                        <p style={{ color: "white", fontSize : "20px" }}>{message} </p>
                     </div>
                 </div>
                 

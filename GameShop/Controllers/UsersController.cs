@@ -126,6 +126,26 @@ namespace GameShop.Controllers
         }
 
 
+        [Route("~/api/checking_user_purchased_this_game")]
+        [HttpPost]
+        public JsonResult Checking_User_Purchased_This_Game(UserPurchases userpurchases)
+        {
+
+            try
+            {
+                var dbdata = _conString.UserPurchases.Single(data => data.Username == userpurchases.Username
+
+                                                                       && data.Game_name == userpurchases.Game_name);
+
+                return Json("Already bought");
+
+            }
+            catch
+            {
+
+                return Json("Game not bought");
+            }
+        }
     }
 
 

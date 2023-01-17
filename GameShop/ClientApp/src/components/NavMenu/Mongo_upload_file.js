@@ -3,7 +3,8 @@ import {NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 import axios from 'axios';
 
@@ -64,9 +65,6 @@ export default function Mongo_upload_file() {
             }
 
 
-
-            //call api from backend and send json data,which create before
-
             fetch('http://localhost:56116/api/new_file_name', requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
@@ -100,7 +98,7 @@ export default function Mongo_upload_file() {
 
        
         <div>
-            <NavLink tag={Link} class="dropdown-item" to="/Account" data-toggle="modal" data-target="#upload_file">Upload image for game</NavLink>
+            <button class="btn btn-primary" id="upload_gameimage_button"  data-toggle="modal" data-target="#upload_file">Upload image for game</button>
             
             <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
