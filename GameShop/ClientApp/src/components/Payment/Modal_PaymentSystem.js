@@ -43,9 +43,9 @@ export default class Modal_PaymentSystem extends React.Component {
                     this.setState({
                         clientToken,
                         customer_style: "none",
-                        pay_card_style:"block"
+                        pay_card_style: "block"
                     });
-                    
+
 
 
                 });
@@ -53,6 +53,32 @@ export default class Modal_PaymentSystem extends React.Component {
 
 
         }
+        else {
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify()
+            };
+
+
+
+
+
+            fetch('http://localhost:56116/api/client_token', requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    var clientToken = responseData.toString();
+
+                    this.setState({
+                        clientToken
+                    });
+
+
+                })
+
+          }
     }
 
   
@@ -176,10 +202,21 @@ export default class Modal_PaymentSystem extends React.Component {
 
     back = () => {
 
-        var div = document.getElementById('customer');
-        div.style.display = "block";
-        div = document.getElementById('pay_card');
-        div.style.display = "none";
+        if (GetCookie("status_account") == "online") {
+
+            var back_button = document.getElementById('back_button');
+            back_button.style.display = "none";
+
+        }
+
+        else {
+
+            var div = document.getElementById('customer');
+            div.style.display = "block";
+
+            div = document.getElementById('pay_card');
+            div.style.display = "none";
+        }
 
     }
 
@@ -253,7 +290,7 @@ export default class Modal_PaymentSystem extends React.Component {
                                        
                                         <button class="btn btn-primary" onClick={this.buy.bind(this)}>Buy</button>
 
-                                            <button class="btn btn-primary" onClick={this.back} style={{ margin:"10px" }}> Back </button>
+                                            <button class="btn btn-primary" id="back_button" onClick={this.back} style={{ margin:"10px" }}> Back </button>
                                       </div>
 
                                         <p style={{ color: "red" }}>{this.state.message}</p>
