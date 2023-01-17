@@ -19,9 +19,12 @@ export default function NavMenu(props) {
 
     const [collapsed, setCollapsed] = useState(true);
     const [admin_rights, setAdminRights] = useState(null);
+
     const [request, setRequest] = useState(true);
     const [username, setUserName] = useState("");
 
+
+    const redirect = useHistory();
     const toggleNavbar = () => setCollapsed(!collapsed);
 
 
@@ -44,7 +47,6 @@ export default function NavMenu(props) {
 
 
 
-                //call api from backend and send json data,which create before
 
                 fetch('http://localhost:56116/api/get_user_role', requestOptions)
                     .then(response => response.json())
@@ -59,10 +61,13 @@ export default function NavMenu(props) {
                     });
             }
         }
+        else
+            redirect.push('/');
 
 
 
     }, [admin_rights]);
+
 
    const ExitFromAccount = () => {
 
@@ -77,7 +82,6 @@ export default function NavMenu(props) {
 
         document.cookie = "status_account=; expires = " + now.toUTCString();
 
-       const redirect = useHistory();
 
        redirect.go('/');
     }
@@ -94,7 +98,12 @@ export default function NavMenu(props) {
 
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
-                              
+
+                                <NavItem style={{ display: admin_rights }} >
+                                    <Modal_add_game />
+                                    <Mongo_upload_file />
+                                </NavItem>
+
                                 <NavItem >
                                     <div class="dropdown">
 
@@ -106,16 +115,11 @@ export default function NavMenu(props) {
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
                                             <NavLink tag={Link} class="dropdown-item" to="/UserGames" >My Games</NavLink>
                                             <NavLink tag={Link} class="dropdown-item" to="/Settings" >Settings</NavLink>
-
-                                            <div style={{ display:  admin_rights  }}>
-
-                                                <Modal_add_game />
-                                                <Mongo_upload_file />
-
-                                            </div>
-
                                             <NavLink tag={Link} class="dropdown-item" onClick={ExitFromAccount} >Exit</NavLink>
                                         </div>
+
+                                      
+
                                     </div>
 
                                 </NavItem>
