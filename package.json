@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.2.1",
     "braintree-web": "^3.88.6",
     "braintree-web-drop-in": "^1.33.7",

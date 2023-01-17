@@ -1,14 +1,17 @@
-﻿import React, {useEffect,useState } from 'react';
+﻿import React, {useEffect,useState,useRef } from 'react';
 import GetCookie from '../public_files/GetCookie';
 import style from './UserGames.module.css';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserGames() {
 
     const [dbdata, setDbData] = useState(null);
+    const [foundgame, setFoundGame] = useState(null);
+
     const [request, setRequest] = useState(true);
 
+   const RefSearch = useRef("");
 
     useEffect(() => {
 
@@ -45,10 +48,67 @@ export default function UserGames() {
     }, [dbdata]);
 
 
+    const search = () => {
+
+        let search_text = RefSearch.current.value;
+
+        if (search_text == "") setFoundGame(null);
+        else
+
+            for (let index = 0; index < dbdata.length; index++) {
+
+                if (dbdata[index].GameName.includes(search_text))
+                    setFoundGame(dbdata[index]);
+                    
+        }
+
+
+    }
+
+
+    if (foundgame != null)
+        return (
+
+            <div >
+
+
+                <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
+
+                <div className={style.searchbar}>
+
+                    <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft: "5px" }} />
+
+
+                </div>
+
+              
+
+                        <div className={style.ListOfGame}  >
+
+
+                    <img className={style.GameImage} src={foundgame.URL_Image} />
+
+
+                            <div className={style.gamename}>
+
+                        <p className={style.gamename_text}> {foundgame.GameName} </p>
+
+                            </div>
+
+
+                    <p className={style.key_text}> {foundgame.KeyOfGame} </p>
+
+
+                        </div>           
 
 
 
 
+            </div>
+        );
+
+else
     if (dbdata != null) 
     return (
 
@@ -57,7 +117,15 @@ export default function UserGames() {
 
             <p style={{ color: "white", fontSize:"20px" }}>My Games</p>
 
-                {dbdata.map(item => {
+            <div className={style.searchbar}>
+
+                <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
+                <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft:"5px" }} />
+               
+
+            </div>
+
+            {dbdata.map(item => {
 
                     return (
 

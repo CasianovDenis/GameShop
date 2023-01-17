@@ -1,5 +1,4 @@
-﻿
-.ListOfGame {
+﻿.ListOfGame {
     background-color: #161934;
     width:100%;
     height:200px;
@@ -41,4 +40,12 @@ margin:25px;
     font-size:18px;
     color:white;
 top:-250px;
+}
+
+.searchbar {
+    position: absolute;
+    background-color: #1dc57e;
+    left: 77.2%;
+    top: 100px;
+    border-radius:5px;
 }
