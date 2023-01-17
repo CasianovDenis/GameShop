@@ -3,7 +3,7 @@ import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 
@@ -50,7 +50,7 @@ export default function Modal_add_game() {
                 
                 if (newgame.Description.match(/\w/) && letters_number>=40) {
 
-                    //Verifie if inserted cover is url
+                    //Verifie if in cover is inserted url
                     if (newgame.Cover.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)) {
 
                         setMessage('Processed');
@@ -100,7 +100,7 @@ export default function Modal_add_game() {
 
        
         <div>
-            <NavLink tag={Link} class="dropdown-item" to="/Account" data-toggle="modal" data-target="#add_game">Add game</NavLink>
+            <button class="btn btn-primary" id="add_game_button" data-toggle="modal" data-target="#add_game">Add game</button>
             
             <div class="modal fade" id="add_game" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
