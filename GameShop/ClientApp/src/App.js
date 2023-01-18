@@ -13,6 +13,8 @@ import SignUp from './components/SignUp/SignUp';
 
 import UserGames from './components/UserGames/UserGames';
 
+import AllGames from './components/Browse_allgame/AllGames';
+
 import './custom.css'
 
 export default function App() {
@@ -25,6 +27,7 @@ export default function App() {
             <Route exact path='/SignIn' component={SignIn} />
             <Route exact path='/SignUp' component={SignUp} />
             <Route exact path='/UserGames' component={UserGames} />
+            <Route exact path='/AllGames' component={AllGames} />
 
       </Layout>
     );
