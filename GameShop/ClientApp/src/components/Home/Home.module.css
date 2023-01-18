@@ -41,6 +41,20 @@
     font-size:25px;
 }
 
+.text_allgames{
+    color:white;
+    cursor:pointer;
+    
+    position:absolute;
+    left:76%;
+    top:66%;
+
+    font-size:20px;
+}
+    .text_allgames:hover {
+        color: #156e8f;
+    }
+
 @media(max-width:991px) {
 
     .Cards {

@@ -41,6 +41,10 @@ export default function Card_form_newgame() {
         redirect.push('/Purchase', { GameName: ev.target.getAttribute('alt') });
     }
 
+    const redirect_to_allgames = () => {
+
+        redirect.push('/AllGames');
+    }
 
 
     return (
@@ -52,6 +56,8 @@ export default function Card_form_newgame() {
            
             <div >
                 <p className={style.newgame }>New game</p>
+
+                <p onClick={redirect_to_allgames} className={style.text_allgames }>Discover more games </p>
 
                 {dbdata.map(item => {
 
