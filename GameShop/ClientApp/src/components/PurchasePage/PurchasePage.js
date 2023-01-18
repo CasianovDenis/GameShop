@@ -106,9 +106,9 @@ export default function PurchasePage() {
     }, [gameinfo]);
 
 
-    const BacktoHome = () => {
+    const Back = () => {
 
-        redirect.push('/');
+        redirect.goBack();
 
     }
 
@@ -120,7 +120,7 @@ export default function PurchasePage() {
             <div>
 
                 <div>
-                    <img src={arrow_left} style={{ width: "25px", height: "25px", cursor: "pointer" }} onClick={BacktoHome }/>
+                    <img src={arrow_left} style={{ width: "25px", height: "25px", cursor: "pointer" }} onClick={Back }/>
                     <br /><br />
                     <div className={style.GameInfo }>
 
