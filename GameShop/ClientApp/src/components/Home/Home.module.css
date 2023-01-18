@@ -1,7 +1,6 @@
 ﻿.custom_tag {
     max-width: 100%;
     height: 300px;
-    /*background: black;*/
     border-radius:20px;
 }
 
@@ -30,7 +29,7 @@
     }
 
 #card_image{
-    width:125%;
+    width:140%;
     height:35vh;
     cursor:pointer;
 }
