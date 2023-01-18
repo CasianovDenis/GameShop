@@ -1,0 +1,52 @@
+﻿.Cards {
+    width: 300px;
+    margin: 10px ;
+ display:inline-block;
+
+}
+
+#card_image {
+    width: 200%;
+    height: 35vh;
+    cursor: pointer;
+    
+}
+
+.card_body {
+    width: 300px;
+    height: 50px;
+    background-color: #18132e;
+    border-radius: 2px;
+}
+.card_price{
+    color:white;
+
+    margin-left:85%;
+}
+.text_discover_games {
+    color: white;
+    font-size: 25px;
+}
+
+@media(max-width:991px) {
+
+    .Cards {
+        position: relative;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 0px;
+        float: left;
+        margin-right: 300px;
+        top: 60vh;
+    }
+
+    #card_image {
+        width: 350%;
+        height: 80vh;
+    }
+
+    .newgame {
+        top: 65%;
+        font-size: 15px;
+    }
+}
