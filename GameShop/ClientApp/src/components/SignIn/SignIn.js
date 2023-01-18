@@ -93,9 +93,9 @@ export default function SignIn() {
         
 
         
-        <div className={style.background_image}>
+        <div >
 
-            <img  src={background_image} />
+            <img className={style.background_image} src={background_image} />
 
             <div className={style.modal_signin}>
                 <form>

@@ -94,9 +94,9 @@ export default function SignUp() {
         
 
         
-        <div className={style.background_image}>
+        <div >
 
-            <img  src={background_image} />
+            <img src={background_image} className={style.background_image}/>
 
             <div className={style.modal_signup}>
                 <form>

@@ -93,15 +93,18 @@ export default function NavMenu(props) {
             <div>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white box-shadow mb-3" light style={{ backgroundColor: "#2a2a2a" }}>
                     <Container>
-                        <NavbarBrand tag={Link} to="/" style={{ color: "white" }}><img src={logo} style={{ width: "60px", height: "50px" }} />GameShop</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/" style={{ color: "white" }}><img src={logo} style={{ width: "60px", height: "50px" }} /></NavbarBrand>
                         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
 
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
 
                                 <NavItem style={{ display: admin_rights }} >
-                                    <Modal_add_game />
-                                    <Mongo_upload_file />
+                                   
+
+                                        <Modal_add_game />
+                                        <Mongo_upload_file />
+
                                 </NavItem>
 
                                 <NavItem >
@@ -110,12 +113,12 @@ export default function NavMenu(props) {
                                         <img src={user_icon} class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" style={{ width: "50px", height: "50px", cursor: "pointer" }} />
 
-                                        <div class="dropdown-menu " style={{ marginLeft:"-60px" }} aria-labelledby="dropdownMenuButton" >
+                                        <div class="dropdown-menu" id="dropdown_menu" aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
-                                            <NavLink tag={Link} class="dropdown-item" to="/UserGames" >My Games</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item" to="/Settings" >Settings</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item" onClick={ExitFromAccount} >Exit</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item nav_item" to="/UserGames" >My Games</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item nav_item" to="/Settings" >Settings</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item nav_item" onClick={ExitFromAccount} >Exit</NavLink>
                                         </div>
 
                                       

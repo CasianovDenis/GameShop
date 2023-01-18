@@ -37,3 +37,22 @@
 .signup_button:focus {
     outline: none;
 }
+
+@media(max-width:991px) {
+
+    .modal_signup {
+       
+        width: 70%;
+        
+        top: 100px;
+        left: 15%;
+        
+    }
+
+    .background_image {
+        margin-top: -18px;
+        width: 180%;
+        margin-left: -77%;
+        height: 100vh;
+    }
+}

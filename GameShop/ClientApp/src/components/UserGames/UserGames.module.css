@@ -16,7 +16,7 @@
 margin:25px;
 }
 
-.gamename{
+.div_gamename{
 
     width:200px;
    
@@ -48,4 +48,39 @@ top:-250px;
     left: 77.2%;
     top: 100px;
     border-radius:5px;
+}
+
+
+@media (max-width:991px) {
+  
+    .GameImage {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .div_gamename {
+        width: 200px;
+    }
+
+    .gamename_text {
+        font-size: 15px;
+        
+        top: -150px;
+        left: 200px;
+    }
+
+    .key_text {
+       
+        float: none;
+        font-size: 15px;
+       left:150px;
+        top: -150px;
+    }
+
+    .searchbar {
+       
+        left: 58%;
+        top: 140px;
+        
+    }
 }

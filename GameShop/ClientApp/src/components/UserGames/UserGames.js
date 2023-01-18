@@ -7,8 +7,8 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 export default function UserGames() {
 
     const [dbdata, setDbData] = useState(null);
-    const [foundgame, setFoundGame] = useState(null);
-
+    const [foundgames, setFoundGames] = useState(null);
+ 
     const [request, setRequest] = useState(true);
 
    const RefSearch = useRef("");
@@ -50,23 +50,31 @@ export default function UserGames() {
 
     const search = () => {
 
+        let array_found_games = Array(dbdata.length);
+        let position = 0;
+
         let search_text = RefSearch.current.value;
 
-        if (search_text == "") setFoundGame(null);
+        if (search_text == "") setFoundGames(null);
         else
+        {
 
             for (let index = 0; index < dbdata.length; index++) {
 
-                if (dbdata[index].GameName.includes(search_text))
-                    setFoundGame(dbdata[index]);
-                    
+                if (dbdata[index].GameName.includes(search_text)) {
+
+                    array_found_games[position] = dbdata[index];
+                    position++;
+
+                }
+            }
+           
+            setFoundGames(array_found_games);
+        }
         }
 
 
-    }
-
-
-    if (foundgame != null)
+    if (foundgames != null)
         return (
 
             <div >
@@ -82,25 +90,30 @@ export default function UserGames() {
 
                 </div>
 
-              
+                {foundgames.map(item => {
+
+                    return (
 
                         <div className={style.ListOfGame}  >
 
 
-                    <img className={style.GameImage} src={foundgame.URL_Image} />
+                            <img className={style.GameImage} src={item.URL_Image} />
 
 
-                            <div className={style.gamename}>
+                            <div className={style.div_gamename}>
 
-                        <p className={style.gamename_text}> {foundgame.GameName} </p>
+                                <p className={style.gamename_text}> {item.GameName} </p>
 
                             </div>
 
 
-                    <p className={style.key_text}> {foundgame.KeyOfGame} </p>
+                            <p className={style.key_text}> {item.KeyOfGame} </p>
 
 
-                        </div>           
+                        </div>
+
+                    );
+                })}
 
 
 
@@ -135,7 +148,7 @@ else
                             <img className={style.GameImage } src={item.URL_Image} />
 
 
-                            <div className={style.gamename}>
+                            <div className={style.div_gamename}>
 
                                 <p className={style.gamename_text}> {item.GameName} </p>
 
