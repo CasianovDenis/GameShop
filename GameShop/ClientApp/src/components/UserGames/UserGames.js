@@ -1,8 +1,12 @@
-﻿import React, {useEffect,useState,useRef } from 'react';
-import GetCookie from '../public_files/GetCookie';
-import style from './UserGames.module.css';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+import GetCookie from '../public_files/GetCookie';
+
+import style from './UserGames.module.css';
+
+import { useHistory } from 'react-router-dom';
 
 export default function UserGames() {
 
@@ -10,6 +14,8 @@ export default function UserGames() {
     const [foundgames, setFoundGames] = useState(null);
  
     const [request, setRequest] = useState(true);
+
+    const redirect = useHistory();
 
    const RefSearch = useRef("");
 
@@ -36,8 +42,9 @@ export default function UserGames() {
                 .then(response => response.json())
                 .then((responseData) => {
 
-
+                    if (responseData.length>0)
                     setDbData(responseData);
+
                     setRequest(false);
 
 
@@ -73,6 +80,10 @@ export default function UserGames() {
         }
         }
 
+    const redirect_to_allgames = () => {
+
+        redirect.push('/AllGames');
+    }
 
     if (foundgames != null)
         return (
@@ -172,11 +183,15 @@ else
     else
 
         return (
+            <div >
 
-            <div class="spinner-border" role="status" >
-                <span class="visually-hidden"></span>
-            </div>
 
+                <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
+
+                <p style={{ color: "white", fontSize: "30px" }}> You library is empty</p>
+
+                <p style={{ color: "#444a75", fontSize: "25px", cursor: "pointer" }} onClick={redirect_to_allgames}>Go to shop</p>
+                </div>
         )
 
 }
