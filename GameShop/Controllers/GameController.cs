@@ -127,6 +127,24 @@ namespace GameShop.Controllers
             }
         }
 
+        [Route("~/api/get_all_games")]
+        [HttpPost]
+        public JsonResult GetAllGames()
+        {
 
+            try
+            {
+                var all_games = _conString.Game.Where(data => data.ID > 0).ToList();
+
+
+                return Json(all_games);
+
+
+            }
+            catch
+            {
+                return Json("Error");
+            }
+        }
     }
 }
