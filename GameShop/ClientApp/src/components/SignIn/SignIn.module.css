@@ -13,10 +13,9 @@
 }
 
 .background_image {
-    
-    margin-top:-20px;
-    width:122%;
-    margin-left:-11.2%;
+    margin-top: -20px;
+    width: 122%;
+    margin-left: -11.2%;
     
 }
 
@@ -36,4 +35,28 @@
 }
 .signup_button:focus {
     outline: none;
+}
+
+@media(max-width:991px)
+{
+
+    .modal_signin {
+       
+        width:60%;
+        height: 60%;
+        
+        top: 20%;
+        left: 25%;
+        
+    }
+
+    .background_image {
+        margin-top: -18px;
+        width: 180%;
+        margin-left: -77%;
+        height:88.3vh;
+    }
+
+    
+
 }
