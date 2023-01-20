@@ -29,7 +29,7 @@
     }
 
 #card_image{
-    width:140%;
+    width:150%;
     height:35vh;
     cursor:pointer;
 }
@@ -74,7 +74,15 @@
     }
 
     .newgame {
-        top: 65%;
+        position: relative;
+        top: 350px;
+        font-size: 15px;
+    }
+
+    .text_allgames {
+        position: relative;
+        left: 65%;
+        top: 313px;
         font-size: 15px;
     }
 
