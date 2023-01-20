@@ -157,7 +157,7 @@ namespace GameShop.Controllers
                 string expression = tempdata.Sort_Type;
                 int difference = tempdata.Selected_Games - 12;
 
-                if (difference > 0)
+                if (difference >= 0)
                     switch (expression)
                     {
                         case "Alphabetical":
@@ -177,6 +177,12 @@ namespace GameShop.Controllers
                         case "High to Low":
 
                             sorted_games = _conString.Game.Where(data => data.ID > 0).OrderByDescending(data => data.Price).Skip(difference).Take(12).ToList();
+
+                            return Json(sorted_games);
+
+                        case "Newest":
+
+                            sorted_games = _conString.Game.Where(data => data.ID > 0).OrderByDescending(data => data.ID).Skip(difference).Take(12).ToList();
 
                             return Json(sorted_games);
 
