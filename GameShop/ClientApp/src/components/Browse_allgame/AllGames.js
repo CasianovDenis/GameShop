@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import { Pagination } from 'semantic-ui-react';
 
+
 import style from './AllGames.module.css';
 import 'semantic-ui-css/semantic.min.css'
 
@@ -253,8 +254,10 @@ export default function AllGames() {
                     <select onChange={sorting_games} className={style.sort_elements} >
 
                         <option selected value="Alphabetical">Alphabetical</option>
+                        <option value="Newest">Newest</option>
                         <option value="Low to High">Price: Low to High</option>
                         <option value="High to Low">Price: High to Low</option>
+                       
 
                     </select>
 
@@ -292,10 +295,7 @@ export default function AllGames() {
                     })}
 
 
-
-
-
-
+                   
                     <Pagination className={style.page_navigation}
                         boundaryRange={5}
                         defaultActivePage={1}
@@ -310,7 +310,8 @@ export default function AllGames() {
 
                     
                 </div>
-        
+
+                
        
         );
 
