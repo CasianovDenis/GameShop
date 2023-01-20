@@ -4,6 +4,10 @@
   word-break: break-all;
 }
 
+a.nav-link:hover {
+    background-color: #f3eae8;
+}
+
 html {
   font-size: 15px;
 }
@@ -44,8 +48,12 @@ html {
     width:60px;
 }
 
-.nav_item:hover {
-    background-color: #f3eae8;
+
+.discover_games{
+    color:white;
+    position:absolute;
+    right:57%;
+    top:25px;
 }
 
 @media (max-width: 991px) {
@@ -58,14 +66,21 @@ html {
     }
 
     #add_game_button {
-       
-        right: 300px;
-        top:80px;
+       position:relative;
+        left: 100px;
+        top:0px;
     }
 
     #upload_gameimage_button {
-        top: 80px;
-        right: 70px;
+        position:relative;
+        top: 0px;
+        left: 100px;
+    }
+
+    .discover_games {
+            
+        right: 65%;
+        
     }
 
 }
