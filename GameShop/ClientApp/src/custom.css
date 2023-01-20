@@ -15,6 +15,7 @@ code {
 
 body {
     background-color: #1c1c1c;
+    font-size:16px;
 }
 
 footer {
@@ -25,6 +26,24 @@ footer {
     top: 130%;
     left: 10px;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #624470;
+    border-radius: 4px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3b2f52;
+    }
 
 @media(max-width:991px)
 {

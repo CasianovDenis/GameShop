@@ -107,6 +107,13 @@ export default function NavMenu(props) {
 
                                 </NavItem>
 
+                                <NavItem  >
+
+
+                                    <NavLink tag={Link} class="discover_games" to="/AllGames" >Discover</NavLink>
+
+                                </NavItem>
+
                                 <NavItem >
                                     <div class="dropdown">
 
@@ -116,9 +123,9 @@ export default function NavMenu(props) {
                                         <div class="dropdown-menu" id="dropdown_menu" aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
-                                            <NavLink tag={Link} class="dropdown-item nav_item" to="/UserGames" >My Games</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item nav_item" to="/Settings" >Settings</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item nav_item" onClick={ExitFromAccount} >Exit</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item " to="/UserGames" >My Games</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item " to="/Settings" >Settings</NavLink>
+                                            <NavLink tag={Link} class="dropdown-item " onClick={ExitFromAccount} >Exit</NavLink>
                                         </div>
 
                                       

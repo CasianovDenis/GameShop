@@ -13,8 +13,8 @@
 }
 
 .card_body {
-    width: 300px;
-    height: 50px;
+    width: 281px;
+    height: 65px;
     background-color: #18132e;
     border-radius: 2px;
 }
@@ -28,25 +28,71 @@
     font-size: 25px;
 }
 
+.searchbar {
+    position: absolute;
+    background-color: #1dc57e;
+    left: 30%;
+    top: 100px;
+    border-radius: 5px;
+    width:230px;
+}
+
+.sort_elements {
+    position: absolute;
+    top: 15.5%;
+    left: 81%;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #282845;
+    color: white;
+    height: 30px;
+    border: none;
+    outline: none;
+
+}
+
+    
+    .sort_elements:focus {
+        outline: none;
+    }
+
+.page_navigation{
+
+    position:relative;
+    top:60px;
+    
+}
+
 @media(max-width:991px) {
-
     .Cards {
-        position: relative;
-        margin-top: 0px;
-        margin-left: 0px;
-        width: 0px;
-        float: left;
-        margin-right: 300px;
-        top: 60vh;
+       
+        margin: 20px;
+       
     }
 
-    #card_image {
-        width: 350%;
-        height: 80vh;
+    .card_body {
+        width: 281px;
+        
     }
 
-    .newgame {
-        top: 65%;
-        font-size: 15px;
+    .text_discover_games {
+        
+        font-size: 18px;
     }
+
+    .searchbar {
+        position:relative;
+        left: 0%;
+        top: -40px;
+           
+    }
+
+    .sort_elements {
+       
+        position:relative;
+        top:20px;
+        left: 0%;
+       
+    }
+
 }

@@ -134,11 +134,10 @@ namespace GameShop.Controllers
 
             try
             {
-                var all_games = _conString.Game.Where(data => data.ID > 0).ToList();
 
+                var dbdata = _conString.Game.Where(data => data.ID > 0).ToList();
 
-                return Json(all_games);
-
+                return Json(dbdata);
 
             }
             catch
@@ -146,5 +145,57 @@ namespace GameShop.Controllers
                 return Json("Error");
             }
         }
+
+
+        [Route("~/api/get_sorted_games_using_range")]
+        [HttpPost]
+        public JsonResult GetSortedGamesUsingRange(TempData tempdata)
+        {
+
+            try
+            {
+                string expression = tempdata.Sort_Type;
+                int difference = tempdata.Selected_Games - 12;
+
+                if (difference >= 0)
+                    switch (expression)
+                    {
+                        case "Alphabetical":
+
+                            var sorted_games = _conString.Game.Where(data => data.ID > 0).OrderBy(data => data.Game_name).Skip(difference).Take(12).ToList();
+
+                            return Json(sorted_games);
+
+                        case "Low to High":
+
+                            sorted_games = _conString.Game.Where(data => data.ID > 0).OrderBy(data => data.Price).Skip(difference).Take(12).ToList();
+
+                            return Json(sorted_games);
+
+
+
+                        case "High to Low":
+
+                            sorted_games = _conString.Game.Where(data => data.ID > 0).OrderByDescending(data => data.Price).Skip(difference).Take(12).ToList();
+
+                            return Json(sorted_games);
+
+                        case "Newest":
+
+                            sorted_games = _conString.Game.Where(data => data.ID > 0).OrderByDescending(data => data.ID).Skip(difference).Take(12).ToList();
+
+                            return Json(sorted_games);
+
+                    }
+
+                return Json("Invalid sort type or incorect number of selected games");
+
+            }
+            catch
+            {
+                return Json("Error");
+            }
+        }
+
     }
 }
