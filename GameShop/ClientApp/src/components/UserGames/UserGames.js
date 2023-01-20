@@ -68,12 +68,20 @@ export default function UserGames() {
 
             for (let index = 0; index < dbdata.length; index++) {
 
-                if (dbdata[index].GameName.includes(search_text)) {
+                if (dbdata[index].GameName.toLowerCase().includes(search_text)) {
 
                     array_found_games[position] = dbdata[index];
                     position++;
 
                 }
+                else
+
+                    if (dbdata[index].GameName.includes(search_text)) {
+
+                        array_found_games[position] = dbdata[index];
+                        position++;
+
+                    }
             }
            
             setFoundGames(array_found_games);
@@ -191,7 +199,8 @@ else
                 <p style={{ color: "white", fontSize: "30px" }}> You library is empty</p>
 
                 <p style={{ color: "#444a75", fontSize: "25px", cursor: "pointer" }} onClick={redirect_to_allgames}>Go to shop</p>
-                </div>
+
+            </div>
         )
 
 }

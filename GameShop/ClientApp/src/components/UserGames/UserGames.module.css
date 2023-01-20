@@ -24,7 +24,6 @@ margin:25px;
 
 .gamename_text {
    
-   
     font-size:20px;
    
     color:white;
@@ -48,6 +47,7 @@ top:-250px;
     left: 77.2%;
     top: 100px;
     border-radius:5px;
+    
 }
 
 
@@ -78,9 +78,9 @@ top:-250px;
     }
 
     .searchbar {
-       
-        left: 58%;
-        top: 140px;
-        
+       position:relative;
+        left: 40%;
+        top: -40px;
+        width:230px;
     }
 }
