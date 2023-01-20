@@ -43,11 +43,15 @@
     left: 81%;
     border-radius: 5px;
     cursor: pointer;
-
+    background-color: #282845;
+    color: white;
+    height: 30px;
     border: none;
     outline: none;
+
 }
 
+    
     .sort_elements:focus {
         outline: none;
     }
