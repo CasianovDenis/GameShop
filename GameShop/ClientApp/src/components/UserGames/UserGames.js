@@ -1,6 +1,11 @@
 ﻿import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { toaster} from 'evergreen-ui';
+
+import 'semantic-ui-css/semantic.min.css'
+
+import copy_icon from './copy_icon.svg';
 
 import GetCookie from '../public_files/GetCookie';
 
@@ -16,6 +21,7 @@ export default function UserGames() {
     const [request, setRequest] = useState(true);
 
     const redirect = useHistory();
+   
 
    const RefSearch = useRef("");
 
@@ -88,10 +94,20 @@ export default function UserGames() {
         }
         }
 
+    const Copy = (ev) => {
+
+        let key = ev.target.getAttribute('title');
+
+        navigator.clipboard.writeText(key);
+    }
+
     const redirect_to_allgames = () => {
 
         redirect.push('/AllGames');
     }
+
+   
+  
 
     if (foundgames != null)
         return (
@@ -151,6 +167,7 @@ else
 
             <div className={style.searchbar}>
 
+              
                 <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
                 <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft:"5px" }} />
                
@@ -173,17 +190,23 @@ else
 
                             </div>
 
+                            
+                      
 
-                            <p className={style.key_text}> {item.KeyOfGame} </p>
 
+                            <p className={style.key_text} onClick={Copy} > {item.KeyOfGame}
+                                <img src={copy_icon} onClick={() => toaster.success('Key of game copied')}
+                                    className={style.copy_icon } title={item.KeyOfGame}/>
+
+                            </p>
+                            
+                           
                            
                         </div>
 
                     );
                 })}
 
-
-            
 
         </div>
         );
