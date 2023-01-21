@@ -6,6 +6,6 @@
 
 - In this application is connected Braintree payment gateway , when buy game. 
 
--In this project is connected SMTP protocol for send order when guest buy game.
+- In this project is connected SMTP protocol for send order when guest buy game.
 
 - Entity framework is using for work with database data PostgresSQL.
