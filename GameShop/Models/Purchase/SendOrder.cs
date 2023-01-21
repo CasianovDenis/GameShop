@@ -11,10 +11,10 @@ namespace PasswordManager.Models
             //Send email which contain order data
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);
             Smtp.EnableSsl = true;
-            Smtp.Credentials = new NetworkCredential("kasyanov_2001@mail.ru", "VnpsqpHSY8pysJn7Lmum");//real email and password
-                                                                                                      //was hide
+            Smtp.Credentials = new NetworkCredential("email@gmail.com", "password");//real email and password
+                                                                                    //was hide
             MailMessage Message = new MailMessage();
-            Message.From = new MailAddress("kasyanov_2001@mail.ru");//real email was hide
+            Message.From = new MailAddress("email@gmail.com");//real email was hide
 
             Message.To.Add(new MailAddress(temp.Email));
             Message.Subject = "Game Shop Receipt";
