@@ -46,7 +46,7 @@ export default function Modal_add_game() {
             if (newgame.Price.match(/\d+$/) && newgame.Price<=70 && newgame.Price>0) {
 
                 
-                if (newgame.Description.match(/\w/) && letters_number>=40) {
+                if ( letters_number>=40) {
 
                     //Verifie if in cover is inserted url
                     if (newgame.Cover.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)) {
@@ -63,7 +63,7 @@ export default function Modal_add_game() {
 
 
                        
-                        fetch('http://localhost:56116/api/create_game_data', requestOptions)
+                        fetch('http://localhost:56116/api/add_game_in_db', requestOptions)
                             .then(response => response.json())
                             .then((responseData) => {
 

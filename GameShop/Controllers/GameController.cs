@@ -18,9 +18,9 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/create_game_data")]
+        [Route("~/api/add_game_in_db")]
         [HttpPost]
-        public JsonResult CreateGameData(Game game)
+        public JsonResult AddGame(Game game)
         {
 
             try
