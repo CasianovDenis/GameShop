@@ -2,7 +2,7 @@
 
     background-color: #36393f;    
     width: 30%;
-    height: 93%;
+    height: 90%;
 
 
     position: absolute;
@@ -16,7 +16,7 @@
     
     margin-top:-20px;
     width:122%;
-    margin-left:-11.2%;
+    margin-left:-10.8%;
     
 }
 
@@ -41,10 +41,10 @@
 @media(max-width:991px) {
 
     .modal_signup {
-       
+       position:relative;
         width: 70%;
-        
-        top: 100px;
+        height:87vh;
+        top: -590px ;
         left: 15%;
         
     }
@@ -52,7 +52,11 @@
     .background_image {
         margin-top: -18px;
         width: 180%;
-        margin-left: -77%;
+        margin-left: -75%;
         height: 100vh;
+    }
+
+    .div_signup{
+        height:50vh;
     }
 }
