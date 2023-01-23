@@ -94,7 +94,7 @@ export default function SignUp() {
         
 
         
-        <div >
+        <div className={style.div_signup }>
 
             <img src={background_image} className={style.background_image}/>
 

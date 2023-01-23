@@ -2,7 +2,7 @@
 
     background-color: #36393f;    
     width: 30%;
-    height: 65%;
+    height: 57%;
 
 
     position: absolute;
@@ -15,7 +15,7 @@
 .background_image {
     margin-top: -20px;
     width: 122%;
-    margin-left: -11.2%;
+    margin-left: -10.8%;
     
 }
 
@@ -42,21 +42,25 @@
 
     .modal_signin {
        
-        width:60%;
-        height: 60%;
+        position:relative;
+        width:70%;
+        height: 58vh;
         
-        top: 20%;
-        left: 25%;
+        top: -500px;
+        left: 20%;
         
     }
 
     .background_image {
         margin-top: -18px;
         width: 180%;
-        margin-left: -77%;
+        margin-left: -75%;
         height:88.3vh;
     }
 
+    .div_signin{
+        height:70vh;
+    }
     
 
 }

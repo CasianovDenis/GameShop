@@ -93,7 +93,7 @@ export default function SignIn() {
         
 
         
-        <div >
+        <div className={ style.div_signin}>
 
             <img className={style.background_image} src={background_image} />
 
