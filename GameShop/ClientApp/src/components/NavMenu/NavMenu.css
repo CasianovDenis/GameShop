@@ -67,14 +67,14 @@ html {
 
     #add_game_button {
        position:relative;
-        left: 100px;
+        left: -100px;
         top:0px;
     }
 
     #upload_gameimage_button {
         position:relative;
         top: 0px;
-        left: 100px;
+        left: -100px;
     }
 
     .discover_games {
