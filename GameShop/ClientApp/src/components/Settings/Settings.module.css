@@ -1,0 +1,54 @@
+﻿.settings_nav_menu {
+    background-color: white;
+    width: 25%;
+    height: 25vh;
+    position: relative;
+    border-radius:5px;
+    top:10vh;
+}
+
+.settings_nav_menu_list
+{
+    position:relative;
+    top:20px;
+    margin:15px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+/*.settings_nav_menu_list:hover {*/
+   /* background-color:*/
+/*}*/
+    /*.settings_nav_menu_list:checked {
+       background:yellow;
+    }*/
+
+.div_account_settings {
+    background-color: white;
+    width: 50%;
+    height: 50vh;
+    border-radius:5px;
+    position: relative;
+    top: -20vh;
+    left: 40%;
+}
+
+.div_security_settings {
+    background-color: white;
+    width: 50%;
+    height: 62vh;
+    border-radius: 5px;
+    position: relative;
+    top: -20vh;
+    left: 40%;
+}
+
+.div_billing_settings {
+    background-color: white;
+    width: 50%;
+    height: 48vh;
+    border-radius: 5px;
+    position: relative;
+    top: -20vh;
+    left: 40%;
+}
