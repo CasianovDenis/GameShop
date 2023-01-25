@@ -1,9 +1,13 @@
-﻿using GameShop.Models;
+﻿using Effortless.Net.Encryption;
+using GameShop.Models;
 using GameShop.Models.DBConnection;
 using GameShop.Models.List;
+using GameShop.Models.TempClasses;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace GameShop.Controllers
 {
@@ -144,6 +148,141 @@ namespace GameShop.Controllers
             {
 
                 return Json("Game not bought");
+            }
+        }
+
+
+
+        [Route("~/api/update_user_email")]
+        [HttpPost]
+        public JsonResult UpdateUserEmail(TempUserInfo tempdata)
+        {
+
+            try
+            {
+                var exist = _conString.Users.Single(data => data.Username == tempdata.NewEmail);
+
+                return Json("Email already exist");
+
+            }
+            catch
+            {
+
+                var dbdata = _conString.Users.Single(data => data.Username == tempdata.Username);
+
+                if (tempdata.Email == dbdata.Email)
+                {
+                    dbdata.Email = tempdata.NewEmail;
+                    _conString.SaveChanges();
+
+                    return Json("Email was changed successfully");
+                }
+
+                return Json("Incorrect current email");
+
+            }
+        }
+
+        [Route("~/api/update_user_password")]
+        [HttpPost]
+        public JsonResult UpdateUserPassword(TempUserInfo tempdata)
+        {
+
+            try
+            {
+                var dbdata = _conString.Users.Single(data => data.Username == tempdata.Username);
+
+                if (tempdata.Password == dbdata.Password)
+                {
+
+                    dbdata.Password = tempdata.NewPassword;
+                    _conString.SaveChanges();
+
+                    return Json("Password change successfuly");
+
+                }
+
+                return Json("Incorrect current password");
+
+            }
+            catch
+            {
+                return Json("Username incorrect");
+            }
+        }
+
+        [Route("~/api/add_user_credit_card")]
+        [HttpPost]
+        public JsonResult AddUserCreditCard(UserCreditCard creditcard)
+        {
+
+            try
+            {
+                var dbdata = _conString.UserCreditCard.Single(data => data.Username == creditcard.Username);
+
+
+
+                return Json("You already have credit card");
+
+            }
+            catch
+            {
+                byte[] byte_card_number = Convert.FromBase64String(creditcard.CardNumber);
+                string decoded_card_number = Encoding.UTF8.GetString(byte_card_number);
+                //encrypt 
+                byte[] key = Bytes.GenerateKey();
+                byte[] iv = Bytes.GenerateIV();
+                var crypt_password = Strings.Encrypt(decoded_card_number, key, iv);
+
+                creditcard.CardNumber = crypt_password;
+                creditcard.Key = key;
+                creditcard.IV = iv;
+
+                _conString.Add(creditcard);
+                _conString.SaveChanges();
+
+                return Json("Credit card was added successfully");
+            }
+        }
+
+        [Route("~/api/checking_user_have_credit_card")]
+        [HttpPost]
+        public JsonResult Checking_User_Have_Credit_Card(Users user)
+        {
+
+            try
+            {
+                var dbdata = _conString.UserCreditCard.Single(data => data.Username == user.Username);
+
+                return Json("Card exist");
+
+            }
+            catch
+            {
+
+                return Json("Username incorrect");
+            }
+        }
+
+        [Route("~/api/delete_user_credit_card")]
+        [HttpPost]
+        public JsonResult DeleteUserCreditCard(Users user)
+        {
+
+            try
+            {
+                var dbdata = _conString.UserCreditCard.Single(data => data.Username == user.Username);
+
+                _conString.Remove(dbdata);
+                _conString.SaveChanges();
+
+                return Json("Card deleted");
+
+            }
+            catch
+            {
+
+                return Json("Username incorrect");
             }
         }
     }
