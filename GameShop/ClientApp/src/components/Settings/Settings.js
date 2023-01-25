@@ -1,4 +1,6 @@
-﻿import React, {useEffect,useRef,useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import style from './Settings.module.css';
 import Account_Settings from './Account_Settings';
 import Account_Billing from './Account_Billing';
@@ -6,6 +8,7 @@ import Account_Security from './Account_Security';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear,faShield,faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import GetCookie from '../public_files/GetCookie';
 
 export default function Settings() {
 
@@ -13,7 +16,10 @@ export default function Settings() {
     const [security, setSecurity] = useState(null);
     const [billing, setBilling] = useState(null);
 
-    
+    const redirect = useHistory();
+
+    if (GetCookie("status_account") != "online") redirect.push('/');
+
     const select_nav_element = (ev) => {
 
         let data = ev.target.getAttribute('title');

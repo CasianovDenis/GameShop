@@ -16,12 +16,11 @@
     cursor:pointer;
 }
 
-/*.settings_nav_menu_list:hover {*/
-   /* background-color:*/
-/*}*/
-    /*.settings_nav_menu_list:checked {
-       background:yellow;
-    }*/
+    .settings_nav_menu_list:hover {
+        background-color: #b35a66;
+        border-radius: 5px;
+    }
+   
 
 .div_account_settings {
     background-color: white;
@@ -46,9 +45,43 @@
 .div_billing_settings {
     background-color: white;
     width: 50%;
-    height: 48vh;
+    height: 52vh;
     border-radius: 5px;
     position: relative;
     top: -20vh;
     left: 40%;
+}
+
+#expire_year {
+    width: 15%;
+    position:relative;
+     top:-5.2vh;
+    left: 20%;
+}
+@media (max-width: 991px) {
+
+    .div_account_settings {
+       
+        top: -25vh;
+       
+    }
+
+    .div_security_settings {
+      
+       
+        top: -25vh;
+      
+    }
+
+    .div_billing_settings {
+       
+        top: -25vh;
+      
+    }
+    .settings_nav_menu {
+       
+        width: 30%;
+        height: 35vh;
+       
+    }
 }
