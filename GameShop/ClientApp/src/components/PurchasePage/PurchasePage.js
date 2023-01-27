@@ -86,8 +86,13 @@ export default function PurchasePage() {
 
                         if (responseData == "Already bought") {
 
-                            var div = document.getElementById('modal_payment');
-                            div.style.display = "none";
+                            try {
+                                var div = document.getElementById('modal_payment');
+                                div.style.display = "none";
+                            }
+                            catch {
+                                redirect.gp('/Purchase');
+                            }
 
                             setMessage(" You already bought this game");
 
@@ -117,9 +122,9 @@ export default function PurchasePage() {
         return (
 
 
-            <div>
+           
 
-                <div>
+            <div className={ style.purchase_div}>
                     <img src={arrow_left} style={{ width: "25px", height: "25px", cursor: "pointer" }} onClick={Back }/>
                     <br /><br />
                     <div className={style.GameInfo }>
@@ -153,7 +158,7 @@ export default function PurchasePage() {
                     </div>
                 </div>
                 
-            </div>
+            
 
 
         )
