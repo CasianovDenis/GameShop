@@ -1,7 +1,10 @@
-﻿.custom_tag {
+﻿.purchase_div{
+    position:relative;
+}
+.custom_tag {
     max-width: 100%;
     height: 300px;
-    /*background: black;*/
+   
     border-radius: 20px;
 }
 
@@ -39,8 +42,23 @@
 }
 
 .CoverStyle{
+   
     width:100%;
     height:150px;
 
 }
 
+@media (max-width: 991px){
+    
+
+    .BuyGame {
+        position: relative;
+        width:200px;
+        top: -109vh;
+    }
+
+    .CoverStyle {
+        position:relative;
+       top:-10vh;
+    }
+}
