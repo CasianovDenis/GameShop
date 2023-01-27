@@ -14,6 +14,6 @@ namespace GameShop.Models.DBConnection
 
         public DbSet<UserPurchases> UserPurchases { get; set; }
 
-        public DbSet<UserCreditCard> UserCreditCard { get; set; }
+
     }
 }
