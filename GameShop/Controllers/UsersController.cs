@@ -1,13 +1,11 @@
-﻿using Effortless.Net.Encryption;
-using GameShop.Models;
+﻿using GameShop.Models;
 using GameShop.Models.DBConnection;
 using GameShop.Models.List;
 using GameShop.Models.TempClasses;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace GameShop.Controllers
 {
@@ -211,80 +209,7 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/add_user_credit_card")]
-        [HttpPost]
-        public JsonResult AddUserCreditCard(UserCreditCard creditcard)
-        {
 
-            try
-            {
-                var dbdata = _conString.UserCreditCard.Single(data => data.Username == creditcard.Username);
-
-
-
-                return Json("You already have credit card");
-
-            }
-            catch
-            {
-                byte[] byte_card_number = Convert.FromBase64String(creditcard.CardNumber);
-                string decoded_card_number = Encoding.UTF8.GetString(byte_card_number);
-                //encrypt 
-                byte[] key = Bytes.GenerateKey();
-                byte[] iv = Bytes.GenerateIV();
-                var crypt_password = Strings.Encrypt(decoded_card_number, key, iv);
-
-                creditcard.CardNumber = crypt_password;
-                creditcard.Key = key;
-                creditcard.IV = iv;
-
-                _conString.Add(creditcard);
-                _conString.SaveChanges();
-
-                return Json("Credit card was added successfully");
-            }
-        }
-
-        [Route("~/api/checking_user_have_credit_card")]
-        [HttpPost]
-        public JsonResult Checking_User_Have_Credit_Card(Users user)
-        {
-
-            try
-            {
-                var dbdata = _conString.UserCreditCard.Single(data => data.Username == user.Username);
-
-                return Json("Card exist");
-
-            }
-            catch
-            {
-
-                return Json("Username incorrect");
-            }
-        }
-
-        [Route("~/api/delete_user_credit_card")]
-        [HttpPost]
-        public JsonResult DeleteUserCreditCard(Users user)
-        {
-
-            try
-            {
-                var dbdata = _conString.UserCreditCard.Single(data => data.Username == user.Username);
-
-                _conString.Remove(dbdata);
-                _conString.SaveChanges();
-
-                return Json("Card deleted");
-
-            }
-            catch
-            {
-
-                return Json("Username incorrect");
-            }
-        }
     }
 
 
