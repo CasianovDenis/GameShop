@@ -42,46 +42,93 @@
     left: 40%;
 }
 
-.div_billing_settings {
+.billing_settings {
     background-color: white;
     width: 50%;
-    height: 52vh;
+    height: 45vh;
     border-radius: 5px;
     position: relative;
     top: -20vh;
     left: 40%;
 }
 
-#expire_year {
-    width: 15%;
-    position:relative;
-     top:-5.2vh;
-    left: 20%;
+.purchased_div {
+  height:100px
 }
-@media (max-width: 991px) {
 
+    .purchased_div:hover {
+        background-color: #e5c1ff;
+    }
+
+.purchased_name{
+    position:relative;
+    font-size:18px;
+    top:-15vh;
+    left:230%;
+}
+
+.purchased_price {
+    position: relative;
+    font-size: 18px;
+    top: -18vh;
+    left: 85%;
+}
+
+.purchased_image {
+    position: relative;
+    left: 10px;
+    width: 150px;
+    height: 100px;
+}
+
+@media (max-width: 991px) {
     .div_account_settings {
        
-        top: -25vh;
+        top: -30vh;
        
     }
 
     .div_security_settings {
       
        
-        top: -25vh;
+        top: -30vh;
       
     }
 
-    .div_billing_settings {
+    .billing_settings {
        
-        top: -25vh;
+        top: -30vh;
+        width:60%;
+        height:55vh;
       
     }
+    .purchased_div:hover {
+        background-color: white;
+    }
+
     .settings_nav_menu {
        
         width: 30%;
-        height: 35vh;
+        height: 40vh;
        
     }
+
+    .purchased_image {
+        width:180px;
+
+}
+    .purchased_name {
+       
+        font-size: 15px;
+        top: 2vh;
+        left: 20%;
+    }
+
+    .purchased_price {
+       
+        font-size: 16px;
+        top: -2vh;
+        left: 80%;
+    }
+
 }
