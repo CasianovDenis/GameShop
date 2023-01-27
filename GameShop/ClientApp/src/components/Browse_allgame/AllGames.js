@@ -194,11 +194,13 @@ export default function AllGames() {
 
                 <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
 
-                <select onChange={sorting_games} className={style.sort_elements} >
+                <select onChange={sorting_games} className={style.sort_elements} disabled>
 
                     <option selected value="Alphabetical">Alphabetical</option>
+                    <option value="Newest">Newest</option>
                     <option value="Low to High">Price: Low to High</option>
                     <option value="High to Low">Price: High to Low</option>
+
 
                 </select>
 

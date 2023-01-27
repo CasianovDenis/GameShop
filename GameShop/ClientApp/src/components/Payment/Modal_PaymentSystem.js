@@ -81,53 +81,57 @@ export default class Modal_PaymentSystem extends React.Component {
           }
     }
 
-  
 
     buy = () => {
         // Send the nonce to server
 
         const nonce = this.instance.requestPaymentMethod();
+       
 
-        if (GetCookie("status_account") == "online") {
+        nonce.then((value) => { if (value.type == "CreditCard")  
+            if (GetCookie("status_account") == "online") {
 
-            if (GetCookie("username") != "" || GetCookie("username") != null) {
-
-            
-
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-
-                        "Game_name": this.props.game.Game_name,
-                        "Nonce": nonce.toString(),
-                        "FirstName": GetCookie("username"),
-                        "LastName": "null",
-                        "Price": this.props.game.Price,
-                        "Email": "null"
-
-                    })
-                };
+                if (GetCookie("username") != "" || GetCookie("username") != null) {
 
 
 
-                //call api from backend and send json data,which create before
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
 
-                fetch('http://localhost:56116/api/user_buying_game', requestOptions)
-                    .then(response => response.json())
-                    .then((responseData) => {
+                            "Game_name": this.props.game.Game_name,
+                            "Nonce": nonce.toString(),
+                            "FirstName": GetCookie("username"),
+                            "LastName": "null",
+                            "Price": this.props.game.Price,
+                            "Email": "null"
 
-                        if (responseData=="Succes")
-                        this.setState({ message: "game added in the account" });
+                        })
+                    };
 
 
-                    });
+
+                    //call api from backend and send json data,which create before
+
+                    fetch('http://localhost:56116/api/user_buying_game', requestOptions)
+                        .then(response => response.json())
+                        .then((responseData) => {
+
+                            if (responseData == "Succes")
+                                this.setState({
+                                    pay_card_style: "none",
+                                    message: "game added in the account"
+                                });
+
+
+                        });
+                }
             }
-        }
 
-        else {
+            else {
 
-           
+
                 const requestOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -157,7 +161,9 @@ export default class Modal_PaymentSystem extends React.Component {
                     });
 
             }
-
+       
+        })
+        
         
     }
 
@@ -204,8 +210,12 @@ export default class Modal_PaymentSystem extends React.Component {
 
         if (GetCookie("status_account") == "online") {
 
+            let element = document.getElementById('test');
+            console.log(test);
+
             var back_button = document.getElementById('back_button');
             back_button.style.display = "none";
+          
 
         }
 
@@ -283,8 +293,8 @@ export default class Modal_PaymentSystem extends React.Component {
 
                                         <div id="pay_card" style={{ display: this.state.pay_card_style }}>
 
-                                            <DropIn
-                                    options={{ authorization: this.state.clientToken }}
+                                            <DropIn 
+                                                options={{ authorization: this.state.clientToken }}
                                       onInstance={(instance) => (this.instance = instance)}
                                             />
                                        

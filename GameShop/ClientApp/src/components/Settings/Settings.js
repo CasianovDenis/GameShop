@@ -39,7 +39,7 @@ export default function Settings() {
                 setBilling(null);
             }
             else
-                if (data == "Billing") {
+                if (data == "Billing Activity") {
                     setAccountSettings(null);
                     setSecurity(null);
                     setBilling("displaying");
@@ -61,8 +61,8 @@ export default function Settings() {
                 <p className={style.settings_nav_menu_list} title="Security" onClick={select_nav_element}>
                     <FontAwesomeIcon icon={faShield} style={{ marginLeft: "5px" }} /> Security </p>
 
-                <p  className={style.settings_nav_menu_list} title="Billing" onClick={select_nav_element}>
-                              <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing </p>
+                <p  className={style.settings_nav_menu_list} title="Billing Activity" onClick={select_nav_element}>
+                              <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing Activity </p>
 
                 </div>
 
@@ -89,8 +89,8 @@ export default function Settings() {
                         <p className={style.settings_nav_menu_list} title="Security" onClick={select_nav_element}>
                             <FontAwesomeIcon icon={faShield} style={{ marginLeft: "5px" }} /> Security </p>
 
-                        <p className={style.settings_nav_menu_list} title="Billing" onClick={select_nav_element}>
-                            <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing </p>
+                        <p className={style.settings_nav_menu_list} title="Billing Activity" onClick={select_nav_element}>
+                            <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing Activity </p>
 
                     </div>
 
@@ -117,8 +117,8 @@ export default function Settings() {
                             <p className={style.settings_nav_menu_list} title="Security" onClick={select_nav_element}>
                                 <FontAwesomeIcon icon={faShield} style={{ marginLeft: "5px" }} /> Security </p>
 
-                            <p className={style.settings_nav_menu_list} title="Billing" onClick={select_nav_element}>
-                                <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing </p>
+                            <p className={style.settings_nav_menu_list} title="Billing Activity" onClick={select_nav_element}>
+                                <FontAwesomeIcon icon={faCreditCard} style={{ marginLeft: "5px" }} /> Billing Activity </p>
 
                         </div>
 
