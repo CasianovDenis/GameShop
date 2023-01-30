@@ -9,6 +9,7 @@ import style from './Purchase.module.css';
 
 import CarouselGameImage from './CarouselGameImage';
 import Modal_PaymentSystem from '../Payment/Modal_PaymentSystem';
+import GameCommentary from './GameCommentary';
 
 import arrow_left from './arrow.png';
 import GetCookie from "../public_files/GetCookie";
@@ -23,7 +24,7 @@ export default function PurchasePage() {
     const [message, setMessage] = useState("");
 
     const [request, setRequest] = useState(true);
-
+    const [display_modal_payment, setDisplayModalPayment] = useState("block");
 
     let GameName = "";
 
@@ -86,13 +87,8 @@ export default function PurchasePage() {
 
                         if (responseData == "Already bought") {
 
-                            try {
-                                var div = document.getElementById('modal_payment');
-                                div.style.display = "none";
-                            }
-                            catch {
-                                redirect.go('/Purchase');
-                            }
+
+                            setDisplayModalPayment("none");
 
                             setMessage(" You already bought this game");
 
@@ -148,14 +144,17 @@ export default function PurchasePage() {
 
                         <p style={{ color: "white" }}>{gameinfo.Price}$</p>
 
-                        <div id="modal_payment">
+                    <div style={{ display: display_modal_payment }}>
 
                         <Modal_PaymentSystem game={gameinfo} />
 
                         </div>
 
                         <p style={{ color: "white", fontSize : "20px" }}>{message} </p>
-                    </div>
+                </div>
+
+                <GameCommentary game_name={GameName} />
+
                 </div>
                 
             
