@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GameShop.Migrations
 {
     [DbContext(typeof(ConString))]
-    [Migration("20230121103037_InitialCreate")]
+    [Migration("20230130100641_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,16 @@ namespace GameShop.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Email = "admin@gmail.com",
+                            Password = "admin",
+                            Role = "admin",
+                            Username = "admin"
+                        });
                 });
 #pragma warning restore 612, 618
         }

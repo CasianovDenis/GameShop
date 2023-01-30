@@ -54,6 +54,11 @@ namespace GameShop.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.ID);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "ID", "Email", "Password", "Role", "Username" },
+                values: new object[] { 1, "admin@gmail.com", "admin", "admin", "admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

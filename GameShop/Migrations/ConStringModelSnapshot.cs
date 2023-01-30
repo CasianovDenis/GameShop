@@ -91,6 +91,16 @@ namespace GameShop.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Email = "admin@gmail.com",
+                            Password = "admin",
+                            Role = "admin",
+                            Username = "admin"
+                        });
                 });
 #pragma warning restore 612, 618
         }
