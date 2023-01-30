@@ -1,5 +1,7 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
+
 import style from './Settings.module.css';
+
 import GetCookie from '../public_files/GetCookie';
 
 export default function Account_Settings() {
