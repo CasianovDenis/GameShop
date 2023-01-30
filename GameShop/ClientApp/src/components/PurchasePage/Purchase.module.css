@@ -38,7 +38,7 @@
     position:absolute;
     left:65%;
    
-    top:25%;
+    top:7%;
 }
 
 .CoverStyle{
@@ -48,17 +48,17 @@
 
 }
 
-@media (max-width: 991px){
-    
 
+
+@media (max-width: 991px) {
     .BuyGame {
         position: relative;
         width:200px;
-        top: -109vh;
+        top: -100vh;
     }
 
     .CoverStyle {
-        position:relative;
-       top:-10vh;
+        
+       top:0vh;
     }
 }
