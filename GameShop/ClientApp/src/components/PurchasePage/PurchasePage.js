@@ -91,7 +91,7 @@ export default function PurchasePage() {
                                 div.style.display = "none";
                             }
                             catch {
-                                redirect.gp('/Purchase');
+                                redirect.go('/Purchase');
                             }
 
                             setMessage(" You already bought this game");
