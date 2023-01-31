@@ -18,6 +18,7 @@ import AllGames from './components/Browse_allgame/AllGames';
 import Settings from './components/Settings/Settings';
 
 
+
 import './custom.css'
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
             <Route exact path='/AllGames' component={AllGames} />
             <Route exact path='/Settings' component={Settings} />
 
+           
       </Layout>
     );
   
