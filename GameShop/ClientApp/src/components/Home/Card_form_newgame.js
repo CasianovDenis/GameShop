@@ -46,7 +46,7 @@ export default function Card_form_newgame() {
         redirect.push('/AllGames');
     }
 
-
+    if (dbdata.length > 0)
     return (
 
 
@@ -85,7 +85,13 @@ export default function Card_form_newgame() {
             </div>
 
         </div>
-    );
+        );
+    else
+        return (
+            <div class="spinner-border" role="status" >
+                <span class="visually-hidden"></span>
+            </div>
+        )
 }
 
 
