@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GameShop.Migrations
 {
     [DbContext(typeof(ConString))]
-    [Migration("20230130100641_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230131173927_Add_table_for_commentary")]
+    partial class Add_table_for_commentary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,27 @@ namespace GameShop.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Game");
+                });
+
+            modelBuilder.Entity("GameShop.Models.GamesCommentary", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Commentary")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GameName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GamesCommentary");
                 });
 
             modelBuilder.Entity("GameShop.Models.UserPurchases", b =>

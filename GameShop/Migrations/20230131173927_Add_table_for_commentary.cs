@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GameShop.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Add_table_for_commentary : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,21 @@ namespace GameShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Game", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GamesCommentary",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    Commentary = table.Column<string>(type: "text", nullable: true),
+                    GameName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GamesCommentary", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,6 +80,9 @@ namespace GameShop.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Game");
+
+            migrationBuilder.DropTable(
+                name: "GamesCommentary");
 
             migrationBuilder.DropTable(
                 name: "UserPurchases");

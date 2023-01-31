@@ -46,6 +46,27 @@ namespace GameShop.Migrations
                     b.ToTable("Game");
                 });
 
+            modelBuilder.Entity("GameShop.Models.GamesCommentary", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Commentary")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GameName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GamesCommentary");
+                });
+
             modelBuilder.Entity("GameShop.Models.UserPurchases", b =>
                 {
                     b.Property<int>("ID")

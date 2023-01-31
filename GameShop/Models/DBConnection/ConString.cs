@@ -14,6 +14,20 @@ namespace GameShop.Models.DBConnection
 
         public DbSet<UserPurchases> UserPurchases { get; set; }
 
+        public DbSet<GamesCommentary> GamesCommentary { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Users>().HasData(new Users
+            {
+                ID = 1,
+                Username = "admin",
+                Password = "admin",
+                Email = "admin@gmail.com",
+                Role = "admin"
+            });
+
+        }
     }
 }

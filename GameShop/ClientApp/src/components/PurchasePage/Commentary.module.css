@@ -1,0 +1,83 @@
+﻿.commentary_div {
+    position: relative;
+    top: -10vh;
+    left: 20%;
+}
+
+.commentary_user_icon {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    right: 100px;
+    top: 20px;
+}
+
+#commentary_field {
+    width: 60%;
+    height: 15vh;
+    border-radius: 15px;
+    position: relative;
+    top: -10vh;
+}
+
+.button_comment {
+    border: none;
+    outline: none;
+    height: 10vh;
+    background-color: #127073;
+    border-radius: 15px;
+    position: relative;
+    top: -22vh;
+    left: 62%;
+}
+
+    .button_comment :focus {
+        outline: none;
+    }
+
+.username_who_comment {
+    position: relative;
+    top: -10vh;
+    left: 15px;
+    color: white;
+}
+
+.user_commentary {
+    width: 70%;
+   
+    border-radius: 15px;
+}
+
+.warning_commentary {
+    width: 40%;
+    height: 10vh;
+    background-color: #e2d2ff;
+    border-radius:5px;
+}
+
+.nav_link {
+    display:inline-block;
+    width: 20%;
+}
+
+
+
+@media (max-width:991px) {
+    .commentary_user_icon {
+        width: 80px;
+        height: 80px;
+       
+        right: 84px;
+       
+    }
+    .commentary_div {
+        position: relative;
+        top: -30vh;
+        
+    }
+
+    .nav_link {
+       
+        width: 50%;
+    }
+}

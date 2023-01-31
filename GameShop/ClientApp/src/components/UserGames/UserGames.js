@@ -8,6 +8,7 @@ import 'semantic-ui-css/semantic.min.css'
 import copy_icon from './copy_icon.svg';
 
 import GetCookie from '../public_files/GetCookie';
+import ScrollTopButton from '../public_files/ScrollTopButton';
 
 import style from './UserGames.module.css';
 
@@ -207,7 +208,7 @@ else
                     );
                 })}
 
-
+            <ScrollTopButton />
         </div>
         );
 
