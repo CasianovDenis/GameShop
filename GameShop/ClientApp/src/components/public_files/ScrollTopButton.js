@@ -1,7 +1,9 @@
 ﻿import React, { useState } from 'react';
-import style from './ScrollTopButton.module.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
+import style from './ScrollTopButton.module.css';
 
 
 export default function ScrollTopButton() {
