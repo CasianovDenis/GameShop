@@ -35,10 +35,10 @@
 }
 
 .BuyGame{
-    position:absolute;
+    position:relative;
     left:65%;
-   
-    top:7%;
+   width:300px;
+    top:-71vh;
 }
 
 .CoverStyle{
@@ -52,7 +52,7 @@
 
 @media (max-width: 991px) {
     .BuyGame {
-        position: relative;
+        
         width:200px;
         top: -100vh;
     }
