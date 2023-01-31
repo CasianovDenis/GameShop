@@ -1,12 +1,15 @@
 ﻿import React, {useEffect,useState,useRef } from 'react';
-import style from './Commentary.module.css';
-import user_icon from '../public_files/user_icon.png';
-import GetCookie from '../public_files/GetCookie';
 import { toaster } from 'evergreen-ui';
-import {NavLink } from 'reactstrap';
+import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import GetCookie from '../public_files/GetCookie';
 import ScrollTopButton from '../public_files/ScrollTopButton';
+
+import style from './Commentary.module.css';
+
+import user_icon from '../public_files/user_icon.png';
+
 
 export default function GameCommentary(props) {
     
