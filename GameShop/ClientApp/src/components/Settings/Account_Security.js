@@ -22,7 +22,7 @@ export default function Account_Security() {
             if (refConfirmPassword.current.value == refNewPassword.current.value) {
 
                 const requestOptions = {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
 

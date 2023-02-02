@@ -15,17 +15,13 @@ export default function Account_Billing() {
     useEffect(() => {
 
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-
-                "Username": GetCookie("username")
-                
-            })
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         };
 
+
         if (request == true)
-        fetch('http://localhost:56116/api/get_latest_purchased_game', requestOptions)
+            fetch('http://localhost:56116/api/get_latest_purchased_game/' + GetCookie("username"), requestOptions)
             .then(response => response.json())
             .then((responseData) => {
 

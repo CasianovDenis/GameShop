@@ -13,7 +13,7 @@ export default function Footer() {
             <footer >
                 
 
-                <div  className={ style.footer_div}>
+                
 
                 <p className={style.footer_text }>
 
@@ -25,7 +25,7 @@ export default function Footer() {
 
                     <img className={style.footer_logo} src={logo } />
 
-                    </div>
+                   
 
                    
                     </footer>

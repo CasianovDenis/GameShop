@@ -17,7 +17,7 @@ export default function Card_form_newgame() {
 
            
             const requestOptions = {
-                method: 'POST',
+                method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify()
             };
@@ -38,6 +38,7 @@ export default function Card_form_newgame() {
     const redirect_to_purchase = (ev) =>
     {
        
+       
         redirect.push('/Purchase', { GameName: ev.target.getAttribute('alt') });
     }
 
@@ -51,11 +52,12 @@ export default function Card_form_newgame() {
 
 
 
-        <div >
+       
 
            
-            <div >
-                <p className={style.newgame }>New game</p>
+        <div className={style.card_new_game } >
+
+                <p className={style.newgame_text }>New game</p>
 
                 <p onClick={redirect_to_allgames} className={style.text_allgames }>Discover more games </p>
 
@@ -63,16 +65,17 @@ export default function Card_form_newgame() {
 
                     return (
 
-                        <div className={style.Cards} onClick={redirect_to_purchase} >
+                        <div className={style.Cards} onClick={redirect_to_purchase} alt={item.Game_name} >
 
-                            <div style={{ width: "10rem" }} >
+                            <div style={{ width: "13rem" }} >
 
-                                <img class="card-img-top" id={style.card_image} src={item.Cover} alt={item.Game_name} />
+                                <img class="card-img-top" id={style.card_image} alt={item.Game_name} src={item.Cover}  />
 
-                                <div class="card-body">
-                                    <h6 class="card-title" style={{color:"white"} }>{ item.Game_name}</h6>
+                                
+                                <h6 class="card-title" style={{margin:"5px", color: "white" }}
+                                                            alt={item.Game_name}>{item.Game_name}</h6>
                                     
-                                </div>
+                              
 
                             </div>
 
@@ -84,7 +87,7 @@ export default function Card_form_newgame() {
                 
             </div>
 
-        </div>
+       
         );
     else
         return (

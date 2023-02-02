@@ -21,20 +21,12 @@ export default function CarouselGameImage(props) {
         if (request == true) {
 
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-
-                    "TempGameName": props.GameName
-
-                })
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             };
 
 
-
-            //call api from backend and send json data,which create before
-
-            fetch('http://localhost:56116/api/get_files', requestOptions)
+            fetch('http://localhost:56116/api/get_files/' + props.GameName, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 

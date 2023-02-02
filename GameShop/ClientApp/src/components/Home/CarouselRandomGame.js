@@ -23,14 +23,13 @@ export default function CarouselRandomGame() {
         if (request == true) {
 
             const requestOptions = {
-                method: 'POST',
+                method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify()
             };
 
 
 
-            //call api from backend and send json data,which create before
 
             fetch('http://localhost:56116/api/get_random_games', requestOptions)
                 .then(response => response.json())

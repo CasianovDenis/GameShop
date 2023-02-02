@@ -30,7 +30,7 @@ namespace GameShop.Controllers
 
 
         [Route("~/api/client_token")]
-        [HttpPost]
+        [HttpGet]
         public JsonResult GenerateTocken()
         {
 
@@ -165,9 +165,5 @@ namespace GameShop.Controllers
         }
 
     }
-
-
-
-
 
 }

@@ -16,9 +16,18 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+#dropdown_menu {
+    margin-left: -60px;
+}
+
+
+.dropdown {
+    width: 60px;
+}
+
 #add_game_button {
-    position: absolute;
-    right: 80%;
+    position: relative;
+    right: 400%;
     top:25px;
     color:white;
     cursor:pointer;
@@ -27,10 +36,11 @@ html {
     #add_game_button:hover {
         color: #555896;
     }
+
 #upload_gameimage_button {
-    position: absolute;
-    right: 65%;
-    top: 25px;
+    position: relative;
+    right: 340%;
+    top: -15px;
     color: white;
     cursor: pointer;
 }
@@ -39,21 +49,17 @@ html {
     color: #555896;
 }
 
-#dropdown_menu {
-    margin-left: -60px;
-}
 
-
-.dropdown{
-    width:60px;
-}
 
 
 .discover_games{
-    color:white;
-    position:absolute;
-    right:57%;
-    top:25px;
+   
+    position:relative;
+    right:180%;
+    top:18px;
+}
+.discover_games :hover {
+    background-color:black;
 }
 
 @media (max-width: 991px) {
@@ -66,20 +72,21 @@ html {
     }
 
     #add_game_button {
-       position:relative;
-        left: 110px;
+      
+        left: 10px;
         top:0px;
+        width:80px;
     }
 
     #upload_gameimage_button {
-        position:relative;
-        top: 0px;
-        left: 110px;
+       
+        top: -13px;
+        left: 10px;
     }
 
     .discover_games {
-           position:relative; 
-        left: 32%;
+           top:-10px;
+        left:-13px;
         
     }
 

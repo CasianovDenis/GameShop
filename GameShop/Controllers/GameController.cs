@@ -40,7 +40,7 @@ namespace GameShop.Controllers
         }
 
         [Route("~/api/get_random_games")]
-        [HttpPost]
+        [HttpGet]
         public JsonResult RandomGames()
         {
 
@@ -73,7 +73,7 @@ namespace GameShop.Controllers
         }
 
         [Route("~/api/get_new_games")]
-        [HttpPost]
+        [HttpGet]
         public JsonResult NewGames()
         {
 
@@ -107,14 +107,14 @@ namespace GameShop.Controllers
         }
 
 
-        [Route("~/api/get_game")]
-        [HttpPost]
-        public JsonResult GetGame(Game game)
+
+        [HttpGet("~/api/get_game/{GameName}")]
+        public JsonResult GetGame(string GameName)
         {
 
             try
             {
-                var dbdata = _conString.Game.Single(data => data.Game_name == game.Game_name);
+                var dbdata = _conString.Game.Single(data => data.Game_name == GameName);
 
 
                 return Json(dbdata);
@@ -128,7 +128,7 @@ namespace GameShop.Controllers
         }
 
         [Route("~/api/get_all_games")]
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetAllGames()
         {
 
@@ -146,15 +146,15 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/get_latest_purchased_game")]
-        [HttpPost]
-        public JsonResult GetLatestPurchasedGame(Users user)
+
+        [HttpGet("~/api/get_latest_purchased_game/{Username}")]
+        public JsonResult GetLatestPurchasedGame(string Username)
         {
 
             try
             {
 
-                var latest_purchased = _conString.UserPurchases.Where(data => data.Username == user.Username).OrderByDescending(data => data.ID).ToList();
+                var latest_purchased = _conString.UserPurchases.Where(data => data.Username == Username).OrderByDescending(data => data.ID).ToList();
 
                 var dbdata = _conString.Game.Single(data => data.Game_name == latest_purchased[0].Game_name);
 
@@ -167,15 +167,15 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/get_sorted_games_using_range")]
-        [HttpPost]
-        public JsonResult GetSortedGamesUsingRange(TempData tempdata)
+
+        [HttpGet("~/api/get_sorted_games_using_range/{Sort_Type}/{Selected_Games}")]
+        public JsonResult GetSortedGamesUsingRange(string Sort_Type, int Selected_Games)
         {
 
             try
             {
-                string expression = tempdata.Sort_Type;
-                int difference = tempdata.Selected_Games - 12;
+                string expression = Sort_Type;
+                int difference = Selected_Games - 12;
 
                 if (difference >= 0)
                     switch (expression)

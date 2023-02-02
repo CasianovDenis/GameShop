@@ -21,6 +21,7 @@ export default function Account_Settings() {
             "Email": refCurrentEmail.current.value,
             "NewEmail": refNewEmail.current.value
         }
+
         if (update_email.Email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )) {
 
@@ -29,7 +30,7 @@ export default function Account_Settings() {
 
                 if (update_email.Email != update_email.NewEmail) {
                     const requestOptions = {
-                        method: 'POST',
+                        method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(update_email)
                     };

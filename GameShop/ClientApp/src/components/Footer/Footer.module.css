@@ -1,41 +1,50 @@
-﻿.footer_text{
-    color:white;
-    font-size:15px;
-    
+﻿footer {
+    position: relative;
+    background-color: #2a2a2a;
+    height: 200px;
+    width: 200vh;
+    top: 70vh;
+    right: 60px;
 }
 
-.footer_div{
-    margin:30px;
-    width:400px;
-position:absolute;
-
+.footer_text{
+    color:white;
+    font-size:15px;
+    position:relative;
+    right:85%;
+    top:10px;
 }
 
 .footer_logo{
-position:absolute;
-width:30%;
-height:65%;
-left:290%;
-top:10px;
+position:relative;
+width:100px;
+height:100px;
+top:-25vh;
 }
 
 @media(max-width:991px)
 {
-    .footer_div {
-        margin: 30px;
-        width: 400px;
-        position: absolute;
-
+    .footer_text {
         
+        font-size: 15px;
+        
+        right: 45%;
+        top: 20px;
+    }
+
+    footer {
+        width: 100vh;
+        top: 0vh;
+        right: 0px;
+        top: 500vh;
     }
 
     .footer_logo {
         
-        width: 30%;
-        height: 65%;
-        left: 120%;
-        top: 10px;
+      left:15%;
+        top: 0vh;
     }
 
 
 }
+
