@@ -26,15 +26,8 @@ export default function PurchasePage() {
     const [request, setRequest] = useState(true);
     const [display_modal_payment, setDisplayModalPayment] = useState("block");
 
-    let GameName = "";
-
-
-    try {
-         GameName = location.state.GameName;
-    }
-    catch {
-        redirect.push('/');
-    }
+    const GameName = location.state.GameName;
+    
     
 
    
@@ -47,18 +40,13 @@ export default function PurchasePage() {
         if (request == true) {
 
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-
-                    "Game_name": GameName
-
-                })
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             };
 
 
 
-            fetch('http://localhost:56116/api/get_game', requestOptions)
+            fetch('http://localhost:56116/api/get_game/'+ GameName, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
@@ -71,16 +59,13 @@ export default function PurchasePage() {
             if (GetCookie("status_account") == "online") {
 
                 const requestOptionsUser = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        "Username": GetCookie("username"),
-                        "Game_name": GameName
-
-                    })
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
                 };
 
-                fetch('http://localhost:56116/api/checking_user_purchased_this_game', requestOptionsUser)
+                let url = 'http://localhost:56116/api/checking_user_purchased_this_game/' + GetCookie("username") + '/' + GameName;
+
+                fetch(url, requestOptionsUser)
                     .then(response => response.json())
                     .then((responseData) => {
 
@@ -136,11 +121,11 @@ export default function PurchasePage() {
 
                         <img className={style.CoverStyle} src={gameinfo.Cover} />
 
-                        <br /><br />
+                       
 
                         <span class="badge bg-secondary">Base Game</span>
 
-                        <br /><br />
+                      
 
                         <p style={{ color: "white" }}>{gameinfo.Price}$</p>
 
