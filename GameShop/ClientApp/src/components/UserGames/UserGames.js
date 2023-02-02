@@ -33,19 +33,15 @@ export default function UserGames() {
 
 
             const requestOptions = {
-                method: 'POST',
+                method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-
-                    "Username": GetCookie("username")
-
-                })
+                
             };
 
 
 
 
-            fetch('http://localhost:56116/api/get_user_games', requestOptions)
+            fetch('http://localhost:56116/api/get_user_games/' + GetCookie("username"), requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
