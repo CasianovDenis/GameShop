@@ -60,7 +60,15 @@
     width: 20%;
 }
 
+.delete_button{
+    position:relative;
+    cursor:pointer;
+  left:55%;
+  top:-23vh;
 
+  width:25px;
+    height:25px;
+}
 
 @media (max-width:991px) {
     .commentary_user_icon {
@@ -79,5 +87,10 @@
     .nav_link {
        
         width: 50%;
+    }
+
+    .delete_button {
+        left: 48%;
+        
     }
 }
