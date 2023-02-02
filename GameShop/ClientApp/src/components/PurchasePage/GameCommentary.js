@@ -3,16 +3,18 @@ import { toaster } from 'evergreen-ui';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
 import GetCookie from '../public_files/GetCookie';
 import ScrollTopButton from '../public_files/ScrollTopButton';
 
 import style from './Commentary.module.css';
 
 import user_icon from '../public_files/user_icon.png';
+import trash_can from '../public_files/trash_can.png'
 
 
 export default function GameCommentary(props) {
-    
+
     const [commentary, setCommentary] = useState(null);
     const [request, setRequest] = useState(true);
     const [commentary_field_status, setCommentaryFieldStatus] = useState('none');
@@ -21,25 +23,29 @@ export default function GameCommentary(props) {
     const [number_displaying_comment, setNumberDisplayingComment] = useState(5);
 
     const [status_display_button, setStatusDisplayButton] = useState('none');
-    
+    const [status_delete_commentary_button, setStatusDeleteCommentaryButton] = useState('none');
 
     const refComment = useRef("");
 
+    const username = GetCookie('username');
+
+    const url_get_commentary = 'http://localhost:56116/api/get_game_commentary/' + props.game_name + '/' + number_displaying_comment;
+    const url_get_number_commentary = 'http://localhost:56116/api/get_number_of_commentary/' + props.game_name;
+
     useEffect(() => {
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+        
 
-                "GameName": props.game_name,
-                "number_displaying_comment": number_displaying_comment
-            })
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         };
 
        
         if (request == true) {
-            fetch('http://localhost:56116/api/get_game_commentary', requestOptions)
+
+            
+            fetch(url_get_commentary, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
@@ -55,7 +61,7 @@ export default function GameCommentary(props) {
 
            
 
-            fetch('http://localhost:56116/api/get_number_of_commentary', requestOptions)
+            fetch(url_get_number_commentary, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
@@ -68,6 +74,19 @@ export default function GameCommentary(props) {
                    
 
                 });
+
+            
+
+            fetch('http://localhost:56116/api/get_user_role/'+username, requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+
+                    if (responseData == "admin")
+                    setStatusDeleteCommentaryButton('block')
+
+                });
+
         }
 
         if (GetCookie("status_account") == "online")
@@ -90,7 +109,7 @@ export default function GameCommentary(props) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    "Username": GetCookie('username'),
+                    "Username": username,
                     "Commentary": refComment.current.value,
                     "GameName": props.game_name
                 })
@@ -113,17 +132,13 @@ export default function GameCommentary(props) {
 
 
             setTimeout(() => {
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
 
-                        "GameName": props.game_name,
-                        "number_displaying_comment": number_displaying_comment
-                    })
+                const requestOptions = {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
                 };
-                
-                fetch('http://localhost:56116/api/get_game_commentary', requestOptions)
+
+                fetch(url_get_commentary, requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
@@ -133,7 +148,7 @@ export default function GameCommentary(props) {
                        
                     })
 
-                fetch('http://localhost:56116/api/get_number_of_commentary', requestOptions)
+                fetch(url_get_number_commentary, requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
@@ -165,16 +180,11 @@ export default function GameCommentary(props) {
         setNumberDisplayingComment(number_displaying_comment + 5);
 
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-
-                "GameName": props.game_name,
-                "number_displaying_comment": number_for_displaying
-            })
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         };
 
-        fetch('http://localhost:56116/api/get_game_commentary', requestOptions)
+        fetch('http://localhost:56116/api/get_game_commentary/' + props.game_name + '/' + number_for_displaying, requestOptions)
             .then(response => response.json())
             .then((responseData) => {
 
@@ -189,7 +199,52 @@ export default function GameCommentary(props) {
         }
     }
 
-  
+    const delete_comment = (ev) => {
+
+        let comment_id = ev.target.getAttribute('name');
+
+        var answer = window.confirm('Are you sure you want to delete this commentary?');
+        if (answer) {
+
+
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+
+                    "ID": comment_id
+                })
+            };
+
+            fetch('http://localhost:56116/api/delete_game_commentary', requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    if (responseData == "Commentary deleted succesfully")
+                        toaster.success(responseData);
+
+                })
+
+            setTimeout(() => {
+
+            const requestCommentary = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            };
+
+                fetch(url_get_commentary, requestCommentary)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    if (responseData.length > 0 && responseData != "No commentary for this game")
+                        setCommentary(responseData);
+
+                })
+            }
+                , 1000 * 10)
+        }
+
+    }
 
 
 
@@ -272,7 +327,8 @@ export default function GameCommentary(props) {
 
                      <textarea type="text" class="form-control" value={item.Commentary} id={style.commentary_field} disabled/>
 
-
+                            <img src={trash_can} className={style.delete_button} style={{ display: status_delete_commentary_button }}
+                                name={item.ID} onClick={delete_comment }/>
 
                         </div>
 
