@@ -50,7 +50,7 @@ namespace GameShop.Controllers
         }
 
         [Route("~/api/new_file_name")]
-        [HttpPost]
+        [HttpPut]
         public JsonResult UpdateFileName(TempData temp)
         {
             try
@@ -74,9 +74,9 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/get_files")]
-        [HttpPost]
-        public JsonResult GetFiles(TempData temp)
+
+        [HttpGet("~/api/get_files/{GameName}")]
+        public JsonResult GetFiles(string GameName)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace GameShop.Controllers
 
 
 
-                var photolist = dBServices.GetAll(temp.TempGameName);
+                var photolist = dBServices.GetAll(GameName);
 
 
                 return Json(photolist);

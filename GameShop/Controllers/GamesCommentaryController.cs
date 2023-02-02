@@ -1,6 +1,5 @@
 ﻿using GameShop.Models;
 using GameShop.Models.DBConnection;
-using GameShop.Models.TempClasses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -19,16 +18,16 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/get_game_commentary")]
-        [HttpPost]
-        public JsonResult GetGameCommentary(TempGamesCommentary tempgamescomment)
+
+        [HttpGet("~/api/get_game_commentary/{GameName}/{number_displaying_comment}")]
+        public JsonResult GetGameCommentary(string GameName, int number_displaying_comment)
         {
 
             try
             {
 
-                var commentary = _conString.GamesCommentary.Where(data => data.GameName == tempgamescomment.GameName)
-                         .OrderByDescending(data => data.ID).Take(tempgamescomment.number_displaying_comment).ToList();
+                var commentary = _conString.GamesCommentary.Where(data => data.GameName == GameName)
+                         .OrderByDescending(data => data.ID).Take(number_displaying_comment).ToList();
 
                 return Json(commentary);
             }
@@ -40,15 +39,15 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/get_number_of_commentary")]
-        [HttpPost]
-        public JsonResult GetNumberOfCommentary(TempGamesCommentary tempgamescomment)
+
+        [HttpGet("~/api/get_number_of_commentary/{GameName}")]
+        public JsonResult GetNumberOfCommentary(string GameName)
         {
 
             try
             {
 
-                var commentary = _conString.GamesCommentary.Where(data => data.GameName == tempgamescomment.GameName).ToList();
+                var commentary = _conString.GamesCommentary.Where(data => data.GameName == GameName).ToList();
 
                 return Json(commentary.Count);
             }
@@ -78,6 +77,27 @@ namespace GameShop.Controllers
             catch (Exception exception)
             {
                 return Json(exception);
+            }
+        }
+
+        [Route("~/api/delete_game_commentary")]
+        [HttpDelete]
+        public JsonResult DeleteGameCommentary(GamesCommentary gamescomment)
+        {
+
+            try
+            {
+                var comment = _conString.GamesCommentary.Single(data => data.ID == gamescomment.ID);
+
+                _conString.Remove(comment);
+                _conString.SaveChanges();
+
+                return Json("Commentary deleted succesfully");
+
+            }
+            catch
+            {
+                return Json("Incorrect ID");
             }
         }
     }

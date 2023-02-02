@@ -78,14 +78,14 @@ namespace GameShop.Controllers
             }
         }
 
-        [Route("~/api/get_user_role")]
-        [HttpPost]
-        public JsonResult GetUserRole(Users user)
+
+        [HttpGet("~/api/get_user_role/{Username}")]
+        public JsonResult GetUserRole(string Username)
         {
 
             try
             {
-                var dbdata = _conString.Users.Single(data => data.Username == user.Username);
+                var dbdata = _conString.Users.Single(data => data.Username == Username);
 
                 return Json(dbdata.Role);
 
@@ -98,14 +98,14 @@ namespace GameShop.Controllers
         }
 
 
-        [Route("~/api/get_user_games")]
-        [HttpPost]
-        public JsonResult GetUserGames(Users user)
+
+        [HttpGet("~/api/get_user_games/{Username}")]
+        public JsonResult GetUserGames(string Username)
         {
 
             try
             {
-                var user_games = _conString.UserPurchases.Where(data => data.Username == user.Username).ToList();
+                var user_games = _conString.UserPurchases.Where(data => data.Username == Username).ToList();
 
 
                 List<GamePurchasesByUser> purchases_game = new List<GamePurchasesByUser>();
@@ -128,16 +128,16 @@ namespace GameShop.Controllers
         }
 
 
-        [Route("~/api/checking_user_purchased_this_game")]
-        [HttpPost]
-        public JsonResult Checking_User_Purchased_This_Game(UserPurchases userpurchases)
+
+        [HttpGet("~/api/checking_user_purchased_this_game/{Username}/{Game_name}")]
+        public JsonResult Checking_User_Purchased_This_Game(string Username, string Game_name)
         {
 
             try
             {
-                var dbdata = _conString.UserPurchases.Single(data => data.Username == userpurchases.Username
+                var dbdata = _conString.UserPurchases.Single(data => data.Username == Username
 
-                                                                       && data.Game_name == userpurchases.Game_name);
+                                                                       && data.Game_name == Game_name);
 
                 return Json("Already bought");
 
@@ -152,7 +152,7 @@ namespace GameShop.Controllers
 
 
         [Route("~/api/update_user_email")]
-        [HttpPost]
+        [HttpPut]
         public JsonResult UpdateUserEmail(TempUserInfo tempdata)
         {
 
@@ -182,7 +182,7 @@ namespace GameShop.Controllers
         }
 
         [Route("~/api/update_user_password")]
-        [HttpPost]
+        [HttpPut]
         public JsonResult UpdateUserPassword(TempUserInfo tempdata)
         {
 
