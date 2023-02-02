@@ -38,9 +38,8 @@ export default function AllGames() {
 
 
             const requestOptionsAllGames = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify()
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             };
 
 
@@ -63,17 +62,14 @@ export default function AllGames() {
              
 
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "Sort_Type": sort_type,
-                "Selected_Games": 12
-            })
-        };
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+            };
+
+            let url = 'http://localhost:56116/api/get_sorted_games_using_range/' + sort_type + '/' + 12;
 
 
-
-        fetch('http://localhost:56116/api/get_sorted_games_using_range', requestOptions)
+            fetch(url, requestOptions)
             .then(response => response.json())
             .then((responseData) => {
 
@@ -130,17 +126,13 @@ export default function AllGames() {
         let number_games_must_displaying = 12 * current_page_number;
 
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "Sort_Type": ev.target.value,
-                "Selected_Games": number_games_must_displaying
-            })
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         };
 
+        let url = 'http://localhost:56116/api/get_sorted_games_using_range/' + ev.target.value + '/' + number_games_must_displaying;
 
-
-        fetch('http://localhost:56116/api/get_sorted_games_using_range', requestOptions)
+        fetch(url, requestOptions)
             .then(response => response.json())
             .then((responseData) => {
 
@@ -159,17 +151,14 @@ export default function AllGames() {
         let number_games_must_displaying = 12 * ev.target.getAttribute('value');
 
         const requestOptions = {
-            method: 'POST',
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "Sort_Type": sort_type,
-                "Selected_Games": number_games_must_displaying
-            })
+           
         };
 
-
+        let url = 'http://localhost:56116/api/get_sorted_games_using_range/' + sort_type + '/' + number_games_must_displaying;
        
-        fetch('http://localhost:56116/api/get_sorted_games_using_range', requestOptions)
+        fetch(url, requestOptions)
             .then(response => response.json())
             .then((responseData) => {
 
@@ -223,8 +212,8 @@ export default function AllGames() {
 
                                 <img class="card-img-top" id={style.card_image} src={item.Cover} alt={item.Game_name} />
 
-                                <div class="card-body" className={style.card_body}>
-                                    <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }}>
+                                <div class="card-body" className={style.card_body} alt={item.Game_name}>
+                                    <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }} alt={item.Game_name}>
                                         {item.Game_name}</h6>
 
                                     <h6 className={style.card_price}>{item.Price}$</h6>
@@ -282,8 +271,8 @@ export default function AllGames() {
 
                                     <img class="card-img-top" id={style.card_image} src={item.Cover} alt={item.Game_name} />
 
-                                    <div class="card-body" className={style.card_body}>
-                                        <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }}>
+                                    <div class="card-body" className={style.card_body} alt={item.Game_name}>
+                                        <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }} alt={item.Game_name}>
                                             {item.Game_name}</h6>
 
                                         <h6 className={style.card_price}>{item.Price}$</h6>
