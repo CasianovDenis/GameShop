@@ -18,14 +18,7 @@ body {
     font-size:16px;
 }
 
-footer {
-    position: absolute;
-    background-color: #2a2a2a;
-    height: 150px;
-    width: 99%;
-    top: 130%;
-    left: 10px;
-}
+
 
 
 /* width */
@@ -45,12 +38,4 @@ footer {
         background: #3b2f52;
     }
 
-@media(max-width:991px)
-{
-    footer {
-        
-top:570%;
-height: 150px;
-       
-    }
-}
+  
