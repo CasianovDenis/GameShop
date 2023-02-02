@@ -6,7 +6,7 @@
 }
 
 #card_image {
-    width: 200%;
+    width: 280px;
     height: 35vh;
     cursor: pointer;
     
@@ -18,11 +18,13 @@
     background-color: #18132e;
     border-radius: 2px;
 }
+
 .card_price{
     color:white;
 
     margin-left:85%;
 }
+
 .text_discover_games {
     color: white;
     font-size: 25px;
