@@ -21,7 +21,7 @@ export default function NavMenu(props) {
     const [admin_rights, setAdminRights] = useState(null);
 
     const [request, setRequest] = useState(true);
-    const [username, setUserName] = useState("");
+    const [username, setUserName] = useState(GetCookie("username"));
 
 
     const redirect = useHistory();
@@ -31,24 +31,20 @@ export default function NavMenu(props) {
 
     useEffect(() => {
 
-        setUserName(GetCookie("username"));
+        
 
         if (GetCookie("status_account") == "online") {
 
             if (request == true) {
 
                 const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        "Username": username
-                    })
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                    
                 };
 
 
-
-
-                fetch('http://localhost:56116/api/get_user_role', requestOptions)
+                fetch('http://localhost:56116/api/get_user_role/'+username , requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
@@ -93,7 +89,7 @@ export default function NavMenu(props) {
             <div>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white box-shadow mb-3" light style={{ backgroundColor: "#2a2a2a" }}>
                     <Container>
-                        <NavbarBrand tag={Link} to="/" style={{ color: "white" }}><img src={logo} style={{ width: "60px", height: "50px" }} /></NavbarBrand>
+                        <NavbarBrand tag={Link} to="/" ><img src={logo} style={{width: "60px", height: "50px" }} /></NavbarBrand>
                         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
 
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
@@ -107,10 +103,10 @@ export default function NavMenu(props) {
 
                                 </NavItem>
 
-                                <NavItem  >
+                                <NavItem class="discover_games">
 
 
-                                    <NavLink tag={Link} class="discover_games" to="/AllGames" >Discover</NavLink>
+                                    <NavLink tag={Link} to="/AllGames" style={{color:"white"} }>Discover</NavLink>
 
                                 </NavItem>
 
