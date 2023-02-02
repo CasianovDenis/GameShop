@@ -25,9 +25,8 @@ export default class Modal_PaymentSystem extends React.Component {
 
 
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify()
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             };
 
 
@@ -56,9 +55,8 @@ export default class Modal_PaymentSystem extends React.Component {
         else {
 
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify()
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             };
 
 
@@ -112,7 +110,6 @@ export default class Modal_PaymentSystem extends React.Component {
 
 
 
-                    //call api from backend and send json data,which create before
 
                     fetch('http://localhost:56116/api/user_buying_game', requestOptions)
                         .then(response => response.json())
@@ -147,9 +144,6 @@ export default class Modal_PaymentSystem extends React.Component {
                     })
                 };
 
-
-
-                //call api from backend and send json data,which create before
 
                 fetch('http://localhost:56116/api/guest_buying_game', requestOptions)
                     .then(response => response.json())
