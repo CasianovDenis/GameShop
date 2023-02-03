@@ -67,7 +67,7 @@ export default function Card_form_newgame() {
 
                         <div className={style.Cards} onClick={redirect_to_purchase} alt={item.Game_name} >
 
-                            <div style={{ width: "13rem" }} >
+                            <div className={style.card_body }>
 
                                 <img class="card-img-top" id={style.card_image} alt={item.Game_name} src={item.Cover}  />
 

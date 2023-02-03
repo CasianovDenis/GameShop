@@ -29,6 +29,10 @@
         border-radius: 6px;
     }
 
+.card_body {
+    width: 13rem;
+}
+
 .Cards {
     position:relative;
     top: 260px;
@@ -74,22 +78,39 @@
 
 @media(max-width:991px) {
 
-    .Cards {
-        position:relative;
-       
-        width: 77.2vh;
+    .card_new_game {
+        width:100px;
         
-        top:60vh;
+    }
+
+    .Carousel {
+        
+       height:20%;
+    }
+    
+    .card_body {
+        width: 38rem;
+        
+    }
+
+
+    .Cards {
+        float:none;
+        
+        width: 77.2vh;
+        margin:300px;
+        right:48vh;
+        top:30vh;
     }
 
     #card_image {
-        width: 350%;
+        width: 500px;
         height: 80vh;
         
     }
 
     .newgame_text {
-        position: relative;
+        
         top: 350px;
         font-size: 15px;
     }
