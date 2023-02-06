@@ -49,7 +49,7 @@ export default function SignIn() {
                 };
 
 
-                fetch('http://localhost:56116/api/user_authentication', requestOptions)
+                fetch('http://localhost:56116/api/user_authentication_setting_rights', requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
@@ -68,9 +68,28 @@ export default function SignIn() {
 
                             document.cookie = "status_account=online ; expires=" + date.toGMTString();
 
-
                             redirect.go('/');
                         }
+                        else
+                            if (responseData != "User not exist" || responseData != "Password incorrect") {
+
+                                refUsername.current.value = "";
+
+                                refPassword.current.value = "";
+
+                                var date = new Date();
+
+                                date.setDate(date.getDate() + 1);
+
+
+                                document.cookie = "username=" + user.Username + "; expires=" + date.toGMTString();
+
+                                document.cookie = "status_account=online ; expires=" + date.toGMTString();
+
+                                document.cookie = "rights_token=" + responseData + "; expires = " + date.toGMTString();
+
+                                redirect.go('/');
+                            }
 
                         setMessage(responseData);
 
