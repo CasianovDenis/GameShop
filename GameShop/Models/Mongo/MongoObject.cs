@@ -11,7 +11,7 @@ namespace GameShop.Models
         public string _id { get; set; }
 
         public string File_Name { get; set; } = null!;
-        public string ImageUrl { get; set; } // ссылка на изображение
+        public string ImageUrl { get; set; }
 
     }
 }
