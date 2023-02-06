@@ -1,5 +1,7 @@
 ﻿import React, { useState, useRef } from 'react';
 
+import GetCookie from '../public_files/GetCookie';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -31,7 +33,8 @@ export default function Modal_add_game() {
     const upload_data = () =>{
 
         let newgame = {
-
+            "ModeratorName": GetCookie("username"),
+            "Rights_token":GetCookie("rights_token"),
             "Game_name": refGameName.current.value,
             "Price": refPrice.current.value,
             "Description": refDescription.current.value,
