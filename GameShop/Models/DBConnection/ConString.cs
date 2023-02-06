@@ -25,7 +25,8 @@ namespace GameShop.Models.DBConnection
                 Username = "admin",
                 Password = "admin",
                 Email = "admin@gmail.com",
-                Role = "admin"
+                Role = "admin",
+                Rights_token = "login_get_token"
             });
 
         }
