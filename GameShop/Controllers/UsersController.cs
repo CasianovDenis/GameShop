@@ -3,6 +3,7 @@ using GameShop.Models.DBConnection;
 using GameShop.Models.List;
 using GameShop.Models.TempClasses;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/user_authentication")]
+        [Route("~/api/user_authentication_setting_rights")]
         [HttpPost]
         public JsonResult User_Authentication(Users user)
         {
@@ -32,8 +33,19 @@ namespace GameShop.Controllers
                 var dbdata = _conString.Users.Single(data => data.Username == user.Username);
 
                 if (dbdata.Password == user.Password)
-                    return Json("Authorization successfully");
+                {
+                    if (dbdata.Role == "admin")
+                    {
 
+                        dbdata.Rights_token = RandomString(20);
+                        _conString.Update(dbdata);
+                        _conString.SaveChanges();
+
+                        return Json(dbdata.Rights_token);
+                    }
+
+                    return Json("Authorization successfully");
+                }
                 //false
                 return Json("Password incorrect");
 
@@ -209,6 +221,14 @@ namespace GameShop.Controllers
             }
         }
 
+        public static string RandomString(int length)
+        {
+            Random random = new Random();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
 
     }
 
