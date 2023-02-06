@@ -20,22 +20,40 @@ namespace GameShop.Controllers
 
         [Route("~/api/add_game_in_db")]
         [HttpPost]
-        public JsonResult AddGame(Game game)
+        public JsonResult AddGame(ModeratorAddGame moderator)
         {
 
             try
             {
 
-                var dbdata = _conString.Game.Single(data => data.Game_name == game.Game_name);
+                var dbdata = _conString.Game.Single(data => data.Game_name == moderator.Game_name);
 
                 return Json("Game exist");
             }
             catch
             {
-                _conString.Game.Add(game);
-                _conString.SaveChanges();
 
-                return Json("Succes");
+                var rights = _conString.Users.Single(data => data.Username == moderator.ModeratorName);
+
+                if (rights.Rights_token == moderator.Rights_token)
+                {
+                    Game game = new Game();
+
+                    game.Game_name = moderator.Game_name;
+                    game.Price = moderator.Price;
+                    game.Description = moderator.Description;
+                    game.Currency = moderator.Currency;
+                    game.Cover = moderator.Cover;
+
+                    _conString.Game.Add(game);
+                    _conString.SaveChanges();
+
+                    return Json("Succes");
+
+                }
+
+
+                return Json("Incorrect admin token");
             }
         }
 

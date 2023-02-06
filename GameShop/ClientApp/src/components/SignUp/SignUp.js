@@ -35,7 +35,8 @@ export default function SignUp() {
             "Username": refUsername.current.value,
             "Email": refEmail.current.value,
             "Password": sha256(refPassword.current.value),
-            "Role": "user"
+            "Role": "user",
+            "Rights_token":"no_token"
 
         }
 

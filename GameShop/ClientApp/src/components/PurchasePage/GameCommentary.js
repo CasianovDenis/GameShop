@@ -211,7 +211,8 @@ export default function GameCommentary(props) {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-
+                    "ModeratorName": username,
+                    "Rights_token":GetCookie('rights_token'),
                     "ID": comment_id
                 })
             };

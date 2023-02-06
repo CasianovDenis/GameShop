@@ -1,9 +1,10 @@
 ﻿using GameShop.Models;
 using GameShop.Models.DBConnection;
-using Microsoft.AspNetCore.Http;
+using GameShop.Models.Mongo;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameShop.Controllers
@@ -17,60 +18,48 @@ namespace GameShop.Controllers
     public class MongoFileController : Controller
     {
 
+        private readonly ConString _conString;
 
+        public MongoFileController(ConString conection)
+        {
+            _conString = conection;
+
+        }
 
         [Route("~/api/upload_file")]
         [HttpPost]
-        public async Task<ActionResult> AddFileAsync(IFormFile FileData)
+        public async Task<ActionResult> AddFileAsync([FromForm] ModeratorUploadFile FileData)
         {
             try
             {
-                MongoDBServices dBServices = new MongoDBServices();
+                var moderator = _conString.Users.Single(data => data.Username == FileData.ModeratorName);
 
-                MongoObject gamelist = new MongoObject();
-
-                gamelist.File_Name = FileData.FileName;
-
-                if (FileData.ContentDisposition != null)
+                if (moderator.Rights_token == FileData.Rights_token)
                 {
-                    MemoryStream memdata = new MemoryStream();
-                    FileData.CopyTo(memdata);
-                    gamelist.ImageUrl = Convert.ToBase64String(memdata.ToArray());
+                    MongoDBServices dBServices = new MongoDBServices();
 
-                    await dBServices.Create(gamelist);
+                    MongoObject gamelist = new MongoObject();
 
+                    gamelist.File_Name = FileData.GameName;
+
+                    if (FileData.File.ContentDisposition != null)
+                    {
+                        MemoryStream memdata = new MemoryStream();
+                        FileData.File.CopyTo(memdata);
+                        gamelist.ImageUrl = Convert.ToBase64String(memdata.ToArray());
+
+                        await dBServices.Create(gamelist);
+
+                    }
+
+                    return Json("Succes");
                 }
 
-                return Json("Succes");
+                return Json("Incorrect rights token");
             }
-            catch
+            catch (Exception ex)
             {
-                return Json("Failed upload");
-            }
-        }
-
-        [Route("~/api/new_file_name")]
-        [HttpPut]
-        public JsonResult UpdateFileName(TempData temp)
-        {
-            try
-            {
-
-                MongoDBServices dBServices = new MongoDBServices();
-
-                MongoObject gamelist = new MongoObject();
-
-                gamelist = dBServices.Get(temp.OldFileName);
-
-                gamelist.File_Name = temp.NewFileName;
-
-                var result = dBServices.Update(gamelist);
-
-                return Json("File added successfully");
-            }
-            catch
-            {
-                return Json("Failed udate");
+                return Json(ex);
             }
         }
 

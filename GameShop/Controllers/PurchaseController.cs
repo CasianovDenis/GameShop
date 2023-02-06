@@ -4,7 +4,6 @@ using GameShop.Models;
 using GameShop.Models.DBConnection;
 using GameShop.Models.Purchase;
 using Microsoft.AspNetCore.Mvc;
-using PasswordManager.Models;
 using System;
 using System.Linq;
 
@@ -83,14 +82,13 @@ namespace GameShop.Controllers
 
 
 
-                TempData temp = new TempData();
+                Order order = new Order();
 
-                temp.TempGameName = game.Game_name;
-                temp.GamePrice = game.Price;
-                temp.Email = game.Email;
-                temp.GameCode = RandomString(16);
+                order.Email = game.Email;
+                order.GameCode = RandomString(16);
 
-                SendOrder sendmessage = new SendOrder(temp);
+                Order.SendOrder(game, order);
+
 
                 return Json("Succes");
 

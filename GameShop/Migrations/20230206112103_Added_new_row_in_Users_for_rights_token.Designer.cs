@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GameShop.Migrations
 {
     [DbContext(typeof(ConString))]
-    [Migration("20230131173927_Add_table_for_commentary")]
-    partial class Add_table_for_commentary
+    [Migration("20230206112103_Added_new_row_in_Users_for_rights_token")]
+    partial class Added_new_row_in_Users_for_rights_token
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,6 +104,9 @@ namespace GameShop.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
+                    b.Property<string>("Rights_token")
+                        .HasColumnType("text");
+
                     b.Property<string>("Role")
                         .HasColumnType("text");
 
@@ -121,6 +124,7 @@ namespace GameShop.Migrations
                             ID = 1,
                             Email = "admin@gmail.com",
                             Password = "admin",
+                            Rights_token = "login_get_token",
                             Role = "admin",
                             Username = "admin"
                         });

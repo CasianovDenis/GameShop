@@ -102,6 +102,9 @@ namespace GameShop.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
+                    b.Property<string>("Rights_token")
+                        .HasColumnType("text");
+
                     b.Property<string>("Role")
                         .HasColumnType("text");
 
@@ -119,6 +122,7 @@ namespace GameShop.Migrations
                             ID = 1,
                             Email = "admin@gmail.com",
                             Password = "admin",
+                            Rights_token = "login_get_token",
                             Role = "admin",
                             Username = "admin"
                         });

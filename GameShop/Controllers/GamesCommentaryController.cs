@@ -82,22 +82,27 @@ namespace GameShop.Controllers
 
         [Route("~/api/delete_game_commentary")]
         [HttpDelete]
-        public JsonResult DeleteGameCommentary(GamesCommentary gamescomment)
+        public JsonResult DeleteGameCommentary(ModeratorDeleteCommentary deletecomment)
         {
 
             try
             {
-                var comment = _conString.GamesCommentary.Single(data => data.ID == gamescomment.ID);
+                var moderator = _conString.Users.Single(data => data.Username == deletecomment.ModeratorName);
 
-                _conString.Remove(comment);
-                _conString.SaveChanges();
+                if (moderator.Rights_token == deletecomment.Rights_token)
+                {
+                    var comment = _conString.GamesCommentary.Single(data => data.ID == deletecomment.ID);
 
-                return Json("Commentary deleted succesfully");
+                    _conString.Remove(comment);
+                    _conString.SaveChanges();
 
+                    return Json("Commentary deleted succesfully");
+                }
+                return Json("Incorrect rights token");
             }
-            catch
+            catch (Exception ex)
             {
-                return Json("Incorrect ID");
+                return Json(ex);
             }
         }
     }

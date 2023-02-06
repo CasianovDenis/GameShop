@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import GetCookie from '../public_files/GetCookie';
 
 
 import axios from 'axios';
@@ -29,70 +30,33 @@ export default function Mongo_upload_file() {
     
     const upload = () => {
 
+        let gamename = refGameName.current.value;
 
-        const filedata = new FormData();
-        filedata.append("FileData", file);
-       
-          
-             const result = axios.post("http://localhost:56116/api/upload_file", filedata);
-            
+        if (gamename.length > 0) {
 
-        var element = document.getElementById('upload_input');
-
-        element.style.display = "none";
-
-        element = document.getElementById('game_input');
-
-        element.style.display = "block";
-
-    }
-
-    const finish_upload = () =>{
+            const filedata = new FormData();
+            filedata.append("File", file);
+            filedata.append("GameName", gamename);
+            filedata.append("ModeratorName", GetCookie('username'));
+            filedata.append("Rights_token", GetCookie('rights_token'));
 
 
-       
-
-            setMessage('Processed');
-            const requestOptions = {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-
-                    "OldFileName": file.name,
-                    "NewFileName": refGameName.current.value
-
-                })
-            }
-
-
-            fetch('http://localhost:56116/api/new_file_name', requestOptions)
-                .then(response => response.json())
-                .then((responseData) => {
-
-
-                    if (responseData = "File added successfully") {
-
-                        setMessage(responseData);
-
-
-                        var element = document.getElementById('upload_input');
-
-                        element.style.display = "block";
-
-                        element = document.getElementById('game_input');
-
-                        element.style.display = "none";
-
-                        setFile();
-
-                        refGameName.current.value = "";
-
+            const result = axios.post("http://localhost:56116/api/upload_file", filedata,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
+                }
+            );
+              result.then((response) => { setMessage(response.data); })
+        }
+        else
+            setMessage("Game Name can not be empty");
 
-                });
 
-        
+
     }
+
     
     return (
 
@@ -114,28 +78,20 @@ export default function Mongo_upload_file() {
                 <div class="modal-body">
                       <p>In this modal you need to insert image from game,which display in the purchase page</p>
 
-                            <div id="upload_input">
+                         
 
-                                <input type="file" name="name" onChange={savefile} />
-
-                                <br />
-                                <br />
-
-                     <button style={{ display: "none" }}
-                             type="button" id="upload_button" class="btn btn-primary" onClick={upload}>Next step</button>
-
-                            </div>
-
-                            <div id="game_input" style={{ display: "none" }}>
+                                <input type="file" name="name" onChange={savefile} style={{ margin: "10px" }}/>
+        
 
                     <p> Game Name:</p>
                     <input type="text" ref={refGameName} class="form-control" style={{ width: "60%" }} required />
 
-                                <br />
 
-                    <button type="button" class="btn btn-primary" onClick={finish_upload}>Save</button>
+                    <button style={{ display: "none" ,margin:"10px"}}
+                            type="button" id="upload_button" class="btn btn-primary" onClick={upload}>Upload</button>
 
-                            </div>
+
+                          
 
                             
 

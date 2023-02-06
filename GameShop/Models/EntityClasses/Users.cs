@@ -18,5 +18,7 @@ namespace GameShop.Models
 
         public string Role { get; set; }
 
+        public string Rights_token { get; set; }
+
     }
 }

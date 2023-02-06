@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GameShop.Migrations
 {
-    public partial class Add_table_for_commentary : Migration
+    public partial class Added_new_row_in_Users_for_rights_token : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,7 +63,8 @@ namespace GameShop.Migrations
                     Username = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    Role = table.Column<string>(type: "text", nullable: true)
+                    Role = table.Column<string>(type: "text", nullable: true),
+                    Rights_token = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,8 +73,8 @@ namespace GameShop.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "ID", "Email", "Password", "Role", "Username" },
-                values: new object[] { 1, "admin@gmail.com", "admin", "admin", "admin" });
+                columns: new[] { "ID", "Email", "Password", "Rights_token", "Role", "Username" },
+                values: new object[] { 1, "admin@gmail.com", "admin", "login_get_token", "admin", "admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
