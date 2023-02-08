@@ -105,5 +105,31 @@ namespace GameShop.Controllers
                 return Json(ex);
             }
         }
+
+        [Route("~/api/update_user_comment")]
+        [HttpPut]
+        public JsonResult UpdateUserComment(GamesCommentary usercomment)
+        {
+
+            try
+            {
+                var comment = _conString.GamesCommentary.Single(data => data.ID == usercomment.ID);
+
+                if (comment.Username == usercomment.Username)
+                {
+                    comment.Commentary = usercomment.Commentary;
+
+                    _conString.Update(comment);
+                    _conString.SaveChanges();
+
+                    return Json("Commentary edited successfully");
+                }
+                return Json("Username");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
     }
 }
