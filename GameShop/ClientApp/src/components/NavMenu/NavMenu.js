@@ -78,6 +78,7 @@ export default function NavMenu(props) {
 
         document.cookie = "status_account=; expires = " + now.toUTCString();
 
+       document.cookie = "rights_token=; expires = " + now.toUTCString();
 
        redirect.go('/');
     }
