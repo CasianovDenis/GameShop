@@ -10,7 +10,10 @@ import ScrollTopButton from '../public_files/ScrollTopButton';
 import style from './Commentary.module.css';
 
 import user_icon from '../public_files/user_icon.png';
-import trash_can from '../public_files/trash_can.png'
+import trash_can from '../public_files/trash_can.png';
+import edit_icon from '../public_files/edit_icon.png';
+import save_comment_icon from '../public_files/save_comment_icon.png';
+
 
 
 export default function GameCommentary(props) {
@@ -24,6 +27,8 @@ export default function GameCommentary(props) {
 
     const [status_display_button, setStatusDisplayButton] = useState('none');
     const [status_delete_commentary_button, setStatusDeleteCommentaryButton] = useState('none');
+
+    const [new_textarea_text, setNewTextareaText] = useState("");
 
     const refComment = useRef("");
 
@@ -168,10 +173,7 @@ export default function GameCommentary(props) {
            
             
         }
-        else {
-            var element = document.getElementById('wrong_input');
-            element.style.display = "block";
-        }
+        
     }
 
     const display_other_comment = () => {
@@ -247,6 +249,83 @@ export default function GameCommentary(props) {
 
     }
 
+    const update_textarea = (ev) => {
+
+        var id = ev.target.getAttribute('name');
+
+       
+        let value_from_textarea = document.getElementById('textarea' + id).value;
+        document.getElementById('edit_textarea' + id).value = value_from_textarea;
+
+
+        let element = document.getElementById("user_comment"+id);
+        element.style.display = "none";
+
+        element = document.getElementById("edit_user_comment" + id);
+        element.style.display = "block";
+       
+     
+
+    }
+
+    const update_textarea_text = (event) => {
+        setNewTextareaText(event.target.value);
+       
+    }
+
+    const save_updated_comment = (ev) => {
+
+        let comment_id = ev.target.getAttribute('name');
+
+        var answer = window.confirm('Are you sure you want to edit this commentary?');
+
+        if (answer) {
+
+            let element = document.getElementById("user_comment" + comment_id);
+            element.style.display = "block";
+
+            element = document.getElementById("edit_user_comment" + comment_id);
+            element.style.display = "none";
+
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "Username": username,
+                    "Commentary": new_textarea_text,
+                    "ID": comment_id
+                })
+            };
+
+            fetch('http://localhost:56116/api/update_user_comment', requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    if (responseData == "Commentary edited succesfully")
+                        toaster.success(responseData);
+
+                })
+
+            setTimeout(() => {
+
+                const requestCommentary = {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                };
+
+                fetch(url_get_commentary, requestCommentary)
+                    .then(response => response.json())
+                    .then((responseData) => {
+
+                        if (responseData.length > 0 && responseData != "No commentary for this game")
+                            setCommentary(responseData);
+
+                    })
+            }
+                , 1000 * 10)
+        }
+
+    }
 
 
     if (commentary != null && commentary_field_status == "none")
@@ -272,10 +351,10 @@ export default function GameCommentary(props) {
 
                             <img src={user_icon} className={style.commentary_user_icon} />
 
-                            <p className={style.username_who_comment}>{item.Username}</p>
+                            <p style={{color:"white"} }>{item.Username}</p>
 
 
-                            <textarea type="text" class="form-control" value={item.Commentary} id={style.commentary_field} disabled />
+                            <textarea type="text" className={style.commentary_field} value={item.Commentary} readOnly />
 
 
 
@@ -283,7 +362,7 @@ export default function GameCommentary(props) {
 
                     );
                 })}
-                <button id="button_display_other_comment" class="btn btn-primary" style={{ display: status_display_button }}
+                <button id="button_display_other_comment" class="btn btn-primary" style={{width:"300px", display: status_display_button }}
                              onClick={display_other_comment}> Display other </button>
 
                 <ScrollTopButton />
@@ -305,37 +384,78 @@ export default function GameCommentary(props) {
                 <img src={user_icon} className={style.commentary_user_icon} />
 
 
-                <textarea type="text" class="form-control" placeholder="Write you opinion"
-                    ref={refComment} id={style.commentary_field} />
+                <textarea type="text"  placeholder="Write you opinion"
+                    ref={refComment} className={style.commentary_field} />
 
-                <small id="wrong_input" style={{ marginTop:"-10vh",display: "none" }} class="form-text text-muted">Commentary field can not be empty</small>
-
+               
                 <button className={style.button_comment} onClick={save_comment}>
                     <p style={{ color: "white" }}>Comment</p> </button>
 
 
                 {commentary.map(item => {
+                    if (item.Username == username) {
+                        return (
 
-                    return (
-
-                        <div className={style.user_commentary }  >
+                            <div className={style.user_commentary} >
 
 
-                            <img src={user_icon} className={style.commentary_user_icon} />
+                                <img src={user_icon} className={style.commentary_user_icon} />
 
-                            <p className={ style.username_who_comment}>{item.Username}</p>
-                 
+                                <p style={{color:"white"} }>{item.Username}</p>
 
-                     <textarea type="text" class="form-control" value={item.Commentary} id={style.commentary_field} disabled/>
+                               
+                              
+                                <div id={"user_comment"+item.ID }>
 
-                            <img src={trash_can} className={style.delete_button} style={{ display: status_delete_commentary_button }}
-                                name={item.ID} onClick={delete_comment }/>
+                             <textarea type="text" className={style.commentary_field} value={item.Commentary}
+                                        readOnly id={"textarea"+item.ID}/>
 
-                        </div>
+                                    <img src={edit_icon} className={style.edit_button} name={item.ID} onClick={update_textarea}
+                                                 title="edit commentary"  />
 
-                    );
+                        <img src={trash_can} className={style.delete_button} style={{ display: status_delete_commentary_button }}
+                                        name={item.ID} onClick={delete_comment} title="delete commentary"/>
+
+                                </div>
+
+
+                                <div id={"edit_user_comment"+item.ID } style={{ display: "none" }}>
+
+                                <textarea type="text" className={style.commentary_field}
+                                        onChange={update_textarea_text} id={"edit_textarea" + item.ID} />
+
+                                    <img src={save_comment_icon} className={style.update_comment_button}
+                                        name={item.ID} title="Save change" onClick={save_updated_comment }/>
+                                </div>
+
+                            </div>
+
+                        );
+                    }
+                    else
+                        return (
+
+                            <div className={style.user_commentary}  >
+
+
+                                <img src={user_icon} className={style.commentary_user_icon} />
+
+                                <p className={style.username_who_comment}>{item.Username}</p>
+
+
+                                <textarea type="text" class="form-control" value={item.Commentary} id={style.commentary_field} readOnly />
+
+                               
+
+                                <img src={trash_can} className={style.delete_button} style={{ display: status_delete_commentary_button }}
+                                    name={item.ID} onClick={delete_comment} />
+
+                            </div>
+
+                        );
                 })}
-                <button id="button_display_other_comment" class="btn btn-primary" style={{ display: status_display_button }}
+
+                <button id="button_display_other_comment" class="btn btn-primary" style={{ width:"300px",display: status_display_button }}
                     onClick={display_other_comment}> Display other </button>
 
                 
@@ -355,11 +475,10 @@ export default function GameCommentary(props) {
             <img src={user_icon} className={style.commentary_user_icon} />
 
 
-            <textarea type="text" class="form-control" placeholder="Write you opinion"
-                ref={refComment} id={style.commentary_field} />
+            <textarea type="text" className={ style.commentary_field} placeholder="Write you opinion"
+                ref={refComment}  />
 
-            <small id="wrong_input" style={{display:"none"} }class="form-text text-muted">Commentary field can not be empty</small>
-
+           
             <button  className={style.button_comment} onClick={save_comment}>
                                                     <p style={{ color: "white" }}>Comment</p> </button>
            
@@ -372,6 +491,7 @@ export default function GameCommentary(props) {
                 return (
 
                     <div className={style.commentary_div}>
+
                         <p style={{ color: "white" }}>Commentary:</p>
 
                         <div className={style.warning_commentary}>
@@ -381,6 +501,7 @@ export default function GameCommentary(props) {
                         </div>
 
                         <p style={{ color: "white", marginLeft: "40px" }}>No commentary for this game</p>
+
                     </div>
                 )
 }

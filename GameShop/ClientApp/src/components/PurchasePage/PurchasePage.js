@@ -25,18 +25,20 @@ export default function PurchasePage() {
 
     const [request, setRequest] = useState(true);
     const [display_modal_payment, setDisplayModalPayment] = useState("block");
+    var GameName = "";
 
-    const GameName = location.state.GameName;
-    
+    try {
+        GameName = location.state.GameName;
+    }
+    catch {
+        redirect.push('/')
+    }
     
 
    
     useEffect(() => {
 
-        if (GameName == null) redirect.push('/');
-
-      
-
+       
         if (request == true) {
 
             const requestOptions = {
