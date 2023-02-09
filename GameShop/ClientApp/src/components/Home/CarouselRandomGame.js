@@ -1,4 +1,4 @@
-import React, { useEffect,useState} from "react";
+import React, { useCallback, useEffect,useState} from "react";
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default function CarouselRandomGame() {
 
 
     const [dbdata, setDbData] = useState(null);
-    const [request, setRequest] = useState(true);
+ 
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [animating, setAnimating] = useState(false);
@@ -19,8 +19,6 @@ export default function CarouselRandomGame() {
     const items=useState([]);
 
     useEffect(() => {
-
-        if (request == true) {
 
             const requestOptions = {
                 method: 'GET',
@@ -31,17 +29,17 @@ export default function CarouselRandomGame() {
 
 
 
+        
             fetch('http://localhost:56116/api/get_random_games', requestOptions)
-                .then(response => response.json())
-                .then((responseData) => {
+            .then(response => response.json())
+            .then((responseData) => {
 
-                    setDbData(responseData);
-                    setRequest(false);
-                });
-        }
+                setDbData(responseData);
+                
+            });
 
        
-    }, [dbdata]);
+    }, []);
 
     const purchasePage = (ev) => {
 
@@ -94,7 +92,7 @@ export default function CarouselRandomGame() {
         return (
 
             <CarouselItem
-                className={style.custom_tag}
+                className={style.Carousel_parameters}
                 tag="div"
                 key={item.src}
                 onExiting={() => setAnimating(true)}

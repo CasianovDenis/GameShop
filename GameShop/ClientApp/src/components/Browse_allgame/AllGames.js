@@ -25,7 +25,6 @@ export default function AllGames() {
     const [sort_type, setSortType] = useState("Alphabetical");
     const [current_page_number, setCurrentPageNumber] = useState(1);
 
-    const [request, setRequest] = useState(true);
     const RefSearch = useRef("");
 
 
@@ -34,7 +33,6 @@ export default function AllGames() {
 
     useEffect(() => {
 
-        if (request == true) {
 
 
             const requestOptionsAllGames = {
@@ -74,15 +72,15 @@ export default function AllGames() {
             .then((responseData) => {
 
                 setDisplayedGames(responseData);
-                    setRequest(false);
+                   
 
             });
 
-        }
+        
 
         
 
-    }, [allgames, displayed_games]);
+    }, []);
 
   
 

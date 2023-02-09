@@ -19,7 +19,6 @@ export default function UserGames() {
     const [dbdata, setDbData] = useState(null);
     const [foundgames, setFoundGames] = useState(null);
  
-    const [request, setRequest] = useState(true);
 
     const redirect = useHistory();
    
@@ -28,8 +27,6 @@ export default function UserGames() {
 
     useEffect(() => {
 
-
-        if (request == true) {
 
 
             const requestOptions = {
@@ -48,14 +45,12 @@ export default function UserGames() {
                     if (responseData.length>0)
                     setDbData(responseData);
 
-                    setRequest(false);
-
 
                 });
-        }
+        
 
 
-    }, [dbdata]);
+    }, []);
 
 
     const search = () => {
