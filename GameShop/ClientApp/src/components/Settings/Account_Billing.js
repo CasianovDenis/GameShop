@@ -9,8 +9,7 @@ export default function Account_Billing() {
 
     
     const [latest_purchased, setLatestPurchased] = useState(null);
-    const [request, setRequest] = useState(true);
-   
+  
 
     useEffect(() => {
 
@@ -20,7 +19,7 @@ export default function Account_Billing() {
         };
 
 
-        if (request == true)
+      
             fetch('http://localhost:56116/api/get_latest_purchased_game/' + GetCookie("username"), requestOptions)
             .then(response => response.json())
             .then((responseData) => {
@@ -28,10 +27,10 @@ export default function Account_Billing() {
                 if (responseData != "Incorrect username")
                     setLatestPurchased(responseData);
 
-                setRequest(false);
+               
             });
 
-    }, [latest_purchased]);
+    }, []);
 
     
 

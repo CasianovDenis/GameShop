@@ -23,7 +23,6 @@ export default function PurchasePage() {
     const [gameinfo, setGameInfo] = useState(null);
     const [message, setMessage] = useState("");
 
-    const [request, setRequest] = useState(true);
     const [display_modal_payment, setDisplayModalPayment] = useState("block");
     var GameName = "";
 
@@ -39,7 +38,7 @@ export default function PurchasePage() {
     useEffect(() => {
 
        
-        if (request == true) {
+       
 
             const requestOptions = {
                 method: 'GET',
@@ -53,8 +52,6 @@ export default function PurchasePage() {
                 .then((responseData) => {
 
                     setGameInfo(responseData);
-                   
-                    setRequest(false);
 
                 });
 
@@ -82,16 +79,14 @@ export default function PurchasePage() {
                         }
                        
 
-                        setRequest(false);
-
                     });
-            }
+            
 
 
            
 
         }
-    }, [gameinfo]);
+    }, []);
 
 
     const Back = () => {
@@ -106,16 +101,17 @@ export default function PurchasePage() {
 
 
            
+            <>
+                <img src={arrow_left} style={{ width: "25px", height: "25px", cursor: "pointer" }} onClick={Back} />
 
             <div className={ style.purchase_div}>
-                    <img src={arrow_left} style={{ width: "25px", height: "25px", cursor: "pointer" }} onClick={Back }/>
-                    <br /><br />
+
                     <div className={style.GameInfo }>
 
-                        <p className={style.NameofGame}>{gameinfo.Game_name}</p>
+                        <p style={{ fontSize:"25px",color:"white"}}>{gameinfo.Game_name}</p>
                         <CarouselGameImage GameName={gameinfo.Game_name} />
 
-                        <p className={style.DescriptionStyle}>{gameinfo.Description}</p>
+                        <p style={{color:"white"} }>{gameinfo.Description}</p>
 
                     </div>
 
@@ -140,10 +136,10 @@ export default function PurchasePage() {
                         <p style={{ color: "white", fontSize : "20px" }}>{message} </p>
                 </div>
 
-                <GameCommentary game_name={GameName} />
 
                 </div>
-                
+                <GameCommentary game_name={GameName} />
+              </>  
             
 
 

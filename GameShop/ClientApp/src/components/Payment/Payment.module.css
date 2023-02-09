@@ -85,7 +85,7 @@ input:focus {
 }
 
 .BuyButton {
-    position: absolute;
+   
     background-color: green;
     color: white;
     border-radius: 10px;

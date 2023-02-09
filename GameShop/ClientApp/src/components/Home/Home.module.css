@@ -1,4 +1,4 @@
-﻿.custom_tag {
+﻿.Carousel_parameters{
     max-width: 100%;
     height: 300px;
     border-radius:20px;
@@ -18,8 +18,6 @@
 }
 
 .card_new_game{
-    position:relative;
-    top:-40vh;
     cursor:pointer;
    
 }
@@ -34,17 +32,16 @@
 }
 
 .Cards {
-    position:relative;
-    top: 260px;
+  
+    
     width: 200px;
     height:43vh;
     float: left;
-    right: 10px;
     margin:10px;
 }
 
 
-#card_image{
+.card_image{
     width:200px;
     height:35vh;
     cursor:pointer;
@@ -52,8 +49,6 @@
 
 .newgame_text{
     color:white;
-    position:relative;
-    top:45vh;
     font-size:25px;
 }
 
@@ -64,11 +59,7 @@
 .text_allgames{
     color:white;
     cursor:pointer;
-    
-    position:relative;
-    left:80%;
-    top:35.5vh;
-
+  height:50px;
     font-size:20px;
 }
     .text_allgames:hover {
@@ -78,9 +69,18 @@
 
 @media(max-width:991px) {
 
+    .Carousel_parameters {
+       
+        height: 180px;
+       
+    }
+   
     .card_new_game {
-        width:100px;
-        
+        width: 10px;
+        display: flex;
+        flex-direction: column;
+       
+        align-items: center;
     }
 
     .Carousel {
@@ -89,37 +89,37 @@
     }
     
     .card_body {
-        width: 38rem;
+        width: 21.4rem;
         
     }
 
 
     .Cards {
-        float:none;
+        float: none;
+        width: 0px;
+        margin: 0px;
         
-        width: 77.2vh;
-        margin:300px;
-        right:48vh;
-        top:30vh;
+        height: 360px;
+        
     }
 
-    #card_image {
-        width: 500px;
-        height: 80vh;
+    .card_image {
+        width: 300px;
+        height: 300px;
         
     }
 
     .newgame_text {
         
-        top: 350px;
         font-size: 15px;
     }
 
     .text_allgames {
         position: relative;
-        left: 65%;
-        top: 313px;
+
+        left:110%;
         font-size: 15px;
+        height:100px;
     }
 
 }

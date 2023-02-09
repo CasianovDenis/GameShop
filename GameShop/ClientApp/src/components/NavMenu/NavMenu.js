@@ -20,7 +20,7 @@ export default function NavMenu(props) {
     const [collapsed, setCollapsed] = useState(true);
     const [admin_rights, setAdminRights] = useState(null);
 
-    const [request, setRequest] = useState(true);
+    
     const [username, setUserName] = useState(GetCookie("username"));
 
 
@@ -35,7 +35,7 @@ export default function NavMenu(props) {
 
         if (GetCookie("status_account") == "online") {
 
-            if (request == true) {
+           
 
                 const requestOptions = {
                     method: 'GET',
@@ -53,16 +53,16 @@ export default function NavMenu(props) {
                         else
                             setAdminRights("none");
 
-                        setRequest(false);
+                        
                     });
-            }
+            
         }
         else
             redirect.push('/');
 
 
 
-    }, [admin_rights]);
+    }, []);
 
 
    const ExitFromAccount = () => {

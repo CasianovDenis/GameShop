@@ -19,7 +19,7 @@ import save_comment_icon from '../public_files/save_comment_icon.png';
 export default function GameCommentary(props) {
 
     const [commentary, setCommentary] = useState(null);
-    const [request, setRequest] = useState(true);
+    const [request, setRequest] = useState(false);
     const [commentary_field_status, setCommentaryFieldStatus] = useState('none');
 
     const [total_number_commentary, setTotalNumberCommentary] = useState(0);
@@ -35,7 +35,6 @@ export default function GameCommentary(props) {
     const username = GetCookie('username');
 
     const url_get_commentary = 'http://localhost:56116/api/get_game_commentary/' + props.game_name + '/' + number_displaying_comment;
-    const url_get_number_commentary = 'http://localhost:56116/api/get_number_of_commentary/' + props.game_name;
 
     useEffect(() => {
 
@@ -47,7 +46,7 @@ export default function GameCommentary(props) {
         };
 
        
-        if (request == true) {
+     
 
             
             fetch(url_get_commentary, requestOptions)
@@ -60,13 +59,12 @@ export default function GameCommentary(props) {
 
                     }
 
-                    setRequest(false);
 
                 });
 
            
 
-            fetch(url_get_number_commentary, requestOptions)
+        fetch('http://localhost:56116/api/get_number_of_commentary/' + props.game_name, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
@@ -92,13 +90,12 @@ export default function GameCommentary(props) {
 
                 });
 
-        }
 
         if (GetCookie("status_account") == "online")
             setCommentaryFieldStatus("display");
 
 
-    }, [commentary]);
+    }, [request]);
 
   
 
@@ -128,49 +125,11 @@ export default function GameCommentary(props) {
 
                     if (responseData == "Commentary added succesfully") {
                         toaster.success(responseData);
-                        
+                        request == false ? setRequest(true) : setRequest(false)
                     }
                     
                 });
 
-
-
-
-            setTimeout(() => {
-
-                const requestOptions = {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                };
-
-                fetch(url_get_commentary, requestOptions)
-                    .then(response => response.json())
-                    .then((responseData) => {
-
-                        if (responseData.length > 0 && responseData != "No commentary for this game")
-                            setCommentary(responseData);
-
-                       
-                    })
-
-                fetch(url_get_number_commentary, requestOptions)
-                    .then(response => response.json())
-                    .then((responseData) => {
-
-
-                        setTotalNumberCommentary(responseData);
-
-                        if (responseData > 5)
-                            setStatusDisplayButton('block');
-
-
-
-                    });
-
-            }
-            ,1000*10)
-
-           
             
         }
         
@@ -223,28 +182,14 @@ export default function GameCommentary(props) {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    if (responseData == "Commentary deleted succesfully")
+                    if (responseData == "Commentary deleted succesfully") {
+                        request==false ? setRequest(true) : setRequest(false)
                         toaster.success(responseData);
+                    }
 
                 })
 
-            setTimeout(() => {
-
-            const requestCommentary = {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
-            };
-
-                fetch(url_get_commentary, requestCommentary)
-                .then(response => response.json())
-                .then((responseData) => {
-
-                    if (responseData.length > 0 && responseData != "No commentary for this game")
-                        setCommentary(responseData);
-
-                })
-            }
-                , 1000 * 10)
+          
         }
 
     }
@@ -301,28 +246,14 @@ export default function GameCommentary(props) {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    if (responseData == "Commentary edited succesfully")
+                    if (responseData == "Commentary edited succesfully") {
+                        request == false ? setRequest(true) : setRequest(false)
                         toaster.success(responseData);
+                    }
 
                 })
 
-            setTimeout(() => {
-
-                const requestCommentary = {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                };
-
-                fetch(url_get_commentary, requestCommentary)
-                    .then(response => response.json())
-                    .then((responseData) => {
-
-                        if (responseData.length > 0 && responseData != "No commentary for this game")
-                            setCommentary(responseData);
-
-                    })
-            }
-                , 1000 * 10)
+           
         }
 
     }
@@ -440,10 +371,10 @@ export default function GameCommentary(props) {
 
                                 <img src={user_icon} className={style.commentary_user_icon} />
 
-                                <p className={style.username_who_comment}>{item.Username}</p>
+                                <p style={{color:"white"} }>{item.Username}</p>
 
 
-                                <textarea type="text" class="form-control" value={item.Commentary} id={style.commentary_field} readOnly />
+                                <textarea type="text" className={style.commentary_field} value={item.Commentary} readOnly />
 
                                
 

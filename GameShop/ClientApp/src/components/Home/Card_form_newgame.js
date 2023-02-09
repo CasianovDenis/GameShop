@@ -7,14 +7,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Card_form_newgame() {
 
     const [dbdata, setDbData] = React.useState([]);
-    const [request, setRequest] = useState(true);
+  
     const redirect = useHistory();
   
 
     useEffect(() => {
 
-        if (request == true) {
-
+       
            
             const requestOptions = {
                 method: 'GET',
@@ -27,12 +26,12 @@ export default function Card_form_newgame() {
                 .then(response => response.json())
                 .then((responseData) => {
                     setDbData(responseData)
-                    setRequest(false);
+                   
                     
                 });
-        }
+        
 
-    }, [dbdata]);
+    }, []);
 
 
     const redirect_to_purchase = (ev) =>
@@ -69,7 +68,7 @@ export default function Card_form_newgame() {
 
                             <div className={style.card_body }>
 
-                                <img class="card-img-top" id={style.card_image} alt={item.Game_name} src={item.Cover}  />
+                                <img  className={style.card_image} alt={item.Game_name} src={item.Cover}  />
 
                                 
                                 <h6 class="card-title" style={{margin:"5px", color: "white" }}

@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 import CarouselRandomGame from './CarouselRandomGame';
 import Card_form_newgame from './Card_form_newgame';
-import Footer from '../Footer/Footer';
+
 
 
 
@@ -17,7 +17,7 @@ export default function Home() {
             <>
              <CarouselRandomGame />
                 <Card_form_newgame />
-                <Footer />
+               
 
                 </>
         )

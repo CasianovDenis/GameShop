@@ -10,7 +10,7 @@ export default function CarouselGameImage(props) {
 
 
     const [dbdata, setDbData] = useState(null);
-    const [request, setRequest] = useState(true);
+   
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
     
@@ -18,7 +18,7 @@ export default function CarouselGameImage(props) {
 
     useEffect(() => {
 
-        if (request == true) {
+      
 
             const requestOptions = {
                 method: 'GET',
@@ -32,13 +32,12 @@ export default function CarouselGameImage(props) {
 
                     setDbData(responseData);
                     
-                    setRequest(false);
 
                 });
-        }
+        
 
        
-    }, [dbdata]);
+    }, []);
 
     
 
@@ -78,14 +77,14 @@ export default function CarouselGameImage(props) {
     const slides = items.map((item) => {
         return (
             <CarouselItem
-                className={style.custom_tag}
+                className={style.Carousel_parameters}
                 tag="div"
                 key={item.src}
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
 
             >
-                <img src={`data:image/png;base64,${item.src}`}  alt={item.FileName} className={style.Carousel_image} />
+                <img src={`data:image/png;base64,${item.src}`} alt={item.FileName} style={{ width: "100%"} } />
                 <CarouselCaption
                     className=""
                     captionText=""
@@ -98,7 +97,7 @@ export default function CarouselGameImage(props) {
 
     
         return (
-            <div className={style.Carousel}>
+            <div style={{ width: "100%"} }>
 
                 <Carousel activeIndex={activeIndex} next={next} previous={previous} >
                     <CarouselIndicators
