@@ -1,25 +1,22 @@
 ﻿footer {
  
-    background-color: #2a2a2a;
-    height: 200px;
     width: 180vh;
-    
-
-    margin-top:350px;
-}
+   position:relative;
+   top:20vh;
+ }
 
 .footer_text{
     color:white;
     margin:10px;
    padding:10px;
+   width:200px;
 }
 
 .footer_logo{
-position:relative;
+
 width:100px;
 height:100px;
-top:-18vh;
-right:20px;
+
 float:right;
 }
 
@@ -33,17 +30,8 @@ float:right;
     }
 
     footer {
-        height:0px;
-        margin-top:0px;
-        position:relative;
-        top:13vh;
-        width: 100vh;
-    }
-
-    .footer_logo {
-        float:none;
-       left:50%;
-        top:-10vh;
+       
+        width: 53vh;
     }
 
 
