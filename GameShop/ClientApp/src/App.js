@@ -17,6 +17,7 @@ import AllGames from './components/Browse_allgame/AllGames';
 
 import Settings from './components/Settings/Settings';
 
+import Footer from './components/Footer/Footer';
 
 
 import './custom.css'
@@ -34,7 +35,7 @@ export default function App() {
             <Route exact path='/AllGames' component={AllGames} />
             <Route exact path='/Settings' component={Settings} />
 
-           
+            <Footer />
       </Layout>
     );
   
