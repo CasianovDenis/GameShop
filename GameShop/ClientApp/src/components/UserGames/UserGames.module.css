@@ -42,12 +42,12 @@ top:-250px;
 }
 
 .searchbar {
-    position: absolute;
+    position: relative;
     background-color: #1dc57e;
     left: 77.2%;
-    top: 100px;
+    top: -5vh;
     border-radius:5px;
-    
+    width:230px;
 }
 
 .copy_icon {
@@ -83,15 +83,15 @@ top:-250px;
     }
 
     .searchbar {
-       position:relative;
+       
         left: 30%;
         top: -40px;
         width:230px;
     }
  
     .copy_icon{
-        position:absolute;
-        left:45%;
+        position:relative;
+        left:20%;
         top:25px;
     }
 }
