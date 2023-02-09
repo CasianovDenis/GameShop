@@ -86,18 +86,17 @@ export default function Mongo_upload_file() {
                     <p> Game Name:</p>
                     <input type="text" ref={refGameName} class="form-control" style={{ width: "60%" }} required />
 
-
-                    <button style={{ display: "none" ,margin:"10px"}}
-                            type="button" id="upload_button" class="btn btn-primary" onClick={upload}>Upload</button>
-
-
-                          
-
                             
 
-                </div>
+                        </div>
+
+
+
                 <p style={{ marginLeft: "5px" }}>{message}</p>
-                <div class="modal-footer">
+                        <div class="modal-footer">
+
+                            <button style={{ display: "none", margin: "10px" }}
+                                type="button" id="upload_button" class="btn btn-primary" onClick={upload}>Upload</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                    
                 </div>
