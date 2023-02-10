@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import style from './Home.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import No_image_available from '../public_files/No_image_available.png';
 
 
 export default function CarouselRandomGame() {
@@ -34,8 +35,8 @@ export default function CarouselRandomGame() {
             .then(response => response.json())
             .then((responseData) => {
 
-                setDbData(responseData);
-                
+                if (responseData != 'Game data not exist' && responseData != []) setDbData(responseData);
+
             });
 
        
@@ -52,33 +53,15 @@ export default function CarouselRandomGame() {
 
     if (dbdata != null) {
         
-
-        for (let index = 0; index < dbdata.length; index++) {
-            items[index] = 
-                {
-                    key: index,
-                    GameName: dbdata[index].Game_name,
-                    Description: dbdata[index].Description,
-                    src: dbdata[index].Cover
-                }
-
-            
-        }
-   
-
-
-
-
-
     const next = () => {
         if (animating) return;
-        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex = activeIndex === dbdata.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     };
 
     const previous = () => {
         if (animating) return;
-        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        const nextIndex = activeIndex === 0 ? dbdata.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     };
 
@@ -88,22 +71,22 @@ export default function CarouselRandomGame() {
     };
 
 
-    const slides = items.map((item) => {
+    const slides = dbdata.map((item) => {
         return (
 
             <CarouselItem
                 className={style.Carousel_parameters}
                 tag="div"
-                key={item.src}
+                key={item.ID}
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
 
             >
-                <img src={item.src} alt={item.GameName} className={style.Carousel_image} onClick={purchasePage }/>
+                <img src={item.Cover} alt={item.Game_name} className={style.Carousel_image} onClick={purchasePage }/>
                 <CarouselCaption
                     className=""
                     captionText=""
-                    captionHeader={item.GameName}
+                    captionHeader={item.Game_name}
 
                 />
             </CarouselItem>
@@ -117,7 +100,7 @@ export default function CarouselRandomGame() {
 
                 <Carousel activeIndex={activeIndex} next={next} previous={previous} >
                     <CarouselIndicators
-                        items={items}
+                        items={dbdata}
                         activeIndex={activeIndex}
                         onClickHandler={goToIndex}
                     />
@@ -141,9 +124,10 @@ export default function CarouselRandomGame() {
     else
         return (
 
-        <div class="spinner-border" role="status" >
-            <span class="visually-hidden"></span>
-        </div>
+            <div>
 
-        )
+                <img src={No_image_available} style={{ width: "200px", height: "200px" }} />
+            </div>
+
+        );
 }
