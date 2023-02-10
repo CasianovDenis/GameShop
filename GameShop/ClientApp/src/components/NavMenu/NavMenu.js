@@ -21,7 +21,7 @@ export default function NavMenu(props) {
     const [admin_rights, setAdminRights] = useState(null);
 
     
-    const [username, setUserName] = useState(GetCookie("username"));
+    const username = GetCookie("username");
 
 
     const redirect = useHistory();
@@ -94,7 +94,7 @@ export default function NavMenu(props) {
                         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
 
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
+                            <ul className="navbar-nav flex-grow" >
 
                                 <NavItem style={{ display: admin_rights }} >
                                    
