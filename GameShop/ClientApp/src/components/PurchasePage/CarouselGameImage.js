@@ -5,6 +5,7 @@ import style from './Purchase.module.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import No_image_available from '../public_files/No_image_available.png';
 
 export default function CarouselGameImage(props) {
 
@@ -14,7 +15,6 @@ export default function CarouselGameImage(props) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
     
-    const items=useState([]);
 
     useEffect(() => {
 
@@ -30,7 +30,7 @@ export default function CarouselGameImage(props) {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    setDbData(responseData);
+                    if (responseData != "Game data not exist" && responseData.length != [] ) setDbData(responseData);
                     
 
                 });
@@ -43,29 +43,18 @@ export default function CarouselGameImage(props) {
 
 
 
+   
     if (dbdata != null) {
-        
-
-        for (let index = 0; index < dbdata.length; index++) {
-            items[index] = 
-                {
-                    key: index,
-                    GameName: dbdata[index].FileName,                   
-                    src: dbdata[index].ImageUrl
-                }
-
-            
-        }
    
     const next = () => {
         if (animating) return;
-        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex = activeIndex === dbdata.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     };
 
     const previous = () => {
         if (animating) return;
-        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        const nextIndex = activeIndex === 0 ? dbdata.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     };
 
@@ -74,34 +63,37 @@ export default function CarouselGameImage(props) {
         setActiveIndex(newIndex);
     };
 
-    const slides = items.map((item) => {
+   
+        const slides = dbdata.map((item) => {
+
+            return (
+
+                <CarouselItem
+                    className={style.Carousel_parameters}
+                    tag="div"
+                    key={item._id}
+                    onExiting={() => setAnimating(true)}
+                    onExited={() => setAnimating(false)}
+
+                >
+                    <img src={`data:image/png;base64,${item.ImageUrl}`} alt={item.File_Name} style={{ width: "100%" }} />
+                    <CarouselCaption
+                        className=""
+                        captionText=""
+                        captionHeader={item.File_Name}
+
+                    />
+                </CarouselItem>
+            );
+        });
+
+
         return (
-            <CarouselItem
-                className={style.Carousel_parameters}
-                tag="div"
-                key={item.src}
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-
-            >
-                <img src={`data:image/png;base64,${item.src}`} alt={item.FileName} style={{ width: "100%"} } />
-                <CarouselCaption
-                    className=""
-                    captionText=""
-                    captionHeader={item.FileName}
-
-                />
-            </CarouselItem>
-        );
-    });
-
-    
-        return (
-            <div style={{ width: "100%"} }>
+            <div style={{ width: "100%" }}>
 
                 <Carousel activeIndex={activeIndex} next={next} previous={previous} >
                     <CarouselIndicators
-                        items={items}
+                        items={dbdata}
                         activeIndex={activeIndex}
                         onClickHandler={goToIndex}
                     />
@@ -119,14 +111,19 @@ export default function CarouselGameImage(props) {
                 </Carousel>
             </div>
 
-            
+
         );
     }
-    else
-    return (
-        <div class="spinner-border" role="status" >
-            <span class="visually-hidden"></span>
-        </div>
+    else 
+         return (
 
-        )
+             <div>
+
+                 <img src={No_image_available} style={{width:"200px", height: "200px"} } />
+                 </div>
+
+        );
+
+    
+    
 }
