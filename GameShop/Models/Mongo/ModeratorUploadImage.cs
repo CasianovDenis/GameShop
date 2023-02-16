@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameShop.Models.Mongo
 {
-    public class ModeratorUploadFile
+    public class ModeratorUploadImage
     {
         [Required]
         public IFormFile File { get; set; }
+
 
         [Required]
         public string GameName { get; set; }

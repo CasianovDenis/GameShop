@@ -66,6 +66,7 @@ export default function CarouselGameImage(props) {
    
         const slides = dbdata.map((item) => {
 
+            if ( item.ImageUrl == null )
             return (
 
                 <CarouselItem
@@ -76,37 +77,65 @@ export default function CarouselGameImage(props) {
                     onExited={() => setAnimating(false)}
 
                 >
-                    <img src={`data:image/png;base64,${item.ImageUrl}`} alt={item.File_Name} style={{ width: "100%" }} />
+
+                   
+                    <iframe className={ style.videoplayer} src={ item.VideoUrl} title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+
                     <CarouselCaption
                         className=""
                         captionText=""
-                        captionHeader={item.File_Name}
+                        captionHeader=""
 
                     />
                 </CarouselItem>
-            );
+                );
+            else
+                return (
+
+                    <CarouselItem
+                        className={style.Carousel_parameters}
+                        tag="div"
+                        key={item._id}
+                        onExiting={() => setAnimating(true)}
+                        onExited={() => setAnimating(false)}
+
+                    >
+
+                        <img src={`data:image/png;base64,${item.ImageUrl}`} alt={item.File_Name} style={{ width: "100%" }} />
+
+                        <CarouselCaption
+                            className=""
+                            captionText=""
+                            captionHeader=""
+
+                        />
+                    </CarouselItem>
+                );
         });
 
 
         return (
             <div style={{ width: "100%" }}>
 
-                <Carousel activeIndex={activeIndex} next={next} previous={previous} >
+                <Carousel activeIndex={activeIndex} next={next} previous={previous} style={{ height: "100px" }}>
                     <CarouselIndicators
                         items={dbdata}
                         activeIndex={activeIndex}
                         onClickHandler={goToIndex}
+                       
                     />
                     {slides}
                     <CarouselControl
                         direction="prev"
                         directionText="Previous"
                         onClickHandler={previous}
+                        
                     />
                     <CarouselControl
                         direction="next"
                         directionText="Next"
                         onClickHandler={next}
+                       
                     />
                 </Carousel>
             </div>

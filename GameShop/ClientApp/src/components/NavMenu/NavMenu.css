@@ -25,12 +25,17 @@ html {
     width: 60px;
 }
 
+.nav_buttons{
+display:flex;
+position:relative;
+right:150%;
+
+}
+
 #add_game_button {
-    position: relative;
-    right: 400%;
-    top:25px;
-    color:white;
-    cursor:pointer;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
 }
 
     #add_game_button:hover {
@@ -38,9 +43,8 @@ html {
     }
 
 #upload_gameimage_button {
-    position: relative;
-    right: 340%;
-    top: -15px;
+ 
+    margin:10px;
     color: white;
     cursor: pointer;
 }
@@ -52,11 +56,10 @@ html {
 
 
 
-.discover_games{
-   
-    position:relative;
-    right:180%;
-    top:18px;
+.discover_games {
+    margin: 10px;
+    position: relative;
+    top: -6px;
 }
 .discover_games :hover {
     background-color:black;
@@ -71,23 +74,9 @@ html {
         margin-left: 0px;
     }
 
-    #add_game_button {
-      
-        left: 10px;
-        top:0px;
-        width:80px;
-    }
-
-    #upload_gameimage_button {
-       
-        top: -13px;
-        left: 10px;
-    }
-
-    .discover_games {
-           top:-10px;
-        left:-13px;
-        
+    .nav_buttons {
+       flex-direction:column;
+        right: 0%;
     }
 
 }

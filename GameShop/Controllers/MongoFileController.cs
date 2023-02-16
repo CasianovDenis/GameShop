@@ -26,9 +26,9 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/upload_file")]
+        [Route("~/api/upload_image")]
         [HttpPost]
-        public async Task<ActionResult> AddFileAsync([FromForm] ModeratorUploadFile FileData)
+        public async Task<ActionResult> UploadImageAsync([FromForm] ModeratorUploadImage FileData)
         {
             try
             {
@@ -42,6 +42,7 @@ namespace GameShop.Controllers
 
                     gamelist.File_Name = FileData.GameName;
 
+
                     if (FileData.File.ContentDisposition != null)
                     {
                         MemoryStream memdata = new MemoryStream();
@@ -51,6 +52,45 @@ namespace GameShop.Controllers
                         await dBServices.Create(gamelist);
 
                     }
+
+                    return Json("Succes");
+                }
+
+                return Json("Incorrect rights token");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [Route("~/api/upload_video_url")]
+        [HttpPost]
+        public async Task<ActionResult> UploadVideoURLAsync(ModeratorUploadVideo FileData)
+        {
+            try
+            {
+
+                var moderator = _conString.Users.Single(data => data.Username == FileData.ModeratorName);
+
+                if (moderator.Rights_token == FileData.Rights_token)
+                {
+                    MongoDBServices dBServices = new MongoDBServices();
+
+                    MongoObject gamelist = new MongoObject();
+
+                    gamelist.File_Name = FileData.GameName;
+
+
+                    if (FileData.VideoUrl.Length > 5)
+                    {
+
+
+                        gamelist.VideoUrl = FileData.VideoUrl;
+
+                        await dBServices.Create(gamelist);
+                    }
+
 
                     return Json("Succes");
                 }

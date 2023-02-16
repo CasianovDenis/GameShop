@@ -96,21 +96,29 @@ export default function NavMenu(props) {
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow" >
 
-                                <NavItem style={{ display: admin_rights }} >
-                                   
+                                <div class="nav_buttons">
 
+                                    <div style={{ display: admin_rights }}>
+                              
                                         <Modal_add_game />
+                                      
+                                    </div>
+
+
+                                    <div style={{ display: admin_rights }}>
+                                    
                                         <Mongo_upload_file />
+                                    </div>
+                           
 
-                                </NavItem>
-
-                                <NavItem class="discover_games">
-
-
+                                <div class="discover_games">
+                           
                                     <NavLink tag={Link} to="/AllGames" style={{color:"white"} }>Discover</NavLink>
 
-                                </NavItem>
+                              
+                                </div>
 
+                                    </div>
                                 <NavItem >
                                     <div class="dropdown">
 

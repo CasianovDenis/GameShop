@@ -13,5 +13,6 @@ namespace GameShop.Models
         public string File_Name { get; set; } = null!;
         public string ImageUrl { get; set; }
 
+        public string VideoUrl { get; set; }
     }
 }
