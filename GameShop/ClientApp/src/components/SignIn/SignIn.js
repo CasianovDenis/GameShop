@@ -3,7 +3,6 @@ import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
-import background_image from '../public_files/Background_image_signup.jpg';
 
 import style from './SignIn.module.css';
 
@@ -49,11 +48,11 @@ export default function SignIn() {
                 };
 
 
-                fetch('http://localhost:56116/api/user_authentication_setting_rights', requestOptions)
+                fetch('http://localhost:56116/api/user_authentication', requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
-                        if (responseData == "Authorization successfully") {
+                        if (responseData.Rights_token != "") {
 
                             refUsername.current.value = "";
 
@@ -68,32 +67,38 @@ export default function SignIn() {
 
                             document.cookie = "status_account=online ; expires=" + date.toGMTString();
 
+                            document.cookie = "rights_token=" + responseData.Rights_token + "; expires = " + date.toGMTString();
+
+                            document.cookie = "auth_token=" + responseData.Authorization_token + "; expires = " + date.toGMTString();
+
                             redirect.go('/');
                         }
-                        else
-                            if (responseData != "User not exist" || responseData != "Password incorrect") {
 
-                                refUsername.current.value = "";
+                        else {
 
-                                refPassword.current.value = "";
+                            refUsername.current.value = "";
 
-                                var date = new Date();
+                            refPassword.current.value = "";
 
-                                date.setDate(date.getDate() + 1);
+                            var date = new Date();
+
+                            date.setDate(date.getDate() + 1);
 
 
-                                document.cookie = "username=" + user.Username + "; expires=" + date.toGMTString();
+                            document.cookie = "username=" + user.Username + "; expires=" + date.toGMTString();
 
-                                document.cookie = "status_account=online ; expires=" + date.toGMTString();
+                            document.cookie = "status_account=online ; expires=" + date.toGMTString();
 
-                                document.cookie = "rights_token=" + responseData + "; expires = " + date.toGMTString();
+                            document.cookie = "auth_token=" + responseData + "; expires = " + date.toGMTString();
 
-                                redirect.go('/');
-                            }
+                            redirect.go('/');
+                        }
+                        
+                           
 
                         setMessage(responseData);
 
-
+                        
                     });
 
             }
@@ -113,8 +118,6 @@ export default function SignIn() {
 
         
         <div className={ style.div_signin}>
-
-            <img className={style.background_image} src={background_image} />
 
             <div className={style.modal_signin}>
                 <form>
