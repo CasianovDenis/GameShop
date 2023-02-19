@@ -1,23 +1,29 @@
-﻿.modal_signin {
+﻿.div_signin {
+    background-image: url("../public_files/Background_image.jpg") ;
+    width: 150%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+    right:125px;
+    top:-14px;
+}
+
+.modal_signin {
 
     background-color: #36393f;    
-    width: 30%;
-    height: 59%;
+    width: 500px;
+    height: 400px;
 
 
-    position: absolute;
-    top: 150px;
-    left: 35%;
+    position: relative;
+    top: 100px;
+    left: 27%;
 
     border-radius:10px;
 }
 
-.background_image {
-    margin-top: -20px;
-    width: 122%;
-    margin-left: -10.8%;
-    
-}
 
 .signin_button {
     width: 90%;
@@ -40,27 +46,15 @@
 @media(max-width:991px)
 {
 
+
     .modal_signin {
+        width: 350px;
+        height: 400px;
        
-        position:relative;
-        width:70%;
-        height: 59vh;
-        
-        top: -500px;
-        left: 20%;
-        
+
+        left:23%;
+        top: 50px
     }
 
-    .background_image {
-        margin-top: -18px;
-        width: 180%;
-        margin-left: -75%;
-        height:88.3vh;
-    }
-
-    .div_signin{
-        height:70vh;
-    }
-    
 
 }
