@@ -165,7 +165,7 @@ export default function Mongo_upload_file() {
                             <div style={{ display: "none" }} id="upload_video_url">
 
                                 <p> Video URL:</p>
-                                <p> url must contain ''embed" for example "https://www.youtube.com/embed/UAO2urG23S4"</p>
+                                <p> url for youtube must contain "embed" for example "https://www.youtube.com/embed/UAO2urG23S4"</p>
                                 <input type="text" ref={refVideoUrl} class="form-control" style={{ width: "60%" }} required onChange={save_video_url} />
                             </div>
 
