@@ -19,7 +19,6 @@ export default function NavMenu(props) {
 
     const [collapsed, setCollapsed] = useState(true);
     const [admin_rights, setAdminRights] = useState(null);
-
     
     const username = GetCookie("username");
 
@@ -31,10 +30,10 @@ export default function NavMenu(props) {
 
     useEffect(() => {
 
-        
+        let token = GetCookie("auth_token");
 
-        if (GetCookie("status_account") == "online") {
-
+        if (GetCookie("status_account") == "online" && token.match(/^[A-Za-z0-9]*$/) && token.length==25) {
+            
            
 
                 const requestOptions = {
@@ -44,17 +43,19 @@ export default function NavMenu(props) {
                 };
 
 
-                fetch('http://localhost:56116/api/get_user_role/'+username , requestOptions)
-                    .then(response => response.json())
-                    .then((responseData) => {
+                            fetch('http://localhost:56116/api/get_user_role/' + username, requestOptions)
+                                .then(response => response.json())
+                                .then((responseData) => {
 
-                        if (responseData == "admin")
-                            setAdminRights("block");
-                        else
-                            setAdminRights("none");
+                                    if (responseData == "admin")
+                                        setAdminRights("block");
+                                    else
+                                        setAdminRights("none");
 
+
+                                });
                         
-                    });
+            
             
         }
         else
@@ -79,6 +80,8 @@ export default function NavMenu(props) {
         document.cookie = "status_account=; expires = " + now.toUTCString();
 
        document.cookie = "rights_token=; expires = " + now.toUTCString();
+
+       document.cookie = "auth_token=; expires = " + now.toUTCString();
 
        redirect.go('/');
     }
