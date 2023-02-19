@@ -3,8 +3,6 @@ import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
-import background_image from '../public_files/Background_image_signup.jpg';
-
 import style from './SignUp.module.css';
 
 import sha256 from 'js-sha256';
@@ -97,7 +95,6 @@ export default function SignUp() {
         
         <div className={style.div_signup }>
 
-            <img src={background_image} className={style.background_image}/>
 
             <div className={style.modal_signup}>
                 <form>
