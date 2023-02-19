@@ -20,5 +20,7 @@ namespace GameShop.Models
 
         public string Rights_token { get; set; }
 
+        public string Authorization_token { get; set; }
+
     }
 }
