@@ -23,7 +23,7 @@ namespace GameShop.Controllers
 
         }
 
-        [Route("~/api/user_authentication_setting_rights")]
+        [Route("~/api/user_authentication")]
         [HttpPost]
         public JsonResult User_Authentication(Users user)
         {
@@ -38,13 +38,23 @@ namespace GameShop.Controllers
                     {
 
                         dbdata.Rights_token = RandomString(20);
+                        dbdata.Authorization_token = RandomString(25);
                         _conString.Update(dbdata);
                         _conString.SaveChanges();
 
-                        return Json(dbdata.Rights_token);
+                        var tokens = new { Authorization_token = dbdata.Authorization_token, Rights_token = dbdata.Rights_token };
+                        return Json(tokens);
+                    }
+                    else
+                    {
+                        dbdata.Authorization_token = RandomString(25);
+                        _conString.Update(dbdata);
+                        _conString.SaveChanges();
+
+                        return Json(dbdata.Authorization_token);
                     }
 
-                    return Json("Authorization successfully");
+
                 }
                 //false
                 return Json("Password incorrect");
@@ -111,47 +121,63 @@ namespace GameShop.Controllers
 
 
 
-        [HttpGet("~/api/get_user_games/{Username}")]
-        public JsonResult GetUserGames(string Username)
+
+        [HttpGet("~/api/get_user_games/{Username}/{authorizationToken}")]
+        public JsonResult GetUserGames(string Username, string authorizationToken)
         {
 
             try
             {
-                var user_games = _conString.UserPurchases.Where(data => data.Username == Username).ToList();
+                var user_data = _conString.Users.Single(data => data.Username == Username);
 
-
-                List<GamePurchasesByUser> purchases_game = new List<GamePurchasesByUser>();
-
-                for (int index = 0; index < user_games.Count; index++)
+                if (authorizationToken == user_data.Authorization_token)
                 {
-                    var game = _conString.Game.Single(data => data.Game_name == user_games[index].Game_name);
 
-                    purchases_game.Add(new GamePurchasesByUser(user_games[index].Game_name, user_games[index].KeyOfGame, game.Cover));
+                    var user_games = _conString.UserPurchases.Where(data => data.Username == Username).ToList();
+
+
+                    List<GamePurchasesByUser> purchases_game = new List<GamePurchasesByUser>();
+
+                    for (int index = 0; index < user_games.Count; index++)
+                    {
+                        var game = _conString.Game.Single(data => data.Game_name == user_games[index].Game_name);
+
+                        purchases_game.Add(new GamePurchasesByUser(user_games[index].Game_name, user_games[index].KeyOfGame, game.Cover));
+                    }
+
+                    return Json(purchases_game);
                 }
-
-                return Json(purchases_game);
+                else
+                    return Json("Incorrect authorization token");
 
             }
             catch
             {
 
-                return Json("User not exist");
+                return Json("Incorrect Username");
             }
         }
 
 
 
-        [HttpGet("~/api/checking_user_purchased_this_game/{Username}/{Game_name}")]
-        public JsonResult Checking_User_Purchased_This_Game(string Username, string Game_name)
+        [HttpGet("~/api/checking_user_purchased_this_game/{Username}/{Game_name}/{authorizationToken}")]
+        public JsonResult Checking_User_Purchased_This_Game(string Username, string Game_name, string authorizationToken)
         {
 
             try
             {
-                var dbdata = _conString.UserPurchases.Single(data => data.Username == Username
+                var user_data = _conString.Users.Single(data => data.Username == Username);
 
-                                                                       && data.Game_name == Game_name);
+                if (authorizationToken == user_data.Authorization_token)
+                {
+                    var dbdata = _conString.UserPurchases.Single(data => data.Username == Username
 
-                return Json("Already bought");
+                                                                         && data.Game_name == Game_name);
+
+                    return Json("Already bought");
+                }
+                else
+                    return Json("You don't have permission");
 
             }
             catch
@@ -178,18 +204,22 @@ namespace GameShop.Controllers
             catch
             {
 
-                var dbdata = _conString.Users.Single(data => data.Username == tempdata.Username);
+                var user_data = _conString.Users.Single(data => data.Username == tempdata.Username);
 
-                if (tempdata.Email == dbdata.Email)
+                if (user_data.Authorization_token == tempdata.AuthorizationToken)
                 {
-                    dbdata.Email = tempdata.NewEmail;
-                    _conString.SaveChanges();
+                    if (tempdata.Email == user_data.Email)
+                    {
+                        user_data.Email = tempdata.NewEmail;
+                        _conString.SaveChanges();
 
-                    return Json("Email was changed successfully");
+                        return Json("Email was changed successfully");
+                    }
+
+                    return Json("Incorrect current email");
                 }
-
-                return Json("Incorrect current email");
-
+                else
+                    return Json("Incorrect authorization token");
             }
         }
 
@@ -200,20 +230,23 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Users.Single(data => data.Username == tempdata.Username);
+                var user_data = _conString.Users.Single(data => data.Username == tempdata.Username);
 
-                if (tempdata.Password == dbdata.Password)
+                if (tempdata.AuthorizationToken == user_data.Authorization_token)
                 {
+                    if (tempdata.Password == user_data.Password)
+                    {
 
-                    dbdata.Password = tempdata.NewPassword;
-                    _conString.SaveChanges();
+                        user_data.Password = tempdata.NewPassword;
+                        _conString.SaveChanges();
 
-                    return Json("Password change successfuly");
+                        return Json("Password change successfuly");
 
+                    }
+
+                    return Json("Incorrect current password");
                 }
-
-                return Json("Incorrect current password");
-
+                return Json("Incorrect authorization token");
             }
             catch
             {

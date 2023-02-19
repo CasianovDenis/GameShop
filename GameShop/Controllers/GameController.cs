@@ -165,25 +165,6 @@ namespace GameShop.Controllers
         }
 
 
-        [HttpGet("~/api/get_latest_purchased_game/{Username}")]
-        public JsonResult GetLatestPurchasedGame(string Username)
-        {
-
-            try
-            {
-
-                var latest_purchased = _conString.UserPurchases.Where(data => data.Username == Username).OrderByDescending(data => data.ID).ToList();
-
-                var dbdata = _conString.Game.Single(data => data.Game_name == latest_purchased[0].Game_name);
-
-                return Json(dbdata);
-
-            }
-            catch
-            {
-                return Json("Incorrect username");
-            }
-        }
 
 
         [HttpGet("~/api/get_sorted_games_using_range/{Sort_Type}/{Selected_Games}")]
