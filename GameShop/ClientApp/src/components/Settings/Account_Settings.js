@@ -19,7 +19,8 @@ export default function Account_Settings() {
         let update_email = {
             "Username":GetCookie("username"),
             "Email": refCurrentEmail.current.value,
-            "NewEmail": refNewEmail.current.value
+            "NewEmail": refNewEmail.current.value,
+            "AuthorizationToken" : GetCookie("auth_token")
         }
 
         if (update_email.Email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -66,12 +67,7 @@ export default function Account_Settings() {
     return (
 
 
-
-
-        <div>
-
-
-            <div className={style.div_account_settings}>
+            <div className={style.account_settings}>
 
 
                 <label style={{ marginTop: "10px", marginLeft:"10px",fontSize:"18px" }}>Account Settings</label>
@@ -91,6 +87,6 @@ export default function Account_Settings() {
                         </div>
 
 
-        </div>
+       
     )
 }

@@ -28,7 +28,8 @@ export default function Account_Security() {
 
                         "Username": GetCookie("username"),
                         "Password": sha256(refCurrentPassword.current.value),
-                        "NewPassword": sha256(refNewPassword.current.value)
+                        "NewPassword": sha256(refNewPassword.current.value),
+                        "AuthorizationToken" : GetCookie("auth_token")
 
                     })
                 };
@@ -59,12 +60,8 @@ export default function Account_Security() {
     }
     return (
 
-       
 
-            <div>
-
-
-                <div className={style.div_security_settings}>
+                <div className={style.security_settings}>
 
 
                     <label style={{ marginTop: "10px", marginLeft: "10px", fontSize: "18px" }}>Security Settings</label>
@@ -88,10 +85,5 @@ export default function Account_Security() {
             <p style={{ marginTop: "10px", marginLeft: "10px" }}> {message} </p>
                 </div>
 
-
-            </div>
-
-
-       
     )
 }
