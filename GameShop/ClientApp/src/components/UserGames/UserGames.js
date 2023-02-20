@@ -27,6 +27,9 @@ export default function UserGames() {
 
     useEffect(() => {
 
+        let token = GetCookie("auth_token");
+
+    if (GetCookie("status_account") != "online" && token.match(/^[A-Za-z0-9]*$/) && token.length == 25) redirect.push('/');
 
 
             const requestOptions = {
@@ -42,9 +45,9 @@ export default function UserGames() {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    if (responseData.length>0)
-                    setDbData(responseData);
-
+                    if (responseData != "Incorrect authorization token" && responseData != "Incorrect Username")
+                        setDbData(responseData);
+                   
 
                 });
         
