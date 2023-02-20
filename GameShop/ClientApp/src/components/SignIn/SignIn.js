@@ -51,8 +51,8 @@ export default function SignIn() {
                 fetch('http://localhost:56116/api/user_authentication', requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
-
-                        if (responseData.Rights_token != "") {
+                       
+                        if (responseData.Rights_token != undefined) {
 
                             refUsername.current.value = "";
 
