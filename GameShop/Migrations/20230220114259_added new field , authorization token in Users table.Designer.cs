@@ -2,15 +2,17 @@
 using GameShop.Models.DBConnection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GameShop.Migrations
 {
     [DbContext(typeof(ConString))]
-    partial class ConStringModelSnapshot : ModelSnapshot
+    [Migration("20230220114259_added new field , authorization token in Users table")]
+    partial class addednewfieldauthorizationtokeninUserstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
