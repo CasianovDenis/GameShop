@@ -1,5 +1,6 @@
 ﻿using GameShop.Models;
 using GameShop.Models.DBConnection;
+using GameShop.Models.TempClasses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -62,16 +63,28 @@ namespace GameShop.Controllers
 
         [Route("~/api/add_game_commentary")]
         [HttpPost]
-        public JsonResult AddGameCommentary(GamesCommentary gamescomment)
+        public JsonResult AddGameCommentary(CommentaryData commentAuthorization)
         {
 
             try
             {
+                var user_data = _conString.Users.Single(data => data.Username == commentAuthorization.Username);
 
-                _conString.Add(gamescomment);
-                _conString.SaveChanges();
+                if (user_data.Authorization_token == commentAuthorization.AuthorizationToken)
+                {
+                    GamesCommentary gamecomment = new GamesCommentary();
 
-                return Json("Commentary added succesfully");
+                    gamecomment.Username = commentAuthorization.Username;
+                    gamecomment.Commentary = commentAuthorization.Commentary;
+                    gamecomment.GameName = commentAuthorization.GameName;
+
+                    _conString.Add(gamecomment);
+                    _conString.SaveChanges();
+
+                    return Json("Commentary added succesfully");
+                }
+
+                return Json("Incorrect authorization token");
 
             }
             catch (Exception exception)
@@ -108,23 +121,27 @@ namespace GameShop.Controllers
 
         [Route("~/api/update_user_comment")]
         [HttpPut]
-        public JsonResult UpdateUserComment(GamesCommentary usercomment)
+        public JsonResult UpdateUserComment(CommentaryData newcomment)
         {
 
             try
             {
-                var comment = _conString.GamesCommentary.Single(data => data.ID == usercomment.ID);
+                var oldcomment = _conString.GamesCommentary.Single(data => data.ID == newcomment.ID);
 
-                if (comment.Username == usercomment.Username)
+                var user_data = _conString.Users.Single(data => data.Username == newcomment.Username);
+
+                if (user_data.Authorization_token == newcomment.AuthorizationToken)
                 {
-                    comment.Commentary = usercomment.Commentary;
 
-                    _conString.Update(comment);
+                    oldcomment.Commentary = newcomment.Commentary;
+
+                    _conString.Update(oldcomment);
                     _conString.SaveChanges();
 
                     return Json("Commentary edited successfully");
                 }
-                return Json("Username");
+                else
+                    return Json("Incorrect authorization token");
             }
             catch (Exception ex)
             {

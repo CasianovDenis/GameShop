@@ -5,5 +5,7 @@
         public string NewPassword { get; set; }
 
         public string NewEmail { get; set; }
+
+        public string AuthorizationToken { get; set; }
     }
 }

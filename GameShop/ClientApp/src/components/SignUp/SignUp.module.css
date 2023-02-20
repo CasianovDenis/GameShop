@@ -1,24 +1,29 @@
-﻿.modal_signup {
+﻿.div_signup {
+    background-image: url("../public_files/Background_image.jpg");
+    width: 150%;
+    height: 120vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    right: 125px;
+    top: -14px;
+}
+
+.modal_signup {
 
     background-color: #36393f;    
-    width: 30%;
-    height: 90%;
+    width: 500px;
+    height: 570px;
 
 
-    position: absolute;
+    position: relative;
     top: 100px;
-    left: 35%;
+    left: 25%;
 
     border-radius:10px;
 }
 
-.background_image {
-    
-    margin-top:-20px;
-    width:122%;
-    margin-left:-10.8%;
-    
-}
 
 .signup_button {
     width: 90%;
@@ -40,23 +45,15 @@
 
 @media(max-width:991px) {
 
-    .modal_signup {
-       position:relative;
-        width: 70%;
-        height:87vh;
-        top: -590px ;
-        left: 15%;
-        
-    }
-
-    .background_image {
-        margin-top: -18px;
-        width: 180%;
-        margin-left: -75%;
-        height: 100vh;
-    }
-
     .div_signup{
-        height:50vh;
+        right:30px;
     }
+    .modal_signup {
+      
+        width: 350px;
+        height:570px;
+        top: 50px ;
+        left:5%;
+    }
+
 }

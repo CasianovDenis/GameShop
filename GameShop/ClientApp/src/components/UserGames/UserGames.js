@@ -38,7 +38,7 @@ export default function UserGames() {
 
 
 
-            fetch('http://localhost:56116/api/get_user_games/' + GetCookie("username"), requestOptions)
+            fetch('http://localhost:56116/api/get_user_games/' + GetCookie("username")+'/'+GetCookie('auth_token'), requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 

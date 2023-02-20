@@ -113,7 +113,8 @@ export default function GameCommentary(props) {
                 body: JSON.stringify({
                     "Username": username,
                     "Commentary": refComment.current.value,
-                    "GameName": props.game_name
+                    "GameName": props.game_name,
+                    "AuthorizationToken":GetCookie("auth_token")
                 })
             };
 
@@ -238,7 +239,8 @@ export default function GameCommentary(props) {
                 body: JSON.stringify({
                     "Username": username,
                     "Commentary": new_textarea_text,
-                    "ID": comment_id
+                    "ID": comment_id,
+                    "AuthorizationToken": GetCookie("auth_token")
                 })
             };
 
@@ -246,9 +248,10 @@ export default function GameCommentary(props) {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    if (responseData == "Commentary edited succesfully") {
+                    if (responseData == "Commentary edited successfully") {
                         request == false ? setRequest(true) : setRequest(false)
                         toaster.success(responseData);
+                        console.log("work?")
                     }
 
                 })

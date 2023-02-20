@@ -17,7 +17,7 @@ export default function CarouselRandomGame() {
 
     const [animating, setAnimating] = useState(false);
     const redirect = useHistory();
-    const items=useState([]);
+  
 
     useEffect(() => {
 

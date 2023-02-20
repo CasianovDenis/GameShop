@@ -38,8 +38,6 @@ export default function PurchasePage() {
     useEffect(() => {
 
        
-       
-
             const requestOptions = {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
@@ -57,14 +55,11 @@ export default function PurchasePage() {
 
             if (GetCookie("status_account") == "online") {
 
-                const requestOptionsUser = {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                };
+                
+                let url = 'http://localhost:56116/api/checking_user_purchased_this_game/' + GetCookie("username") + '/' + GameName +
+                                                                                             '/' + GetCookie('auth_token');
 
-                let url = 'http://localhost:56116/api/checking_user_purchased_this_game/' + GetCookie("username") + '/' + GameName;
-
-                fetch(url, requestOptionsUser)
+                fetch(url, requestOptions)
                     .then(response => response.json())
                     .then((responseData) => {
 
