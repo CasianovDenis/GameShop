@@ -1,125 +1,22 @@
-﻿.Carousel_parameters{
-    max-width: 100%;
-    height: 320px;
-    border-radius:20px;
+﻿.text_allgames {
+    color: white;
+    cursor: pointer;
+    height: 50px;
+    font-size: 25px;
 }
 
-.Carousel{
-
-    width:50%;
-    position:relative;
-    left:25%;
-}
-
-.Carousel_image{
-
-    width:100%;
-    cursor:pointer;
-}
-
-.card_new_game{
-    cursor:pointer;
-   
-}
-
-    .card_new_game :hover {
-        background-color: #877677;
-        border-radius: 6px;
-    }
-
-.card_body {
-    width: 13rem;
-}
-
-.Cards {
-  
-    
-    width: 200px;
-    height:43vh;
-    float: left;
-    margin:10px;
-}
-
-
-.card_image{
-    width:200px;
-    height:35vh;
-    cursor:pointer;
-}
-
-.newgame_text{
-    color:white;
-    font-size:25px;
-}
-
-.newgame_text:hover {
-    background-color:transparent;
-}
-
-.text_allgames{
-    color:white;
-    cursor:pointer;
-  height:50px;
-    font-size:20px;
-}
     .text_allgames:hover {
-        background-color: transparent;
+
         color: #156e8f;
     }
 
 @media(max-width:991px) {
 
-    .Carousel_parameters {
-       
-        height: 180px;
-       
-    }
-   
-    .card_new_game {
-        width: 10px;
-        display: flex;
-        flex-direction: column;
-       
-        align-items: center;
-    }
 
-    .Carousel {
-        
-       height:20%;
-    }
-    
-    .card_body {
-        width: 21.4rem;
-        
-    }
-
-
-    .Cards {
-        float: none;
-        width: 0px;
-        margin: 0px;
-        
-        height: 360px;
-        
-    }
-
-    .card_image {
-        width: 300px;
-        height: 300px;
-        
-    }
-
-    .newgame_text {
-        
-        font-size: 15px;
-    }
 
     .text_allgames {
-        position: relative;
-
-        left:110%;
+      
         font-size: 15px;
-        height:100px;
+        height: 30px;
     }
-
 }
