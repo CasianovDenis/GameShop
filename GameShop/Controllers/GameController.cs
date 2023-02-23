@@ -37,13 +37,14 @@ namespace GameShop.Controllers
 
                 if (rights.Rights_token == moderator.Rights_token)
                 {
-                    Game game = new Game();
-
-                    game.Game_name = moderator.Game_name;
-                    game.Price = moderator.Price;
-                    game.Description = moderator.Description;
-                    game.Currency = moderator.Currency;
-                    game.Cover = moderator.Cover;
+                    Game game = new Game
+                    {
+                        Game_name = moderator.Game_name,
+                        Price = moderator.Price,
+                        Description = moderator.Description,
+                        Currency = moderator.Currency,
+                        Cover = moderator.Cover
+                    };
 
                     _conString.Game.Add(game);
                     _conString.SaveChanges();
@@ -64,9 +65,9 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Game.Where(data => data.ID > 0).ToList();
+                var games = _conString.Game.Where(data => data.ID > 0).ToList();
 
-                int number = 0, difference = dbdata.Count - 5;
+                int number = 0, difference = games.Count - 5;
 
                 if (difference > 0)
                 {
@@ -75,18 +76,18 @@ namespace GameShop.Controllers
 
                     for (int index = 0; index < difference; index++)
                     {
-                        number = rnd.Next(0, dbdata.Count);
-                        dbdata.Remove(dbdata[number]);
+                        number = rnd.Next(0, games.Count);
+                        games.Remove(games[number]);
                     }
 
-                    return Json(dbdata);
+                    return Json(games);
                 }
                 else
-                    return Json(dbdata);
+                    return Json(games);
             }
-            catch
+            catch (Exception ex)
             {
-                return Json("Error");
+                return Json(ex);
             }
         }
 
@@ -97,26 +98,26 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Game.Where(data => data.ID > 0).OrderBy(data => data.ID).ToList();
+                var new_games = _conString.Game.Where(data => data.ID > 0).OrderBy(data => data.ID).ToList();
 
 
-                if (dbdata.Count >= 6)
+                if (new_games.Count >= 6)
                 {
 
 
-                    int range = dbdata.Count - 5;
+                    int range = new_games.Count - 5;
 
                     for (int index = 0; index < range; index++)
                     {
 
-                        dbdata.Remove(dbdata[0]);
+                        new_games.Remove(new_games[0]);
 
 
                     }
 
-                    return Json(dbdata);
+                    return Json(new_games);
                 }
-                return Json(dbdata);
+                return Json(new_games);
             }
             catch
             {
@@ -158,9 +159,9 @@ namespace GameShop.Controllers
                 return Json(dbdata);
 
             }
-            catch
+            catch (Exception ex)
             {
-                return Json("Error");
+                return Json(ex);
             }
         }
 
