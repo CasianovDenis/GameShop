@@ -1,13 +1,13 @@
-﻿.Cards {
+﻿
+.Cards {
     width: 300px;
-    margin: 10px ;
- display:inline-block;
-
+    margin: 10px;
+    display: inline-block;
 }
 
-#card_image {
+.card_image {
     width: 280px;
-    height: 35vh;
+    height: 200px;
     cursor: pointer;
     
 }
@@ -17,6 +17,7 @@
     height: 65px;
     background-color: #18132e;
     border-radius: 2px;
+    cursor:pointer;
 }
 
 .card_price{
@@ -31,17 +32,17 @@
 }
 
 .searchbar {
-    position: absolute;
+    position: relative;
     background-color: #1dc57e;
     left: 30%;
-    top: 100px;
+    top: -80px;
     border-radius: 5px;
     width:230px;
 }
 
 .sort_elements {
-    position: absolute;
-    top: 15.5%;
+    position: relative;
+    top: -50px;
     left: 81%;
     border-radius: 5px;
     cursor: pointer;
@@ -83,7 +84,7 @@
     }
 
     .searchbar {
-        position:relative;
+       
         left: 0%;
         top: -40px;
            
@@ -91,7 +92,6 @@
 
     .sort_elements {
        
-        position:relative;
         top:20px;
         left: 0%;
        
