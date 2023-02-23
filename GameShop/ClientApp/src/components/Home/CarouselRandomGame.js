@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect,useState} from "react";
+import React, { useEffect,useState} from "react";
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
-import style from './Home.module.css';
+import style from './HomeCarousel.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import No_image_available from '../public_files/No_image_available.png';
