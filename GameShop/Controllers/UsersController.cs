@@ -30,28 +30,28 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Users.Single(data => data.Username == user.Username);
+                var user_data = _conString.Users.Single(data => data.Username == user.Username);
 
-                if (dbdata.Password == user.Password)
+                if (user_data.Password == user.Password)
                 {
-                    if (dbdata.Role == "admin")
+                    if (user_data.Role == "admin")
                     {
 
-                        dbdata.Rights_token = RandomString(20);
-                        dbdata.Authorization_token = RandomString(25);
-                        _conString.Update(dbdata);
+                        user_data.Rights_token = RandomString(20);
+                        user_data.Authorization_token = RandomString(25);
+                        _conString.Update(user_data);
                         _conString.SaveChanges();
 
-                        var tokens = new { Authorization_token = dbdata.Authorization_token, Rights_token = dbdata.Rights_token };
+                        var tokens = new { Authorization_token = user_data.Authorization_token, Rights_token = user_data.Rights_token };
                         return Json(tokens);
                     }
                     else
                     {
-                        dbdata.Authorization_token = RandomString(25);
-                        _conString.Update(dbdata);
+                        user_data.Authorization_token = RandomString(25);
+                        _conString.Update(user_data);
                         _conString.SaveChanges();
 
-                        return Json(dbdata.Authorization_token);
+                        return Json(user_data.Authorization_token);
                     }
 
 
@@ -76,7 +76,7 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Users.Single(data => data.Username == newuser.Username);
+                var verifie_username = _conString.Users.Single(data => data.Username == newuser.Username);
 
                 return Json("Username is taken");
 
@@ -85,12 +85,13 @@ namespace GameShop.Controllers
             {
                 try
                 {
-                    var dbdata = _conString.Users.Single(data => data.Email == newuser.Email);
+                    var verifie_email = _conString.Users.Single(data => data.Email == newuser.Email);
 
                     return Json("Email already used");
                 }
                 catch
                 {
+                    newuser.Authorization_token = "null";
                     _conString.Add(newuser);
                     _conString.SaveChanges();
 
@@ -107,9 +108,9 @@ namespace GameShop.Controllers
 
             try
             {
-                var dbdata = _conString.Users.Single(data => data.Username == Username);
+                var user_data = _conString.Users.Single(data => data.Username == Username);
 
-                return Json(dbdata.Role);
+                return Json(user_data.Role);
 
             }
             catch

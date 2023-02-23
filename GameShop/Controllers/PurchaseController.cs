@@ -82,10 +82,12 @@ namespace GameShop.Controllers
 
 
 
-                Order order = new Order();
+                Order order = new Order
+                {
 
-                order.Email = game.Email;
-                order.GameCode = RandomString(16);
+                    Email = game.Email,
+                    GameCode = RandomString(16)
+                };
 
                 Order.SendOrder(game, order);
 
@@ -132,11 +134,13 @@ namespace GameShop.Controllers
                 Result<Transaction> result = gateway.Transaction.Sale(request);
 
 
-                UserPurchases userpurchases = new UserPurchases();
+                UserPurchases userpurchases = new UserPurchases
+                {
 
-                userpurchases.Username = game.FirstName;
-                userpurchases.Game_name = game.Game_name;
-                userpurchases.KeyOfGame = RandomString(16);
+                    Username = game.FirstName,
+                    Game_name = game.Game_name,
+                    KeyOfGame = RandomString(16)
+                };
 
                 _conString.UserPurchases.Add(userpurchases);
                 _conString.SaveChanges();

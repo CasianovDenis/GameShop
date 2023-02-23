@@ -1,0 +1,37 @@
+﻿.Carousel_parameters{
+    max-width: 100%;
+    height: 320px;
+    border-radius:20px;
+}
+
+.Carousel{
+
+    width:50%;
+    position:relative;
+    left:25%;
+}
+
+.Carousel_image{
+
+    width:100%;
+    cursor:pointer;
+}
+
+
+@media(max-width:991px) {
+
+    .Carousel_parameters {
+       
+        height: 180px;
+       
+    }
+   
+   
+    .Carousel {
+        
+       height:20%;
+    }
+    
+    
+
+}

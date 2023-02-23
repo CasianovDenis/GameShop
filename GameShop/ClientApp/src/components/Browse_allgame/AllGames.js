@@ -235,7 +235,7 @@ export default function AllGames() {
         if (displayed_games != null)
             return (
 
-                <div >
+                <div>
                     <p className={style.text_discover_games}>Discover games</p>
 
 
@@ -267,7 +267,7 @@ export default function AllGames() {
 
                                 <div style={{ width: "10rem" }} >
 
-                                    <img class="card-img-top" id={style.card_image} src={item.Cover} alt={item.Game_name} />
+                                    <img  className={style.card_image} src={item.Cover} alt={item.Game_name} />
 
                                     <div class="card-body" className={style.card_body} alt={item.Game_name}>
                                         <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }} alt={item.Game_name}>

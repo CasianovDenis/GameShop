@@ -72,11 +72,12 @@ namespace GameShop.Controllers
 
                 if (user_data.Authorization_token == commentAuthorization.AuthorizationToken)
                 {
-                    GamesCommentary gamecomment = new GamesCommentary();
-
-                    gamecomment.Username = commentAuthorization.Username;
-                    gamecomment.Commentary = commentAuthorization.Commentary;
-                    gamecomment.GameName = commentAuthorization.GameName;
+                    GamesCommentary gamecomment = new GamesCommentary
+                    {
+                        Username = commentAuthorization.Username,
+                        Commentary = commentAuthorization.Commentary,
+                        GameName = commentAuthorization.GameName
+                    };
 
                     _conString.Add(gamecomment);
                     _conString.SaveChanges();
