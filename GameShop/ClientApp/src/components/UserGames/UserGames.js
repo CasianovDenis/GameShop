@@ -45,7 +45,7 @@ export default function UserGames() {
                 .then(response => response.json())
                 .then((responseData) => {
 
-                    if (responseData != "Incorrect authorization token" && responseData != "Incorrect Username")
+                    if (responseData != "Incorrect authorization token" && responseData != "Incorrect Username" && responseData.length > 0)
                         setDbData(responseData);
                    
 
