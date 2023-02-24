@@ -285,7 +285,7 @@ export default function GameCommentary(props) {
 
                             <img src={user_icon} className={style.commentary_user_icon} />
 
-                            <p style={{color:"white"} }>{item.Username}</p>
+                            <p style={{ color: "white" }} className={style.commentary_username}>{item.Username}</p>
 
 
                             <textarea type="text" className={style.commentary_field} value={item.Commentary} readOnly />
@@ -335,7 +335,7 @@ export default function GameCommentary(props) {
 
                                 <img src={user_icon} className={style.commentary_user_icon} />
 
-                                <p style={{color:"white"} }>{item.Username}</p>
+                                <p style={{ color: "white" }} className={style.commentary_username }>{item.Username}</p>
 
                                
                               
@@ -374,7 +374,7 @@ export default function GameCommentary(props) {
 
                                 <img src={user_icon} className={style.commentary_user_icon} />
 
-                                <p style={{color:"white"} }>{item.Username}</p>
+                                <p style={{ color: "white" }} className={style.commentary_username}>{item.Username}</p>
 
 
                                 <textarea type="text" className={style.commentary_field} value={item.Commentary} readOnly />

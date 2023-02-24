@@ -43,14 +43,14 @@ right:150%;
         color: #555896;
     }
 
-#upload_gameimage_button {
+#upload_game_data_button {
  
     margin:10px;
     color: white;
     cursor: pointer;
 }
 
-#upload_gameimage_button:hover {
+#upload_game_data_button:hover {
     color: #555896;
 }
 
