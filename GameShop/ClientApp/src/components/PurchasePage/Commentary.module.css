@@ -11,7 +11,7 @@
     height: 80px;
     position: relative;
     right: 100px;
-   top:10vh;
+   top:60px;
    
 }
 
@@ -43,7 +43,7 @@
 
 .warning_commentary {
     width: 40%;
-    height: 10vh;
+    height: 60px;
     background-color: #e2d2ff;
     border-radius:5px;
    
@@ -84,25 +84,51 @@
 
 @media (max-width:991px) {
 
+    .commentary_div {
+      
+        position: relative;
+        top: -30vh;
+        left:0px;
+    }
+
+    .user_commentary {
+        margin: 10px;
+    }
+    
+    .commentary_field {
+       
+        width: 60%;
+        height: 100px;
+        border-radius: 15px;
+        position:relative;
+        left:30px;
+    }
     .button_comment {
        
         width: 15vh;
-        height: 10vh;
-       
-        top: 10px;
-        left: 0%;
+        height: 100px;
+       position:relative;
+        top: -100px;
+        left:72%; 
     }
     .commentary_user_icon {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
+       position:initial;
        
-        right: 84px;
        
     }
-    .commentary_div {
+
+    .commentary_username {
         position: relative;
-        top: -30vh;
-        
+        left: 80px;
+        top: -40px;
+    }
+
+    .warning_commentary {
+        width: 70%;
+        height: 10vh;
+       margin:10px;
     }
 
     .nav_link {
@@ -110,5 +136,5 @@
         width: 50%;
     }
 
-    
+   
 }
