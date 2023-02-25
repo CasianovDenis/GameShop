@@ -8,4 +8,4 @@
 
 - In this project is connected SMTP protocol for send order when guest buy game.
 
-- Entity framework is using for work with database data PostgresSQL and MongoDB.
+- Entity framework is using for work with database data PostgreSQL and MongoDB.
