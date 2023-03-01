@@ -19,7 +19,7 @@ export default function NavMenu(props) {
 
     const [collapsed, setCollapsed] = useState(true);
     const [admin_rights, setAdminRights] = useState(null);
-    
+
     const username = GetCookie("username");
 
 
@@ -121,13 +121,15 @@ export default function NavMenu(props) {
                               
                                 </div>
 
-                                    </div>
+                                </div>
+
                                 <NavItem >
                                     <div class="dropdown">
 
-                                        <img src={user_icon} class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                                        <img src={user_icon} id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" style={{ width: "50px", height: "50px", cursor: "pointer" }} />
 
+                                        
                                         <div class="dropdown-menu" id="dropdown_menu" aria-labelledby="dropdownMenuButton" >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
@@ -135,7 +137,7 @@ export default function NavMenu(props) {
                                             <NavLink tag={Link} class="dropdown-item " to="/Settings" >Settings</NavLink>
                                             <NavLink tag={Link} class="dropdown-item " onClick={ExitFromAccount} >Exit</NavLink>
                                         </div>
-
+                                        
                                       
 
                                     </div>

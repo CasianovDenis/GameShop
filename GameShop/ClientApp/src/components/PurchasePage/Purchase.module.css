@@ -6,7 +6,7 @@
 
 .Carousel_parameters {
     max-width: 100%;
-    height: 300px;
+    height: auto;
     border-radius: 20px;
 }
 
@@ -39,12 +39,6 @@
     
     .purchase_div {
         flex-direction:column;
-    }
-
-
-    .Carousel_parameters {
-        height: 320px;
-
     }
 
 

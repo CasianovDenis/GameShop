@@ -107,7 +107,7 @@ export default function UserGames() {
     if (foundgames != null)
         return (
 
-            <div >
+            <div className={ style.UserGames}>
 
 
                 <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
@@ -137,7 +137,11 @@ export default function UserGames() {
                             </div>
 
 
-                            <p className={style.key_text}> {item.KeyOfGame} </p>
+                            <p className={style.key_text} onClick={Copy} > {item.KeyOfGame}
+                                <img src={copy_icon} onClick={() => toaster.success('Key of game copied')}
+                                    className={style.copy_icon} title={item.KeyOfGame} />
+
+                            </p>
 
 
                         </div>
@@ -155,7 +159,7 @@ else
     if (dbdata != null) 
     return (
 
-        <div >
+        <div className={style.UserGames}>
 
 
             <p style={{ color: "white", fontSize:"20px" }}>My Games</p>

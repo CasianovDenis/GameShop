@@ -29,12 +29,13 @@ html {
 .nav_buttons{
 display:flex;
 position:relative;
-right:150%;
+right:100%;
 
 }
 
 #add_game_button {
-    margin: 10px;
+   
+    margin: 10px ;
     color: white;
     cursor: pointer;
 }
@@ -44,8 +45,8 @@ right:150%;
     }
 
 #upload_game_data_button {
- 
-    margin:10px;
+  
+    margin: 10px;
     color: white;
     cursor: pointer;
 }
@@ -58,7 +59,7 @@ right:150%;
 
 
 .discover_games {
-    margin: 10px;
+    margin: 10px ;
     position: relative;
     top: -6px;
 }
@@ -71,13 +72,17 @@ right:150%;
         font-size: 16px;
     }
 
-    #dropdown_menu {
-        margin-left: 0px;
-    }
-
     .nav_buttons {
-       flex-direction:column;
+        
         right: 0%;
     }
 
+}
+@media (max-width: 600px) {
+   
+
+    .nav_buttons {
+        flex-direction: column;
+        right: 0%;
+    }
 }
