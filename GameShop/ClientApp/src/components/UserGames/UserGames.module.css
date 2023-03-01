@@ -58,28 +58,42 @@ top:-250px;
 
 @media (max-width:991px) {
   
+    .UserGames{
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+
+    }
+    .ListOfGame {
+        width:70%;
+        height: 400px;
+        margin: 10px auto;
+    }
+
     .GameImage {
+        margin: 40px;
         width: 150px;
         height: 150px;
     }
     
     .div_gamename {
-        width: 150px;
+        width: auto;
     }
 
     .gamename_text {
+        position:initial;
         font-size: 15px;
-        
-        top: -150px;
-        left: 200px;
+        margin:30px;
+       
     }
 
     .key_text {
-       
+        
         float: none;
         font-size: 15px;
-       left:135px;
-        top: -165px;
+        left: -15px;
+        top: 0px;
     }
 
     .searchbar {
@@ -90,8 +104,7 @@ top:-250px;
     }
  
     .copy_icon{
-        position:relative;
-        left:20%;
-        top:25px;
+        position:initial;
+        
     }
 }
