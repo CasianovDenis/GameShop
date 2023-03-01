@@ -113,7 +113,7 @@ export default function AllGames() {
             }
 
             setFoundGames(array_found_games);
-            console.log(RefSearch.current.value)
+           
         }
     }
 
@@ -208,7 +208,7 @@ export default function AllGames() {
 
                             <div style={{ width: "10rem" }} >
 
-                                <img class="card-img-top" id={style.card_image} src={item.Cover} alt={item.Game_name} />
+                                <img className={style.card_image} src={item.Cover} alt={item.Game_name} />
 
                                 <div class="card-body" className={style.card_body} alt={item.Game_name}>
                                     <h6 class="card-title" style={{ color: "white", marginLeft: "10px" }} alt={item.Game_name}>
@@ -284,8 +284,8 @@ export default function AllGames() {
                     })}
 
 
-                   
-                    <Pagination className={style.page_navigation}
+                    <div className={style.page_navigation}>
+                    <Pagination
                         boundaryRange={5}
                         defaultActivePage={1}
 
@@ -296,7 +296,7 @@ export default function AllGames() {
 
                         onClick={change_page_number}
                     />
-
+                    </div>
                     
                 </div>
 
