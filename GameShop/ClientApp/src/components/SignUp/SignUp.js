@@ -25,7 +25,7 @@ export default function SignUp() {
 
         event.preventDefault();
 
-        setMessage('Processed');
+        setMessage('Processing');
 
         
         let newuser = {
