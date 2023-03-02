@@ -8,6 +8,8 @@
     position: relative;
     right: 125px;
     top: -14px;
+    display:flex;
+    justify-content:center;
 }
 
 .modal_signup {
@@ -19,9 +21,9 @@
 
     position: relative;
     top: 100px;
-    left: 25%;
-
-    border-radius:10px;
+     right:10%;
+    
+     border-radius:10px;
 }
 
 
@@ -46,14 +48,21 @@
 @media(max-width:991px) {
 
     .div_signup{
-        right:30px;
+        right:150px;
     }
     .modal_signup {
       
         width: 350px;
         height:570px;
         top: 50px ;
-        left:5%;
+        right:0%;
     }
 
+}
+
+@media (max-width: 600px) {
+
+    .modal_signup {
+        left: 12%;
+    }
 }
