@@ -1,6 +1,6 @@
 ﻿.Carousel_parameters{
     max-width: 100%;
-    height: auto;
+    height: 300px;
     border-radius:20px;
 }
 
@@ -20,6 +20,12 @@
 
 
 @media(max-width:991px) {
+    
+    .Carousel_parameters {
+      
+        height: auto;
+       
+    }
 
     .Carousel_image {
         width: 100%;
