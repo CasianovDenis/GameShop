@@ -85,4 +85,7 @@ right:100%;
         flex-direction: column;
         right: 0%;
     }
+    #dropdown_menu {
+        margin-left: 0px;
+    }
 }
