@@ -94,7 +94,7 @@ export default function NavMenu(props) {
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white box-shadow mb-3" light style={{ backgroundColor: "#2a2a2a" }}>
                     <Container>
                         <NavbarBrand tag={Link} to="/" ><img src={logo} style={{width: "60px", height: "50px" }} /></NavbarBrand>
-                        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+                        <NavbarToggler onClick={toggleNavbar} className="mr-2" style={{ backgroundColor: "white" }} />
 
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow" >
@@ -160,7 +160,7 @@ export default function NavMenu(props) {
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white box-shadow mb-3" light style={{ backgroundColor: "#2a2a2a" }}>
                     <Container>
                     <NavbarBrand tag={Link} to="/" style={{ color: "white" }}><img src={logo} style={{ width: "60px", height: "50px" }} />GameShop</NavbarBrand>
-                    <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+                    <NavbarToggler onClick={toggleNavbar} className="mr-2" style={{ backgroundColor:"white" }} />
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
 

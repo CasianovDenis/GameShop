@@ -8,6 +8,9 @@
     position:relative;
     right:125px;
     top:-14px;
+
+    display:flex;
+    justify-content:center;
 }
 
 .modal_signin {
@@ -19,7 +22,7 @@
 
     position: relative;
     top: 100px;
-    left: 27%;
+    right: 10%;
 
     border-radius:10px;
 }
@@ -45,16 +48,31 @@
 
 @media(max-width:991px)
 {
-
+    .div_signin {
+       
+      
+        right: 150px;
+       
+    }
 
     .modal_signin {
         width: 350px;
         height: 400px;
-       
+       right:0%;
 
-        left:23%;
+        
         top: 50px
     }
 
 
+}
+
+@media (max-width: 600px) {
+
+    .modal_signin {
+       
+        left: 12%;
+       
+    }
+  
 }
