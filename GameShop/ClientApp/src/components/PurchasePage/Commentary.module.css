@@ -126,6 +126,7 @@
         position: relative;
         left: 80px;
         top: -40px;
+        width:200px;
     }
 
     .warning_commentary {

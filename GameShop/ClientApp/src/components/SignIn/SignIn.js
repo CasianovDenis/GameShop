@@ -52,7 +52,7 @@ export default function SignIn() {
                     .then(response => response.json())
                     .then((responseData) => {
                        
-                        if (responseData.Rights_token != undefined) {
+                        if (responseData.Rights_token != undefined ) {
 
                             refUsername.current.value = "";
 
@@ -74,7 +74,7 @@ export default function SignIn() {
                             redirect.go('/');
                         }
 
-                        else {
+                        else if (responseData != "Password incorrect" && responseData != "User not exist") {
 
                             refUsername.current.value = "";
 
