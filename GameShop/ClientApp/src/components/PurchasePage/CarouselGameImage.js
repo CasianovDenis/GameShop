@@ -79,14 +79,9 @@ export default function CarouselGameImage(props) {
                 >
 
                    
-                    <iframe className={ style.videoplayer} src={ item.VideoUrl} title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe className={style.videoplayer} src={item.VideoUrl} title="video player" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
 
-                    <CarouselCaption
-                        className=""
-                        captionText=""
-                        captionHeader=""
-
-                    />
+                   
                 </CarouselItem>
                 );
             else
@@ -103,12 +98,7 @@ export default function CarouselGameImage(props) {
 
                         <img src={`data:image/png;base64,${item.ImageUrl}`} alt={item.File_Name} style={{ width: "100%" }} />
 
-                        <CarouselCaption
-                            className=""
-                            captionText=""
-                            captionHeader=""
-
-                        />
+                        
                     </CarouselItem>
                 );
         });
@@ -118,24 +108,19 @@ export default function CarouselGameImage(props) {
             <div style={{ width: "100%" }}>
 
                 <Carousel activeIndex={activeIndex} next={next} previous={previous} style={{ height: "100px" }}>
-                    <CarouselIndicators
-                        items={dbdata}
-                        activeIndex={activeIndex}
-                        onClickHandler={goToIndex}
-                       
-                    />
+                   
                     {slides}
                     <CarouselControl
                         direction="prev"
                         directionText="Previous"
                         onClickHandler={previous}
-                        
+                        className={style.carousel_control }
                     />
                     <CarouselControl
                         direction="next"
                         directionText="Next"
                         onClickHandler={next}
-                       
+                        className={style.carousel_control}
                     />
                 </Carousel>
             </div>
