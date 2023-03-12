@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext} from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { Context } from "../Context";
 
 import user_icon from '../public_files/user_icon.png';
 import logo from './Logo.png';
 
 import './NavMenu.css';
+import style from './NavMenu.module.css';
 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import GetCookie from '../public_files/GetCookie.js';
@@ -20,6 +22,10 @@ export default function NavMenu(props) {
     const [collapsed, setCollapsed] = useState(true);
     const [admin_rights, setAdminRights] = useState(null);
 
+    const [changes, setChanges] = useState(false);
+    const [context, setContext] = useContext(Context);
+
+    const [show_menu, setShowMenu] = useState(false);
     const username = GetCookie("username");
 
 
@@ -27,46 +33,65 @@ export default function NavMenu(props) {
     const toggleNavbar = () => setCollapsed(!collapsed);
 
 
+    try {
+        if (context == "success_entered")
+            changes == false ? setChanges(true) : setChanges(false);
+    }
+    catch(ex) {
+        console.log(ex);
+    }
 
     useEffect(() => {
+        setContext(null);
 
         let token = GetCookie("auth_token");
 
-        if (GetCookie("status_account") == "online" && token.match(/^[A-Za-z0-9]*$/) && token.length==25) {
-            
-           
-
-                const requestOptions = {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                    
-                };
+        if (GetCookie("status_account") == "online" && token.match(/^[A-Za-z0-9]*$/) && token.length == 25) {
 
 
-                            fetch('http://localhost:56116/api/get_user_role/' + username, requestOptions)
-                                .then(response => response.json())
-                                .then((responseData) => {
 
-                                    if (responseData == "admin")
-                                        setAdminRights("block");
-                                    else
-                                        setAdminRights("none");
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+
+            };
 
 
-                                });
-                        
-            
-            
+            fetch('http://localhost:56116/api/get_user_role/' + username, requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
+
+                    if (responseData == "admin")
+                        setAdminRights("block");
+                    else
+                        setAdminRights("none");
+
+
+                });
+
+
+
         }
-        else
+        else {
             redirect.push('/');
+            setAdminRights(null);
+        }
 
 
 
-    }, []);
+    }, [changes]);
 
+    const open_menu = () => {
+        show_menu == false ? setShowMenu(true) : setShowMenu(false);
+      
+    }
+
+    const redirect_allgames = () => {
+        redirect.push('/AllGames');
+    }
 
    const ExitFromAccount = () => {
+      
 
        var now = new Date();
         var time = now.getTime();
@@ -83,7 +108,10 @@ export default function NavMenu(props) {
 
        document.cookie = "auth_token=; expires = " + now.toUTCString();
 
-       redirect.go('/');
+      
+       
+       changes == false ? setChanges(true) : setChanges(false);
+       
     }
 
     if (admin_rights != null) {
@@ -114,9 +142,9 @@ export default function NavMenu(props) {
                                     </div>
                            
 
-                                <div class="discover_games">
-                           
-                                    <NavLink tag={Link} to="/AllGames" style={{color:"white"} }>Discover</NavLink>
+                                    <div class="discover_games" >
+
+                                        <p onClick={ redirect_allgames}>Discover</p>
 
                               
                                 </div>
@@ -126,19 +154,19 @@ export default function NavMenu(props) {
                                 <NavItem >
                                     <div class="dropdown">
 
-                                        <img src={user_icon} id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false" style={{ width: "50px", height: "50px", cursor: "pointer" }} />
+                                        <img src={user_icon} onClick={ open_menu}
+                                           style={{ width: "50px", height: "50px", cursor: "pointer" }} />
 
-                                        
-                                        <div class="dropdown-menu" id="dropdown_menu" aria-labelledby="dropdownMenuButton" >
+                                        {show_menu && (
+                                            <div class="dropdown-menu show" id="dropdownMenu"  >
 
                                             <p class="dropdown-item" style={{ cursor: "pointer" }}>Name : {username}</p>
-                                            <NavLink tag={Link} class="dropdown-item " to="/UserGames" >My Games</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item " to="/Settings" >Settings</NavLink>
-                                            <NavLink tag={Link} class="dropdown-item " onClick={ExitFromAccount} >Exit</NavLink>
+                                            <NavLink tag={Link} className={style.nav_link} to="/UserGames" >My Games</NavLink>
+                                            <NavLink tag={Link} className={style.nav_link} to="/Settings" >Settings</NavLink>
+                                            <NavLink tag={Link} className={style.nav_link} onClick={ExitFromAccount} >Exit</NavLink>
                                         </div>
-                                        
-                                      
+                                        )}
+                                       
 
                                     </div>
 
@@ -165,13 +193,13 @@ export default function NavMenu(props) {
                             <ul className="navbar-nav flex-grow">
 
                                 <NavItem>
-                                    <NavLink tag={Link} to="/SignIn"
-                                        style={{  color: "white" }}>Log In</NavLink>
+                                <NavLink tag={Link} to="/SignIn"
+                                    style={{ color: "white" }} className={ style.nav_link}>Log In</NavLink>
                                 </NavItem>
 
                                <NavItem>
                                     <NavLink tag={Link} to="/SignUp"
-                                        style={{  color: "white" }}>Sign Up</NavLink>
+                                    style={{ color: "white" }} className={style.nav_link}>Sign Up</NavLink>
                                 </NavItem>
 
                            </ul>
