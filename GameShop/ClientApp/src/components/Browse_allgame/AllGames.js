@@ -19,6 +19,8 @@ export default function AllGames() {
 
     const [displayed_games, setDisplayedGames] = useState(null);
 
+    const [show_searchbar, setShowSearchBar] = useState(false);
+
     const [foundgames, setFoundGames] = useState(null);
 
     const [total_page_number, setTotalPageNumber] = useState(null);
@@ -83,7 +85,11 @@ export default function AllGames() {
     }, []);
 
   
-
+    const open_searchbar = () => {
+        var element = document.getElementById('search_input');
+        show_searchbar == false ? element.style.width = '230px' : element.style.width = '0px' ;
+        show_searchbar == false ? setShowSearchBar(true) : setShowSearchBar(false);
+    }
     const search = () => {
 
         let array_found_games = Array(allgames.length);
@@ -179,7 +185,7 @@ export default function AllGames() {
             <div >
 
 
-                <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
+                <p className={style.text_discover_games}>Discover games</p>
 
                 <select onChange={sorting_games} className={style.sort_elements} disabled>
 
@@ -193,9 +199,11 @@ export default function AllGames() {
 
                 <div className={style.searchbar}>
 
-                    <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
-                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft: "5px" }} />
 
+                    <input id="search_input" type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{width:"0"} }/>
+
+                    <button onClick={open_searchbar} >
+                        <FontAwesomeIcon icon={faMagnifyingGlass}  /> </button>
 
                 </div>
 
@@ -252,9 +260,11 @@ export default function AllGames() {
 
                     <div className={style.searchbar}>
 
-                        <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft: "5px" }} />
-
+                      
+                        <input id="search_input" type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{width:"0" }} required />
+                       
+                        <button onClick={open_searchbar} >
+                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginRight: "4px" }} /> </button>
 
                     </div>
 

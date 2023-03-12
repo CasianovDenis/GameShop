@@ -19,7 +19,7 @@ export default function UserGames() {
     const [dbdata, setDbData] = useState(null);
     const [foundgames, setFoundGames] = useState(null);
  
-
+    const [show_searchbar, setShowSearchbar] = useState(false);
     const redirect = useHistory();
    
 
@@ -55,7 +55,13 @@ export default function UserGames() {
 
     }, []);
 
+    const open_searchbar = () => {
 
+        let element = document.getElementById('search_input');
+        show_searchbar == false ? element.style.width = "230px" : element.style.width = "0px";
+        show_searchbar == false ? setShowSearchbar(true) : setShowSearchbar(false);
+
+    }
     const search = () => {
 
         let array_found_games = Array(dbdata.length);
@@ -114,8 +120,10 @@ export default function UserGames() {
 
                 <div className={style.searchbar}>
 
-                    <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
-                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft: "5px" }} />
+
+                    <input id='search_input' type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ width: "0" }} />
+                    <button onClick={open_searchbar}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} /></button>
 
 
                 </div>
@@ -167,8 +175,9 @@ else
             <div className={style.searchbar}>
 
               
-                <input type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ borderRadius: "6px" }} />
-                <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginLeft:"5px" }} />
+                <input id='search_input' type="text" ref={RefSearch} onChange={search} placeholder="Search.." style={{ width: "0" }} />
+                <button onClick={open_searchbar}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ marginRight: "4px" }} /></button>
                
 
             </div>
