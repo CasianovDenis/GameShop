@@ -1,8 +1,8 @@
-﻿import React, {useEffect,useState,useRef } from 'react';
+﻿import React, {useEffect,useState,useRef , useContext } from 'react';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-
+import { Context } from '../Context';
 
 import style from './SignIn.module.css';
 
@@ -16,6 +16,7 @@ export default function SignIn() {
     if (GetCookie("status_account") == "online") redirect.push('/');
 
     const [message, setMessage] = useState('');
+    const [context, setContext] = useContext(Context);
 
     const refUsername = useRef(""),
         refPassword = useRef("");
@@ -91,7 +92,8 @@ export default function SignIn() {
 
                             document.cookie = "auth_token=" + responseData + "; expires = " + date.toGMTString();
 
-                            redirect.go('/');
+                           
+                            setContext("success_entered");
                         }
                         
                            
@@ -122,19 +124,19 @@ export default function SignIn() {
             <div className={style.modal_signin}>
                 <form>
 
-                <br />
-                <p style={{ color: "white", fontSize:"20px", marginLeft: "40%" }}>Welcome</p>
 
-                <p style={{ color: "white", marginLeft: "20px" }}> Username: </p>
-
-                <input class="form-control" ref={refUsername} style={{ width: "90%", marginLeft:"20px" }} type="text" />
-
-                <br />
+                    <p style={{ color: "white", fontSize: "20px", marginLeft: "40%", marginTop:"20px" }}>Welcome</p>
 
 
-                <p style={{ color: "white", marginLeft: "20px"}}>Password:</p>
+                    <div className={ style.inputBox}>
+                        <input type="text" ref={refUsername} required />
+                        <span>Username</span>
+                    </div>
 
-                <input class="form-control" ref={refPassword} style={{ width: "90%", marginLeft: "20px" }} type="password" />
+                    <div className={ style.inputBox}>
+                        <input type="password" ref={refPassword} required />
+                        <span>Password</span>
+                    </div>
 
                 <NavLink tag={Link}  to="/SignUp">Create Account</NavLink>
                 <button className={style.signin_button}  onClick={authentication}> Sign In </button>
