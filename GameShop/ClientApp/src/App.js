@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component , useState} from 'react';
 import { Route } from 'react-router';
 
 import Layout from './components/NavMenu/Layout';
@@ -19,12 +19,16 @@ import Settings from './components/Settings/Settings';
 
 import Footer from './components/Footer/Footer';
 
-
+import { Context} from './components/Context.js'
 import './custom.css'
 
+
 export default function App() {
- 
+
+    const [context, setContext] = useState(null);
+
     return (
+        <Context.Provider value={[context , setContext]}>
         <Layout>
 
             <Route exact path='/' component={Home} />
@@ -36,7 +40,8 @@ export default function App() {
             <Route exact path='/Settings' component={Settings} />
 
             <Footer />
-      </Layout>
+            </Layout>
+        </Context.Provider>
     );
   
 }

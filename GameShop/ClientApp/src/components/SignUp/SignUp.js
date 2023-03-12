@@ -99,33 +99,37 @@ export default function SignUp() {
             <div className={style.modal_signup}>
                 <form>
 
-                    <br />
+                   
 
-                <p style={{ color: "white", fontSize: "20px", marginLeft: "30%" }}>Create an account</p>
+                    <p style={{ color: "white", fontSize: "20px", marginLeft: "30%", marginTop:"10px" }}>Create an account</p>
 
-                <p style={{ color: "white", marginLeft: "20px" }}> Username: </p>
+              
+                    <div className={style.inputBox}>
+                <input  ref={refUsername}  type="text" required/>
+                        <span>Username</span>
+                    </div>
+               
 
-                <input class="form-control" ref={refUsername} style={{ width: "90%", marginLeft:"20px" }} type="text" />
+              
+                    <div className={style.inputBox}>
+                    <input ref={refEmail}  type="email" required/>
+                        <span>Email</span>
+                   </div>
 
-                <br />
+             
 
-                <p style={{ color: "white", marginLeft: "20px" }}>Email:</p>
+                    <div className={style.inputBox}>
+                     <input  ref={refPassword} type="password" required/>
+                        <span>Password</span>
+                     </div>
 
-                <input class="form-control" ref={refEmail} style={{ width: "90%", marginLeft: "20px" }} type="email" />
+            
+                    <div className={ style.inputBox}>
+                        <input ref={refVerificationPassword} type="password" required />
+                        <span>Verification pass</span>
+                         </div>
 
-                <br />
-
-                <p style={{ color: "white", marginLeft: "20px"}}>Password:</p>
-
-                <input class="form-control" ref={refPassword} style={{ width: "90%", marginLeft: "20px" }} type="password" />
-
-                <br />
-
-                <p style={{ color: "white", marginLeft: "20px"}}> Verification Password:</p>
-
-                <input class="form-control" ref={refVerificationPassword} style={{ width: "90%", marginLeft: "20px" }} type="password" />
-
-                 <NavLink tag={Link} to="/SignIn">Have an account</NavLink>
+                    <NavLink tag={Link} to="/SignIn">Have an account</NavLink>
 
                     <button className={style.signup_button} onClick={create_account}> Sign Up </button>
 

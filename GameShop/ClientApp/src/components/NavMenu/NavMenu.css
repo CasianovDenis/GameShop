@@ -5,7 +5,7 @@
 }
 
 a.nav-link:hover {
-    background-color: #f3eae8;
+    color: #555896;
 }
 
 html {
@@ -17,58 +17,72 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-#dropdown_menu {
+#dropdownMenu {
     margin-left: -60px;
 }
 
-
-.dropdown {
-    width: 60px;
-}
-
-.nav_buttons{
-display:flex;
-position:relative;
-right:100%;
-
-}
-
-#add_game_button {
+.dropdown-menu {
+    
    
-    margin: 10px ;
-    color: white;
-    cursor: pointer;
+    animation: scaleZ 1000ms ease-in-out forwards;
 }
+@keyframes scaleZ {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    80% {
+        transform: scale(1.07);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    .nav_buttons {
+        display: flex;
+        position: relative;
+        right: 100%;
+    }
+
+    #add_game_button {
+        margin: 10px;
+        color: white;
+        cursor: pointer;
+    }
 
     #add_game_button:hover {
         color: #555896;
     }
 
-#upload_game_data_button {
-  
-    margin: 10px;
-    color: white;
-    cursor: pointer;
-}
+    #upload_game_data_button {
+        margin: 10px;
+        color: white;
+        cursor: pointer;
+    }
 
-#upload_game_data_button:hover {
-    color: #555896;
-}
-
+    #upload_game_data_button:hover {
+        color: #555896;
+    }
 
 
 
-.discover_games {
-    margin: 10px ;
-    position: relative;
-    top: -6px;
-}
-.discover_games :hover {
-    background-color:black;
-}
 
-@media (max-width: 991px) {
-    html {
+    .discover_games {
+        margin: 10px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .discover_games :hover {
+        color: #555896;
+    }
+
+    @media (max-width: 991px) {
+        html {
         font-size: 16px;
     }
 
@@ -79,13 +93,16 @@ right:100%;
 
 }
 @media (max-width: 600px) {
-   
+    #dropdownMenu {
+        width:250px;
+        margin-left: 0px;
+
+    }
 
     .nav_buttons {
         flex-direction: column;
         right: 0%;
     }
-    #dropdown_menu {
-        margin-left: 0px;
-    }
+  
 }
+
