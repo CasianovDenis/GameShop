@@ -99,7 +99,7 @@ export default function GameCommentary(props) {
 
   
 
-    const save_comment = () =>{
+    const add_comment = () =>{
 
 
         let comment = refComment.current.value;
@@ -127,6 +127,8 @@ export default function GameCommentary(props) {
                     if (responseData == "Commentary added succesfully") {
                         toaster.success(responseData);
                         request == false ? setRequest(true) : setRequest(false)
+
+                        refComment.current.value = "";
                     }
                     
                 });
@@ -322,7 +324,7 @@ export default function GameCommentary(props) {
                     ref={refComment} className={style.commentary_field} />
 
                
-                <button className={style.button_comment} onClick={save_comment}>
+                <button className={style.button_comment} onClick={add_comment}>
                     <p style={{ color: "white" }}>Comment</p> </button>
 
 
@@ -413,7 +415,7 @@ export default function GameCommentary(props) {
                 ref={refComment}  />
 
            
-            <button  className={style.button_comment} onClick={save_comment}>
+            <button  className={style.button_comment} onClick={add_comment}>
                                                     <p style={{ color: "white" }}>Comment</p> </button>
            
 
