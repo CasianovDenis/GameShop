@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import GetCookie from '../public_files/GetCookie';
 
+import style from './NavMenu.module.css';
 
 import axios from 'axios';
 
@@ -138,9 +139,11 @@ export default function Mongo_upload_file() {
     return (
 
        
-        <div>
-            <p  id="upload_game_data_button"  data-toggle="modal" data-target="#upload_file">Upload game data</p>
-            
+        <div >
+            <div className={style.nav_button}>
+            <p data-toggle="modal" data-target="#upload_file">Upload game data</p>
+            <i></i>
+                </div>
             <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
 

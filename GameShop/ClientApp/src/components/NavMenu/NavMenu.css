@@ -48,38 +48,6 @@ html {
         right: 100%;
     }
 
-    #add_game_button {
-        margin: 10px;
-        color: white;
-        cursor: pointer;
-    }
-
-    #add_game_button:hover {
-        color: #555896;
-    }
-
-    #upload_game_data_button {
-        margin: 10px;
-        color: white;
-        cursor: pointer;
-    }
-
-    #upload_game_data_button:hover {
-        color: #555896;
-    }
-
-
-
-
-    .discover_games {
-        margin: 10px;
-        color: white;
-        cursor: pointer;
-    }
-
-    .discover_games :hover {
-        color: #555896;
-    }
 
     @media (max-width: 991px) {
         html {
