@@ -16,17 +16,14 @@ export default function Home() {
 
     const redirect = useHistory();
 
-    const redirect_to_allgames = () => {
-
-        redirect.push('/AllGames');
-    }
+   
 
         return (
 
             <>
                 <CarouselRandomGame />
 
-                <p onClick={redirect_to_allgames} className={style.text_allgames}>Discover more games </p>
+                <p className={style.text_newgames}>New game on the site </p>
 
                 <Card_form_newgame />
                

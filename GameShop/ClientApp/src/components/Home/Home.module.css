@@ -1,20 +1,17 @@
-﻿.text_allgames {
+﻿
+.text_newgames {
     color: white;
-    cursor: pointer;
+   
     height: 50px;
     font-size: 25px;
 }
 
-    .text_allgames:hover {
-
-        color: #156e8f;
-    }
-
+   
 @media(max-width:991px) {
 
 
 
-    .text_allgames {
+    .text_newgames {
       
         font-size: 15px;
         height: 30px;

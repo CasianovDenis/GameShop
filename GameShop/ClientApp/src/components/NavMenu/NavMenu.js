@@ -192,6 +192,13 @@ export default function NavMenu(props) {
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
 
+                            <div class="discover_games nav_buttons" >
+
+                                <p onClick={redirect_allgames}>Discover</p>
+
+
+                            </div>
+
                                 <NavItem>
                                 <NavLink tag={Link} to="/SignIn"
                                     style={{ color: "white" }} className={ style.nav_link}>Log In</NavLink>

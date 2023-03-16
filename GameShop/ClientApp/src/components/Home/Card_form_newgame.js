@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import style from './HomeCards.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import LoadingSpinner from '../public_files/LoadingSpinner';
+
 export default function Card_form_newgame() {
 
     const [dbdata, setDbData] = React.useState([]);
@@ -82,9 +84,7 @@ export default function Card_form_newgame() {
         );
     else
         return (
-            <div class="spinner-border" role="status" >
-                <span class="visually-hidden"></span>
-            </div>
+            <LoadingSpinner />
         )
 }
 
