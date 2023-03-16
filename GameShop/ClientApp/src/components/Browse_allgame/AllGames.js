@@ -13,6 +13,8 @@ import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import LoadingSpinner from '../public_files/LoadingSpinner';
+
 export default function AllGames() {
 
     const [allgames, setAllGames] = React.useState(null);
@@ -316,9 +318,7 @@ export default function AllGames() {
 
     else
 
-        return (
-            <div class="spinner-border" role="status" >
-                <span class="visually-hidden"></span>
-            </div>
+            return (
+                <LoadingSpinner />
             )
 }
