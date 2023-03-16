@@ -5,6 +5,7 @@ import GetCookie from '../public_files/GetCookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import style from './NavMenu.module.css';
 
 
 export default function Modal_add_game() {
@@ -100,9 +101,12 @@ export default function Modal_add_game() {
     return (
 
        
-        <div>
-            <p  id="add_game_button" data-toggle="modal" data-target="#add_game">Add game</p>
-            
+        <div >
+            <div className={style.nav_button}>
+            <p data-toggle="modal" data-target="#add_game">Add game</p>
+            <i></i>
+            </div>
+
             <div class="modal fade" id="add_game" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -122,7 +126,7 @@ export default function Modal_add_game() {
                                 <input id="price" type="number" ref={refPrice} class="form-control" required/>
 
                             <p>Description:</p>
-                            <textarea id="description" ref={refDescription} rows="10" cols="50" onChange={count_letters} required />
+                            <textarea id="description" style={{width:"100%"}} ref={refDescription} rows="10" cols="50" onChange={count_letters} required />
 
                             <p>Letters:{letters_number}</p>
 

@@ -1,3 +1,44 @@
 ﻿.nav_link:hover {
-    background-color: #f3eae8;
+    background-color: #0c6385;
+}
+
+.nav_button {
+    position: relative;
+    
+   top:10px;
+}
+    .nav_button p {
+        margin: 10px;
+        color: white;
+        cursor: pointer;
+    }
+.nav_button i {
+    position:absolute;
+    height:5px;
+    
+    width:100%;
+    transition:0.7s;
+    top:-20px;
+}
+    .nav_button p:hover ~i {
+        background-color: white;
+        
+    }
+
+    .nav_button p:active ~ i {
+        transition: 0;
+        background-color: #2196f3;
+    }
+
+@media (max-width: 600px)
+{
+    .nav_button {
+        
+        top: 0px;
+    }
+        .nav_button i {
+           top:-5px;
+           width:50%;
+        }
+
 }
