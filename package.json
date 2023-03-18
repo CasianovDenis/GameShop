@@ -10,6 +10,7 @@
     "evergreen-ui": "^7.0.1",
     "js-sha256": "^0.9.0",
     "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.10.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.0",
     "semantic-ui-css": "^2.5.0",
