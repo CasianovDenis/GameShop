@@ -4,11 +4,13 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import { Pagination } from 'semantic-ui-react';
+import { CaretDown, FilterLeft } from 'react-bootstrap-icons';
 
+import { Pagination } from 'semantic-ui-react';
 
 import style from './AllGames.module.css';
 import 'semantic-ui-css/semantic.min.css'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -126,7 +128,7 @@ export default function AllGames() {
     }
 
     const sorting_games = (ev) => {
-
+        
         setSortType(ev.target.value);
 
         let number_games_must_displaying = 12 * current_page_number;
@@ -189,16 +191,13 @@ export default function AllGames() {
 
                 <p className={style.text_discover_games}>Discover games</p>
 
-                <select onChange={sorting_games} className={style.sort_elements} disabled>
+                <select  className={style.sort_elements} disabled>
 
-                    <option selected value="Alphabetical">Alphabetical</option>
-                    <option value="Newest">Newest</option>
-                    <option value="Low to High">Price: Low to High</option>
-                    <option value="High to Low">Price: High to Low</option>
-
+                    <option selected >{sort_type}</option>
 
                 </select>
 
+               
                 <div className={style.searchbar}>
 
 
@@ -250,9 +249,9 @@ export default function AllGames() {
 
 
 
-                    <select onChange={sorting_games} className={style.sort_elements} >
-
-                        <option selected value="Alphabetical">Alphabetical</option>
+                    <select onChange={sorting_games} className={style.sort_elements} value={ sort_type}>
+                       
+                        <option value="Alphabetical">Alphabetical</option>
                         <option value="Newest">Newest</option>
                         <option value="Low to High">Price: Low to High</option>
                         <option value="High to Low">Price: High to Low</option>
@@ -260,6 +259,7 @@ export default function AllGames() {
 
                     </select>
 
+                   
                     <div className={style.searchbar}>
 
                       
