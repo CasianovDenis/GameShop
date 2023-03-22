@@ -19,6 +19,8 @@ import Settings from './components/Settings/Settings';
 
 import Footer from './components/Footer/Footer';
 
+import About from './components/About/About';
+
 import { Context} from './components/Context.js'
 import './custom.css'
 
@@ -38,6 +40,7 @@ export default function App() {
             <Route exact path='/UserGames' component={UserGames} />
             <Route exact path='/AllGames' component={AllGames} />
             <Route exact path='/Settings' component={Settings} />
+            <Route exact path='/About' component={About} />
 
             <Footer />
             </Layout>
