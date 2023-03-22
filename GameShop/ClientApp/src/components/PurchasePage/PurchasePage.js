@@ -13,7 +13,7 @@ import GameCommentary from './GameCommentary';
 
 import arrow_left from './arrow.png';
 import GetCookie from "../public_files/GetCookie";
-
+import LoadingSpinner from '../public_files/LoadingSpinner';
 
 export default function PurchasePage() {
 
@@ -142,10 +142,8 @@ export default function PurchasePage() {
     }
     else
         return (
-            
-            <div class="spinner-border" role="status" >
-                <span class="visually-hidden"></span>
-                </div>
+
+            <LoadingSpinner />
             )
 
 }
