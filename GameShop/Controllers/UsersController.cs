@@ -134,7 +134,7 @@ namespace GameShop.Controllers
                 if (authorizationToken == user_data.Authorization_token)
                 {
 
-                    var user_games = _conString.UserPurchases.Where(data => data.Username == Username).ToList();
+                    var user_games = _conString.UserPurchases.Where(data => data.Username == Username).OrderBy(data => data.Game_name).ToList();
 
 
                     List<GamePurchasesByUser> purchases_game = new List<GamePurchasesByUser>();
@@ -147,6 +147,64 @@ namespace GameShop.Controllers
                     }
 
                     return Json(purchases_game);
+                }
+                else
+                    return Json("Incorrect authorization token");
+
+            }
+            catch
+            {
+
+                return Json("Incorrect Username");
+            }
+        }
+
+        [HttpGet("~/api/get_sort_user_games/{Username}/{authorizationToken}/{sort_type}")]
+        public JsonResult GetSortUserGames(string Username, string authorizationToken, string sort_type)
+        {
+
+            try
+            {
+                var user_data = _conString.Users.Single(data => data.Username == Username);
+
+                if (authorizationToken == user_data.Authorization_token)
+                {
+
+                    switch (sort_type)
+                    {
+                        case "Alphabetical":
+
+                            var user_games = _conString.UserPurchases.Where(data => data.Username == Username).OrderBy(data => data.Game_name).ToList();
+
+                            List<GamePurchasesByUser> alphabetical_games = new List<GamePurchasesByUser>();
+
+                            for (int index = 0; index < user_games.Count; index++)
+                            {
+                                var game = _conString.Game.Single(data => data.Game_name == user_games[index].Game_name);
+
+                                alphabetical_games.Add(new GamePurchasesByUser(user_games[index].Game_name, user_games[index].KeyOfGame, game.Cover));
+                            }
+
+                            return Json(alphabetical_games);
+
+                        case "Newest":
+                            user_games = _conString.UserPurchases.Where(data => data.Username == Username).OrderBy(data => data.ID).ToList();
+
+                            List<GamePurchasesByUser> newest_games = new List<GamePurchasesByUser>();
+
+                            for (int index = 0; index < user_games.Count; index++)
+                            {
+                                var game = _conString.Game.Single(data => data.Game_name == user_games[index].Game_name);
+
+                                newest_games.Add(new GamePurchasesByUser(user_games[index].Game_name, user_games[index].KeyOfGame, game.Cover));
+                            }
+
+                            return Json(newest_games);
+
+                    }
+
+                    return Json("Incorrect sort type");
+
                 }
                 else
                     return Json("Incorrect authorization token");

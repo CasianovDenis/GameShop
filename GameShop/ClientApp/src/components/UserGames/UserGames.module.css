@@ -41,10 +41,24 @@ margin:25px;
 top:-250px;
 }
 
+.sort_elements {
+    position: relative;
+    top: -80px;
+    left: 81%;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #282845;
+    color: white;
+   width:130px;
+    height: 30px;
+    border: none;
+    outline: none;
+}
+
 .searchbar {
     position: relative;
    
-    left: 77.2%;
+    left: 35%;
     top: -50px;
    
     width:300px;
@@ -128,10 +142,16 @@ top:-250px;
     .searchbar {
        
         left: 0%;
-        top: 0px;
+        top: -10px;
       
     }
- 
+    .sort_elements {
+        
+        top: 0px;
+        left: 0%;
+     
+        
+    }
     .copy_icon{
         position:initial;
         

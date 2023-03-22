@@ -9,10 +9,59 @@
 }
 
 .footer_text{
+    position:relative;
+    top:50px;
+    
+}
+.footer_text p{
+    
     color:white;
   max-width:500px;
   margin:0 auto;
+  
 }
+
+.language_block{
+    
+    position:relative;
+}
+.language_block p{
+    position:absolute;
+    left:0;
+    color:white;
+}
+
+    .language_block p span {
+        color: #d59bf6;
+    }
+
+.currency_block {
+    
+    position: relative;
+}
+    .currency_block p {
+        position: absolute;
+        right: 0;
+        color: white;
+    }
+
+        .currency_block p span {
+            color: #42b883;
+        }
+
+.about_block{
+    position:relative;
+    width:100px;
+    left:45%;
+}
+              .about_block p{
+                   color:white;
+                   cursor:pointer;
+
+               }
+                .about_block p:hover {
+                    color: #7f67c2;
+                }
 
 
 @media(max-width:991px)
