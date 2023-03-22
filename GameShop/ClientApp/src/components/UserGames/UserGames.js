@@ -20,16 +20,18 @@ export default function UserGames() {
     const [foundgames, setFoundGames] = useState(null);
  
     const [show_searchbar, setShowSearchbar] = useState(false);
+    const [sort_type, setSortType] = useState("Alphabetical");
+    
     const redirect = useHistory();
-   
+    const username = GetCookie("username");
+    const auth_token = GetCookie("auth_token");
 
    const RefSearch = useRef("");
 
     useEffect(() => {
 
-        let token = GetCookie("auth_token");
 
-    if (GetCookie("status_account") != "online" && token.match(/^[A-Za-z0-9]*$/) && token.length == 25) redirect.push('/');
+    if (GetCookie("status_account") != "online" && auth_token.match(/^[A-Za-z0-9]*$/) && auth_token.length == 25) redirect.push('/');
 
 
             const requestOptions = {
@@ -41,7 +43,7 @@ export default function UserGames() {
 
 
 
-            fetch('http://localhost:56116/api/get_user_games/' + GetCookie("username")+'/'+GetCookie('auth_token'), requestOptions)
+            fetch('http://localhost:56116/api/get_user_games/' + username+'/'+auth_token, requestOptions)
                 .then(response => response.json())
                 .then((responseData) => {
 
@@ -95,6 +97,31 @@ export default function UserGames() {
         }
         }
 
+    const sorting_games = (ev) => {
+
+        let sort_option = ev.target.value;
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+
+        };
+
+
+
+
+        fetch('http://localhost:56116/api/get_sort_user_games/' + username + '/' + auth_token+'/'+sort_option, requestOptions)
+            .then(response => response.json())
+            .then((responseData) => {
+
+                if (responseData != "Incorrect authorization token" && responseData != "Incorrect sort type" && responseData.length > 0) {
+                    setDbData(responseData);
+                    setSortType(sort_option);
+                }
+
+
+            });
+
+    }
     const Copy = (ev) => {
 
         let key = ev.target.getAttribute('title');
@@ -118,6 +145,8 @@ export default function UserGames() {
 
                 <p style={{ color: "white", fontSize: "20px" }}>My Games</p>
 
+
+
                 <div className={style.searchbar}>
 
 
@@ -127,6 +156,12 @@ export default function UserGames() {
 
 
                 </div>
+
+                <select className={style.sort_elements} disabled>
+
+                    <option selected >{sort_type}</option>
+
+                </select>
 
                 {foundgames.map(item => {
 
@@ -172,6 +207,7 @@ else
 
             <p style={{ color: "white", fontSize:"20px" }}>My Games</p>
 
+            
             <div className={style.searchbar}>
 
               
@@ -181,6 +217,14 @@ else
                
 
             </div>
+
+            <select onChange={sorting_games} className={style.sort_elements} value={sort_type}>
+
+                <option value="Alphabetical">Alphabetical</option>
+                <option value="Newest">Newest</option>
+
+
+            </select>
 
             {dbdata.map(item => {
 
