@@ -217,5 +217,26 @@ namespace GameShop.Controllers
             }
         }
 
+        [HttpGet("~/api/Search_game/{text_from_search}")]
+        public JsonResult Search_games(string text_from_search)
+        {
+
+            try
+            {
+
+                /*var results = from Name in _conString.Game
+                              where EF.Functions.Like("%" + game_name + "%," )
+                              select Name;*/
+                var result = _conString.Game.Where(data => data.Game_name.Contains(text_from_search)).ToList();
+
+                return Json(result);
+            }
+            catch
+            {
+                return Json("Error");
+            }
+        }
+
+
     }
 }
