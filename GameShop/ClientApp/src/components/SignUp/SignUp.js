@@ -1,7 +1,6 @@
-﻿import React, {useEffect,useState,useRef } from 'react';
+﻿import React, {useState,useRef } from 'react';
 import { NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { Link , useHistory  } from 'react-router-dom';
 
 import style from './SignUp.module.css';
 
@@ -11,7 +10,7 @@ import GetCookie from '../public_files/GetCookie.js';
 export default function SignUp() {
     const redirect = useHistory();
 
-    if (GetCookie("status_account") == "online") redirect.push('/'); 
+    if (GetCookie("status_account") === "online") redirect.push('/'); 
 
     const [message, setMessage] = useState('');
 
@@ -43,9 +42,9 @@ export default function SignUp() {
             if (newuser.Email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             )) {
 
-                if (refPassword.current.value != "" && refVerificationPassword.current.value != "") {
+                if (refPassword.current.value !== "" && refVerificationPassword.current.value != "") {
 
-                    if (refPassword.current.value == refVerificationPassword.current.value) {
+                    if (refPassword.current.value === refVerificationPassword.current.value) {
 
 
 
@@ -60,7 +59,7 @@ export default function SignUp() {
                             .then(response => response.json())
                             .then((responseData) => {
 
-                                if (responseData == "Account created successfully") {
+                                if (responseData === "Account created successfully") {
 
                                     refUsername.current.value = "";
                                     refEmail.current.value = "";
