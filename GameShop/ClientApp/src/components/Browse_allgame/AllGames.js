@@ -55,7 +55,7 @@ export default function AllGames() {
 
                     for (let index = 1; index <= responseData.length; index++)
 
-                        if (index == range) { count++; range = range + 13; }
+                        if (index === range) { count++; range = range + 13; }
 
                     setTotalPageNumber(count);
                     
@@ -94,35 +94,33 @@ export default function AllGames() {
     }
     const search = () => {
 
-        let array_found_games = Array(allgames.length);
-        let position = 0;
-
         let search_text = RefSearch.current.value;
 
-        if (search_text == "") setFoundGames(null);
-        else {
+                                //capitalize first letter
+        search_text = search_text.charAt(0).toUpperCase() + search_text.slice(1);
 
-            for (let index = 0; index < allgames.length; index++) {
+        if (search_text.length >0 ) {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            };
 
-                if (allgames[index].Game_name.toLowerCase().includes(search_text)) {
+            let url = 'http://localhost:56116/api/Search_game/' + search_text;
 
-                    array_found_games[position] = allgames[index];
-                    position++;
 
-                }
-                else
+            fetch(url, requestOptions)
+                .then(response => response.json())
+                .then((responseData) => {
 
-                    if (allgames[index].Game_name.includes(search_text)) {
+                    setFoundGames(responseData);
 
-                        array_found_games[position] = allgames[index];
-                        position++;
 
-                    }
-            }
-
-            setFoundGames(array_found_games);
-           
+                });
         }
+        else
+            setFoundGames(null);
+
+      
     }
 
     const sorting_games = (ev) => {
@@ -181,7 +179,7 @@ export default function AllGames() {
     }
 
 
-    if (foundgames != null)
+    if (foundgames !== null)
         return (
 
             <div >
@@ -239,7 +237,7 @@ export default function AllGames() {
 
     else
 
-        if (displayed_games != null)
+        if (displayed_games !== null)
             return (
 
                 <div>
